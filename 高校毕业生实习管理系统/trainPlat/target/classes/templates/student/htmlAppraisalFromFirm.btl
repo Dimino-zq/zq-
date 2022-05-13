@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.jqprint-0.3.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/student/studenttrainform.js"></script>
+<title>学生实习鉴定表</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		tipMess();
+		
+		$("#webPrint").click(function(){
+			$("#printContent").jqprint({
+				operaSupport: false
+			}); 
+		});
+		
+		function tipMess(){
+			var tip = "${tip!"null"}";
+			if(tip!="null")
+				alert(tip);
+		}
+
+	});
+	</script>
+</head>
+<body>
+	<div>
+		<a href="#" class="easyui-linkbutton" onclick="javascript:history.back();" data-options="iconCls:'icon-back'">返回</a>
+		<a href="#" class="easyui-linkbutton" id="webPrint" data-options="iconCls:'icon-print'">打印</a>
+	</div>
+	
+	<div id="printContent">
+		<div align="center">
+			<div  style="width:794px;height:1090px" >
+				<h2 align="center" style="padding-top:5px">黑龙江财经学院学生实习鉴定表</h2>
+				
+				<table border="1" style="width: 100%; border:2px black solid; border-collapse:collapse; text-align:center; ">
+					<tr>
+						<td style="width: 133px;height:45px" align="center">姓&nbsp;&nbsp;&nbsp; 名</td>
+						<td style="width: 133px;height:45px">${studentName!""}</td>
+						<td style="width: 133px;height:45px" align="center">学&nbsp;&nbsp;&nbsp; 号</td>
+						<td style="width: 133px;height:45px">${studentNo!""}</td>
+						<td style="width: 133px ;height:45px" align="center">性&nbsp;&nbsp;&nbsp; 别</td>
+						<td style="width: 133px;height:45px">${studentSex!""}</td>
+					</tr>
+					<tr>
+						<td style="width: 133px;height:45px" align="center">专&nbsp;&nbsp;&nbsp; 业</td>
+						<td style="width: 133px;height:45px">${major!""}</td>
+						<td style="width: 133px;height:45px" align="center">班&nbsp;&nbsp;&nbsp; 级</td>
+						<td style="width: 133px;height:45px">${classNumber!""}</td>
+						<td style="width: 133px;height:45px" rowspan="3" align="center">主要实习岗位</td>
+						<td style="width: 133px; height:45px">${surcomjob!""}</td>
+					</tr>
+					<tr>
+						<td style="width: 133px; height:45px" align="center">实习项目</td>
+						<td colspan="3" style="height:45px">${surcomcontent!""}</td>
+						<td style="height:45px"></td>
+					</tr>
+					<tr>
+						<td style="width: 114px;height:45px" align="center">实习单位<br />
+						全称</td>
+						<td colspan="3" style="height:45px">${comName!""}</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 114px; height:45px" align="center">实习时间</td>
+						<td colspan="5" style="height:45px;text-align:center;">${applydate!""}</td>
+					</tr>
+					<tr>
+						<td style="width: 114px;height:33px" align="center"> 就业查询</td>
+						<td colspan="5" style="height: 33px">
+						<form method="post"  style="height: 46px; bottom:0px; width: 671px; margin-bottom:0; "  >
+							&nbsp;&nbsp;&nbsp;
+							<br />
+							<input name="Radio1" type="checkbox" />已确定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input name="Radio1" type="checkbox" />基本确定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input name="Radio1" type="checkbox" />待定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+							<input name="Radio1" type="checkbox" />无录入意向</form>
+							<br />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="6" align="center"  style="height: 23px">(以上由学生填写)</td>
+					</tr>
+				</table>
+				<table border="1" style="width: 100%; border:2px black solid; border-collapse:collapse; text-align:center; ">
+					<tr>
+						<td colspan="5" align="center"  style="height: 45px">实习单位评价意见</td>
+					</tr>
+					<tr>
+						<td rowspan="12" align="center"  style="height: 45px; width: 113px;">实习单位<br />
+						考核成绩</td>
+						<td style="width: 120px;height: 45px" align="center">序&nbsp;&nbsp;&nbsp; 号</td>
+						<td  style="height: 45px" align="center">考核项及分值</td>
+						<td  style="width: 120px;height: 45px" align="center">得&nbsp;&nbsp;&nbsp; 分</td>
+						<td style="width: 150px;height: 45px" align="center" >备&nbsp;&nbsp;&nbsp; 注</td>
+					</tr>
+					<tr>
+						<td style="height: 45px;width: 68px;" align="center">1</td>
+						<td style="height: 45px" align="center">诚信守纪(10分)</td>
+						<td style="height: 45px"></td>
+						<td style="width: 100px;height: 45px" rowspan="10"></td>
+					</tr>
+					<tr>
+						<td style="width: 68px; height: 45px" align="center">2</td>
+						<td align="center" style="height: 45px" >敬业精神(10分)</td>
+						<td style="height: 45px" >&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 68px; height:45px" align="center">3</td>
+						<td align="center" style="height: 45px">专业技能(10分)</td>
+						<td style="height: 45px">&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 68px ; height: 45px" align="center">4</td>
+						<td align="center" style="height: 45px">专业知识(10分)</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 68px; height:45px" align="center">5</td>
+						<td align="center" style="height: 45px">学习能力(10分)</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 68px; height:45px" align="center">6</td>
+						<td align="center" style="height: 45px">创新意识(10分)</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 68px; height:45px" align="center">7</td>
+						<td align="center" style="height: 45px">协作意识(10分)</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 68px; height:45px" align="center">8</td>
+						<td align="center" style="height: 45px">沟通能力(10分)</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 68px; height:45px" align="center">9</td>
+						<td align="center"  style="height: 45px">心理素质(10分)</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="width: 68px; height:45px" align="center">10</td>
+						<td align="center" style="height: 45px" >工作成绩(10分)</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr style="height: 90px">
+						<td colspan="4" >考核成绩:<br />
+						<br />
+						单位负责人:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(公章)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 日</td>
+					</tr>
+					<tr>
+						<td align="center" style="height: 45px; width: 113px;">对学生的<br />
+						意见或建议</td>
+						<td colspan="4" style="height: 45px">&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="center" style="height: 45px; width: 113px;">对学校的<br />
+						建议或意见</td>
+						<td colspan="4" style="height: 45px">&nbsp;</td>
+					</tr>
+				</table>
+			</div>	
+		</div>
+	</div>
+	
+</body>
+</html>

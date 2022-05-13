@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script> 
+    <script type="text/javascript" src="${ctxPath}/static/teacher/teacherstudentinterreport.js"></script>
+    <title>实习申请</title>
+</head>
+<body class="easyui-layout"  data-options="fit:true">
+
+        <% if(hasPermission('010103000')) {%>
+		<div data-options="region:'north',minHeight:37,border:false">
+	    	<form id="form_query">
+	        	<table>
+	            	<tr>
+	                	<td>姓名：<input class="easyui-textbox" name="studentName" style="width:150px"></td>
+	                	   	<td>报告指导状态：<input class="easyui-combobox"  name="status" style="width:150px;" data-options="
+		valueField: 'label',
+		textField: 'value',
+		data: [{
+			label: '',
+			value: '查询所有状态 '
+		},{
+			label: '已评阅',
+			value: '已评阅'
+		},{
+			label: '未评阅',
+			value: '未评阅'
+		}]" /></td>  
+	               		
+	       			</tr>
+	       			<span style='float:right;margin-top:3.5px;margin-right:25px'><a id="btn_query" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a></span>	       			
+	    		</table>
+	    	</form>
+    	</div>
+		<% }%>
+		
+		<div  data-options="region:'center'" style="border-width: 0;">
+			<table id="tbl_tapp"></table>      	   
+		</div>
+		<div data-options="region:'south',border:'false',minHeight:40"  >
+			<div style="width: 100%;text-align: right;height: 35px;margin-top:2px; position:absolute; bottom:0px; right:0px;padding: 2px;">
+				    <!--  <% if(hasPermission('010103001')) {%>
+				    <a class="easyui-linkbutton" id="btn_seeDlg" href="#" data-options="iconCls:'icon-edit'">评阅意见</a>
+				    <% }%>-->
+				    <% if(hasPermission('010103002')) {%>
+		 			<a id="btn_allInfo1" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-more'">查看详情</a>
+		 			<% }%>
+		 	</div>
+ 		</div>
+ 		<div title="审阅意见" class="easyui-dialog" id="dialog_interreport" style="width:40%; height: 55%;text-align:" 
+			data-options="iconCls:'icon-save',resizable:false,modal:true,closed:true,closable:true,buttons:'#div_buttons'">
+			<form id="form_add" style='margin-top:20px'>
+		        <table align="center">
+		        <input type="hidden" id="txt_studentInterReportId" name="reportId">
+		        			<tr >										
+								<td>评阅人评语：</td>
+		               			<td><input class="easyui-textbox" name="reviewercomments" id="text_write" style="width:371px;height:150px" data-options="required:true,multiline:true"></td>
+							</tr>
+							
+		        			<tr>
+		        				<td>成绩：</td>
+		        				<td><input class="easyui-numberbox" name="grate" id="text_grate"  style="width:371px" data-options="required:true"></td>
+		               		</tr>
+		               		
+		               		<tr>
+		               			<td>审批时间：</td>
+		        				<td><input class="easyui-datebox" name="signaturedate" id="text_time"  style="width:371px" data-options="required:true,editable:false"></td>
+		        			</tr>
+				</table>
+	        </form>		
+		</div>
+	  <div id="div_buttons">
+	    <a id="btn_yesout"  href="#"  class="easyui-linkbutton"  data-options="iconCls:'icon-ok'">确认</a>
+	  </div>
+</body>
+</html>

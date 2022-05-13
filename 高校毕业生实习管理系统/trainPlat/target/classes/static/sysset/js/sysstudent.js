@@ -1,0 +1,516 @@
+﻿﻿﻿$(document).ready(function () {
+	//刷新页面后重置对话框中表单的数据
+	clearForm();
+	
+    var path = getRootPath();
+    initTable();
+	$("#tbl_student").datagrid("reload");
+    initCombobox();
+    length();
+$("#btn_query").click();
+    //点击提交查询信息
+    $("#btn_query").click(function(){
+        var queryParams=$('#form_query').serializeJSON();
+        if(""==queryParams.studentGrade)
+        	queryParams.studentGrade = "all";
+        $('#tbl_student').datagrid('load',queryParams);
+    });
+
+    //打开添加对话框
+    $("#btn_adddgl").click(function () {
+    	$("#dialog_student").dialog("setTitle","增加学生信息");
+        $("#dialog_student").dialog("open");
+    });
+
+    //关闭对话框
+    $("#btn_close").click(function () {
+        $("#dialog_student").dialog("close");
+        clearForm();
+    });
+
+    //点击删除按钮
+    $("#btn_del").click(function () {
+        var row=$("#tbl_student").datagrid("getSelected");
+        if (null!=row)
+        {
+        	$.messager.confirm('确认','您确认想要删除记录吗？',function(r){
+        	    if (r)
+        	    {
+        	        var studentId=row.studentId;
+        	        var postData={"studentId":studentId};
+        	        $.post((path+"/student/delstudent"),postData,function (data) {
+        	            if (null != data && "succ"==data.tip)
+        	            {
+        	            	$.messager.alert('提示','删除成功！','info',function(){
+        	            		//initTable();
+        	            		$("#tbl_student").datagrid("reload");
+        	            	});
+        	            }
+        	            else
+							$.messager.alert("提示",data.tip,"info");
+        	                
+        	        });
+        	    }
+        	});
+        }
+        else
+        {
+			$.messager.alert("提示","请选中一行！","info");
+           
+        }
+    });
+
+    //点击重置密码按钮
+    $("#btn_resetpassword").click(function () {
+        var row=$("#tbl_student").datagrid("getSelected");
+        if (null!=row)
+        {
+        	$.messager.confirm('确认','您确认想要重置密码？',function(r){
+        	    if (r)
+        	    {
+        	        var studentId=row.studentId;
+        	        var postData={"studentId":studentId};
+        	        $.post((path+"/student/resetpassword"),postData,function (data) {
+        	            if ("succ"==data)
+        	            {
+        	            	$.messager.alert('提示','密码重置成功！初始密码是123456。','info',function(){
+        	            		initTable();
+        	            	});
+        	            }
+        	            else
+        	                $.messager.alert("提示",data,"info");
+        	        });
+        	    }
+        	});
+        }
+        else
+        {
+            $.messager.alert("提示","请选中一行！","info");
+        }
+    });
+    
+	//打开详情对话框
+    $("#btn_infodgl").click(function () {
+    	var  row=$('#tbl_student').datagrid("getSelected");
+		if (row==null){
+			$.messager.alert("提示","请选中一条数据！","info");
+			return false;
+		}else{
+            $("#input_studentId1").val(row.studentId);
+			$("#input_studentNo1").textbox("setValue",row.studentNo);
+			$("#input_studentName1").textbox("setValue",row.studentName);
+			$("#input_studentSex1").textbox("setValue",row.studentSex);
+
+			$("#input_birthDay1").textbox("setValue",row.birthDay);
+			$("#input_depart1").textbox("setValue",row.depart);
+			$("#input_major1").textbox("setValue",row.major);
+			$("#input_studentGrade1").textbox("setValue",row.studentGrade);
+			$("#input_classNumber1").textbox("setValue",row.classNumber);
+			
+			$("#input_studentPolSta1").textbox("setValue",row.politics);
+			$("#input_nationality1").textbox("setValue",row.nation);
+		    $("#input_nativeplace1").textbox("setValue",row.nativeplace);
+		    $("#input_identity1").textbox("setValue",row.identity);
+		    
+		    $("#dialog_studentinfo").dialog("setTitle","学生信息");
+			$("#dialog_studentinfo").dialog("open");
+		}
+	});
+
+    //打开修改对话框
+    $("#btn_updatedgl").click(function () {
+    	var  row=$('#tbl_student').datagrid("getSelected");
+		if (row==null)
+		{
+			$.messager.alert("提示","请选中要修改的行！","info");
+			
+			return false;
+		}
+		else
+		{
+            $("#input_studentId").val(row.studentId);
+			$("#input_studentNo").textbox("setValue",row.studentNo);
+			$("#input_studentName").textbox("setValue",row.studentName);
+			var studentSex=row.studentSex;
+			if ("男"==studentSex)
+			{
+				$("#rdo_studentSexboy").radiobutton("check",0);
+			}
+			else
+			{
+				$("#rdo_studentSexgirl").radiobutton("check",1);
+			}
+			$("#input_birthDay").datebox("setValue",row.birthDay);
+			$("#input_depart").combobox("setValue",row.depart);
+			$("#input_major").combobox("setValue",row.major);
+			$("#input_studentGrade").textbox("setValue",row.studentGrade);
+			$("#input_classNumber").textbox("setValue",row.classNumber);
+			$("#input_studentPolSta").combobox("setValue",row.politics);
+			$("#input_nationality").combobox("setValue",row.nation);
+		    $("#input_nativeplace").textbox("setValue",row.nativeplace);
+		    $("#input_identity").textbox("setValue",row.identity);
+
+		    $("#dialog_student").dialog("setTitle","修改学生信息");
+			$("#dialog_student").dialog("open");
+		}
+	});
+    
+    //打开导入数据对话框
+    $("#btn_import").click(function () {
+    	$("#dialog_importExcel").dialog("open");
+    });
+    
+	$("#btn_upload").click(function(){
+		var form = $("#form_importExcel")[0];
+        var file = $(form).find('input[type=file]')[0].files[0];
+        if (file == null)
+        {
+			$.messager.alert("提示","错误，请选择文件","info");
+        	
+        	return;
+        }
+        var fileName = file.name;
+        var file_typename = fileName.substring(fileName.lastIndexOf('.'), fileName.length);
+        if (file_typename == '.xlsx')
+        {
+        	ajaxFileUpload(form);
+        }
+        else
+        {
+			$.messager.alert("提示","文件类型错误","info");
+        	
+        }
+	});
+
+	//上传文件函数
+    function ajaxFileUpload(form) {
+        var formData = new FormData(form);
+        $.ajax({
+            url : path+ "/student/importExcel",
+            type : "post",
+            async : false,
+			cache:false,
+            data : formData,
+            processData : false,
+            contentType : false,
+            beforeSend : function() {
+            	$.messager.progress({msg:"正在导入......"});
+            	$.messager.progress('bar').progressbar({value: 50});
+            },
+            success : function(e) {
+            	$.messager.progress('bar').progressbar({value: 100});
+                if (null != e.error) {
+					$.messager.alert("错误",e.error,"error",function(){
+						$.messager.progress("close");
+						$("#filebox_importExcel").filebox("clear");
+					});
+                } else {
+                	if(null!=e.tip && e.tip.length!=0) {
+                		$("#tbl_error").datagrid('loadData',{ total: 0, rows: [] });
+                        $("#dialog_importExcel").dialog("close");
+                        for(var i=0;i<e.tip.length;i++)
+                        	$('#tbl_error').datagrid('appendRow',{error: e.tip[i]});
+                		$("#dialog_error").dialog("open");
+                		$("#filebox_importExcel").filebox("clear");
+                        $.messager.progress("close");
+                	} else {
+    	  				$.messager.alert("提示","导入成功! 初始密码是：123456","info",function(){
+    	  					$.messager.progress("close");
+        	  				$("#dialog_importExcel").dialog("close");
+        	  				$("#filebox_importExcel").filebox("clear");
+        	  			    initTable();
+    	  				});
+                	}
+                }
+            },
+			error: function(){
+  				$.messager.alert("提示","导入失败，未知错误!","info",function(){
+  					$.messager.progress("close");
+  				});
+			}
+        });
+    }
+	
+    //点击表单中保存--保存
+	$("#btn_save").click(function() {
+		var postData = $('#form_studentinfo').serializeJSON();
+		if (postData.studentNo == "")
+		{
+			$.messager.alert("提示","请输入学号！","info",function (){
+				$("#input_studentNo").next("span").find("input[type='text']").focus();
+			});
+		}
+		else if (postData.studentName == "")
+		{
+			$.messager.alert("提示","请输入姓名！","info",function (){
+				$("#input_studentName").next("span").find("input[type='text']").focus();
+			});
+		}
+		else if (postData.birthDay == "")
+		{
+			$.messager.alert("提示","请输入出生日期！","info",function (){
+				$("#input_birthDay").next("span").find("input[type='text']").focus();
+			});
+		}
+		else if (postData.depart == "")
+		{
+			$.messager.alert("提示","请选择院系！","info",function (){
+				$("#input_depart").next("span").find("a").click();
+			});
+		}
+		else if (postData.major == "")
+		{
+			$.messager.alert("提示","请选择专业！","info",function (){
+				$("#input_major").next("span").find("a").click();
+			});
+		}
+		else if (postData.studentGrade == "")
+		{
+			$.messager.alert("提示","请输入年级！","info",function (){
+				$("#input_studentGrade").numberbox().next('span').find('input').focus();
+			});
+		}
+		else if (postData.classNumber == "")
+		{
+			$.messager.alert("提示","请输入班级号！","info",function (){
+				$("#input_classNumber").numberbox().next('span').find('input').focus();
+			});
+		}
+		else if (postData.nativeplace == "")
+		{
+			$.messager.alert("提示","请输入籍贯！","info",function (){
+				$("#input_nativeplace").next("span").find("input[type='text']").focus();
+			});
+		}
+		else if (postData.politics == "")
+		{
+			$.messager.alert("提示","请选择政治面貌！","info",function (){
+				$("#input_studentPolSta").next("span").find("a").click();
+			});
+		}
+		else if (postData.identity =="")
+		{
+			$.messager.alert("提示","请输入身份证！","info",function (){
+				$("#input_identity").next("span").find("a").click();
+			});
+		}
+		else if (!$("#input_identity").textbox("isValid",postData.identity))
+		{
+			$.messager.alert("提示","请输入正确的身份证！","info",function (){
+				$("#input_identity").next("span").find("a").click();
+			});
+		}
+		else if (postData.studentId == "")
+		{
+			var url = path + "/student/saveStudent";
+			$.post(url, postData, function(data) {
+				if (data == "succ")
+				{
+					$.messager.alert("提示","增加成功","info");
+				
+					$("#dialog_student").dialog("close");
+					$("#btn_query").click();
+					initTable();
+					clearForm();
+				}
+				else
+				{
+					$.messager.alert("提示","增加失败：" + data,"info");
+					
+				}
+			});
+		}
+		else
+		{
+			var url = path + "/student/updateStudent";
+			console.log(postData.studentId);
+			$.post(url, postData, function(data) {
+				if (null!=data) {
+					if(data.tip == "succ") {
+						$.messager.alert("提示","修改成功","info");
+						$("#dialog_student").dialog("close");
+						//$("#btn_query").click();
+						initTable();
+						clearForm();
+					} else {
+						$.messager.alert("错误", data.tip, "error");
+					}
+				}
+				else {
+					$.messager.alert("提示","未知错误！","info");
+				}
+			});
+		}
+	});
+
+	//重置对话框中表单的数据
+	function clearForm(){
+		$("#input_studentId").val("");
+		$("#input_studentNo").textbox("setValue","");
+		$("#input_password").textbox("setValue","");
+		$("#input_studentName").textbox("setValue","");
+		$("#rdo_studentSexboy").radiobutton("check",0);
+		$("#input_birthDay").datebox("setValue","");
+		$("#input_depart").combobox("setValue","");
+		$("#input_major").combobox("setValue","");
+		$("#input_classNumber").textbox("setValue","");
+		$("#input_studentGrade").textbox("setValue","");
+	    $("#input_studentPolSta").combobox("setValue","群众");
+        $("#input_nationality").combobox("setValue","汉族");
+		$("#input_nativeplace").textbox("setValue","");
+		$("#input_identity").textbox("setValue","");
+					
+	}
+    //初始化数据表格
+    function initTable() {
+        var url = path + "/student/getStudentByCon";
+        $("#tbl_student").datagrid({
+        	loadMsg:"加载数据中......",
+            url:url,
+            border:false,
+            striped:true,
+            fit:true,
+            rownumbers:true,
+            autoRowHeight:false,
+            singleSelect:true,
+            fitColumns:true,
+            pagePosition:"bottom",
+            pagination:true,
+            pageSize:10,
+            pageList:[10,20,50],
+            pageNumber:1,
+            columns:[[
+            	{field: 'studentNo',title: '学号',width:100,fixed:true},
+                {field: 'studentName',title: '姓名',width:70,fixed:true},
+                {field: 'studentSex',title: '性别',width:50,fixed:true},
+                {field: 'depart',title: '系部',width:150,fixed:true},
+                {field: 'major',title: '专业',width:150,fixed:true},
+				{field: 'studentGrade',title: '年级',width:70,fixed:true},
+                {field: 'classNumber',title: '班级',width: 70,fixed:true},
+                {field: 'birthDay',title: '生日',width:90,fixed:true},
+				{field: 'nativeplace',title: '籍贯',width: 200,},
+				
+            ]]
+        });
+        
+        $("#tbl_error").datagrid({
+        	loadMsg:"加载数据中......",
+        	data:null,
+            border:false,
+            striped:true,
+            fit:true,
+            rownumbers:true,
+            autoRowHeight:false,
+            singleSelect:true,
+            fitColumns:true,
+            columns:[[
+            	{field: "error",title: '错误',width:150},
+            ]]
+        });
+    };
+    
+    //初始化各个下拉列表框数据
+    function initCombobox()
+    {
+    	//院系和专业下拉列表框数据的初始化以及联动
+    	$("#input_depart").combobox({
+    		valueField:'departName',
+    		textField:'departName',
+    		url:path+'/student/getdepart',
+    		onSelect:function(record){
+    			var param = record.departId;
+    			$("#input_major").combobox({
+    				value:null,
+    				valueField:'majorName',
+    				textField:'majorName',
+    				url:path+'/student/getmajor',
+    				queryParams:{"departId":param}
+    			});
+    		},
+    		onLoadSuccess: function(data) {
+    			if(null!=data && null!=data.error)
+    				$.messager.alert("提示",data.error,"info");
+    		}
+    	});
+		
+    	//政治面貌下拉列表框
+		$("#input_studentPolSta").combobox({
+			value:'群众',
+	    	editable:false,
+	    	textField: 'label',
+	    	valueField: 'value',
+	    	data: [{
+	    	    label: '群众',
+	    	    value: '群众'
+	    	},{
+	    	    label: '共青团员',
+	    	    value: '共青团员'
+	    	},{
+	    	    label: '中共党员',
+	    	    value: '中共党员'
+	    	}]
+	    });
+		
+		//民族下拉列表框
+		$("#input_nationality").combobox({
+			value:'汉族',
+	    	editable:false,
+	    	method:'get',
+	    	url:path+'/static/data/nation.json',
+	    	textField:'name',
+	    	valueField:'name'
+	    });
+    }
+
+    //重写$.fn.validatebox.defaults.rules中定义的验证器函数和无效消息。
+   /* $.extend($.fn.filebox.defaults.rules, {
+    	isIDCard: {
+			// 验证身份证号码
+            validator: function (value) {
+            	//可验证15/17和18位身份证，暂时只验证长度
+            	return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(value);
+            },
+			message: '身份证输入不合法！'
+        }
+
+    })*/
+			$.extend($.fn.validatebox.defaults.rules, {   
+ 			    minLength: {   
+ 			        validator: function(value, param){   //value 为需要校验的输入框的值 , param为使用此规则时存入的参数
+ 			            return value.length >= param[0];   
+ 			        },   
+ 			        message: '请输入最小{0}位字符.'  
+ 			    }   
+ 			}); 
+ 			
+ 			$.extend($.fn.validatebox.defaults.rules, {   
+ 			    maxLength: {   
+ 			        validator: function(value, param){   
+ 			            return param[0] >= value.length;   
+ 			        },   
+ 			        message: '请输入最大{0}位字符.'  
+ 			    }   
+ 			}); 
+			$.extend($.fn.validatebox.defaults.rules, {   
+			 			    length: {   
+			 			        validator: function(value, param){   
+			 			            return value.length >= param[0] && param[1] >= value.length;   
+			 			        },   
+			 			        message: '请输入{0}-{1}位字符.'  
+			 			    }   
+			 			}); 
+
+		
+		  function length(){
+			  $('#input_nativeplace').textbox('textbox').attr('maxlength',50) 
+			  $('#input_studentName').textbox('textbox').attr('maxlength',10)
+			  $('#input_studentGrade').numberbox('textbox').attr('maxlength',5)
+			  $('#input_classNumber').numberbox('textbox').attr('maxlength',5)
+			  $('#input_identity').textbox('textbox').attr('maxlength',30) 
+			  
+		 
+		
+		}
+
+
+})

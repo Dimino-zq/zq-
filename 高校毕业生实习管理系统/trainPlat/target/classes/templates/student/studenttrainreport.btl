@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+    <script charset="utf-8" src="${ctxPath}/static/kindeditor/kindeditor-all.js"></script>
+	<script charset="utf-8" src="${ctxPath}/static/kindeditor/lang/zh-CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/student/studenttrainreport.js"></script>
+
+<title>学生申请表</title>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+   
+    <div id="tabs_report" class="easyui-tabs" data-options="fit:true,plain:true">
+    	<input type="hidden"  id="input_reportId" name="reportId">
+        <div title="实习单位简介" style="padding:10px">
+        	<div align="center">
+        		<textarea id="editor_id1" name="comProfile" style="width:75%;"></textarea>
+        	</div>
+        </div>
+        <div title="实习工作情况简介" style="padding:10px">
+        	<div align="center">
+        		<textarea id="editor_id2" name="comworkfile" style="width:75%;"></textarea>
+        	</div>
+		</div>
+        <div title="实习总结" style="padding:10px">
+        	<div align="center">
+        		<textarea id="editor_id3" name="conclusion" style="width:75%;"></textarea>
+        	</div>
+        </div>
+		<%
+			if(!isEmpty(reportAppraisal)) {
+		%>
+	        <div title="评分" style="padding:10px;">
+	        	<div align="center">
+	        		<table style="width: 540px;">
+	        			<tr>
+	        				<td style="text-align: center;"><h1>实习总结报告评阅人意见</h1></td>
+	        			</tr>
+	        			<tr>
+	        				<td>
+								<div style="font-size: 18px;font-family: 宋体;">评阅人评语：<span style="border-bottom:1px solid;">${reviewercomments!""}</span></div>
+	        					<br>
+	        				</td>
+	        			</tr>
+	        			<tr>
+	        				<td>
+								<div style="font-size: 18px;font-family: 宋体;">成&nbsp;绩：<span style="font-size:22.5px;font-family:方正舒体;">${grade!"null"}</span></div>
+								<br>
+	        				</td>
+	        			</tr>
+	        			<tr>
+	        				<td>
+								<div style="font-size: 18px;font-family: 宋体;">评阅人：<span style="font-size:22.5px;font-family:方正舒体;">${signature!""}</span></div>
+								<br>
+	        				</td>
+	        			</tr>
+	        			<tr>
+	        				<td>
+								<div style="font-size: 18px;font-family: 宋体;">评阅日期：<span style="font-size:22.5px;font-family:方正舒体;">&nbsp;${signaturedate!""}</span></div>
+								<br>
+	        				</td>
+	        			</tr>
+	        		</table>
+	        	</div>
+	        </div>
+		<%
+			}
+		%>
+    </div>
+
+    <div data-options="region:'south',border:true,minHeight:40,minWidth:340">
+        <div style="width: 100%;text-align: right;height: 35px;margin-top: 2px;padding: 2px;">
+    	<%
+			if(!isEmpty(stuTrainStatus) && stuTrainStatus == "0") {
+		%>
+		    <a id="btn_addDlg" href="#" class="easyui-linkbutton" style="display: none;" data-options="iconCls:'icon-add'">保存</a>
+	        <a id="btn_updDlg" href="#" class="easyui-linkbutton" style="display: none;" data-options="iconCls:'icon-edit'">修改</a>
+        <%
+			}
+		%>
+	        <a id="btn_printDlg" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-perview'">预览打印</a>
+	        <!-- <a id="btn_subDlg" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">提交</a> -->
+		</div>
+	</div>
+    
+</body>
+</html>

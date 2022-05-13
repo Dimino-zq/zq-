@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/index.css">
+    <link href="${ctxPath}/static/css/themes/icons/man.ico" rel="shortcut icon">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/websocket/sockjs.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/websocket/stomp.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/index.js"></script>
+	<title>龙财实训平台</title>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" style="height:55px;padding:0px;overflow: hidden">
+    <div id="headerLogo01">
+        <img alt="" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F611%2F031213123016%2F130312123016-3-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644131890&t=310eb5bebb39873676b5e8f5ec618536" style="height:83px;width:100%">
+    </div>
+</div>
+<div data-options="region:'west',split:false,title:''" style="width:200px;padding:0px;overflow: hidden;">
+    <div class="easyui-accordion" data-options="multiple:false,selected:false" style="width:200px;" id ="accordion_div">
+       
+        
+        
+        
+        
+        
+        
+        <% if(hasPermission('0100')) {%>
+        <div title="系统设置" data-options="iconCls:'icon-config'" style="overflow:auto;padding:0px;">
+            <ul class="container">
+                <li class="dropdown">
+                    <ul class="dropdown-menu show">
+                    	<% if(hasPermission('010000')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/systraincycle/gotoSysTrainCycle">实训周期维护</a></li>
+                        <%} if(hasPermission('010001')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/student/gotostudent">实训学员维护</a></li>
+                        <%} if(hasPermission('010002')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/syscompany/gotoSysCompany">实训基地维护</a></li>
+                        <%} if(hasPermission('010004')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/syslevel/gotolevel">实训基地等级</a></li>
+                        <%} if(hasPermission('010003')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/sysset/initDict">数据字典</a></li>
+                    	<%}%>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <%}%>
+        <div title="退出" style="padding:0px;" data-options="collapsible:false">
+        </div>
+
+    </div>
+</div>
+<div data-options="region:'south',border:false" style="height:25px;background:#FFFFFF;padding:1px;">
+
+</div>
+<div data-options="region:'center',title:'首页',border:false" id="main_display" style="overflow:hidden; ">
+    <iframe id="main_frame" style="width:100%;height:100%;border:none;overflow:hidden;" > </iframe>
+</div>
+
+<div id="myapproveMess">
+	<table id="tblMyMess"></table>   
+</div>
+</body>
+</html>

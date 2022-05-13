@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.jqprint-0.3.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/teacher/secapplicationinter.js"></script>
+  
+<title>变更申请表</title>
+<script type="text/javascript">
+	$(document).ready(function(){
+		tipMess();
+		
+		$("#webPrint").click(function(){
+			$("#printContent").jqprint({
+				operaSupport: false
+			}); 
+		});
+		
+		function tipMess(){
+			var tip = "${tip!"null"}";
+			if(tip!="null")
+				alert(tip);
+		}
+
+	});
+	</script>
+</head>
+
+<body  >
+	<div>
+		<a href="#" class="easyui-linkbutton" id="back" onclick="javascript:history.back();" data-options="iconCls:'icon-back'">返回</a>
+		<a href="#" class="easyui-linkbutton" id="webPrint" data-options="iconCls:'icon-print'">打印</a>
+	</div>
+<div id="printContent">
+	<div align='center'>
+		<h1 align="center">黑龙江财经学院学生实习变更单位申请表</h1>
+	<table border="1" style="width: 720px; border:2px black solid; border-collapse:collapse; text-align:center; " >
+		<tr>
+			<td style="height: 50px; width: 140px">学生姓名</td>
+			<td id="studentName" style="height: 50px; width: 220px">${studentName!""}</td>
+			<td colspan="2" style="height: 50px">学号</td>
+			<td style="height: 50px; width: 370px;">${studentNo!""}</td>
+		</tr>
+		<tr>
+			<td style="height: 50px; width: 140px">专业</td>
+			<td style="height: 50px; width: 220px">${major!""}</td>
+			<td style="height: 50px; " colspan="2">班级</td>
+			<td style="height: 50px; width: 370px;">${classNumber!""}</td>
+		</tr>
+		<tr>
+			<td style="width: 140px; height: 50px;">原实习单位</td>
+			<td style="width: 220px; height: 50px;">${oldCompany!""}</td>
+			<td style="width: 60px; height: 50px;">时间</td>
+			<td colspan="2" style="height: 50px">${oldDate!""}</td>
+		</tr>
+			<tr>
+			<td style="width: 140px; height: 50px;">新实习单位</td>
+			<td style="width: 220px; height: 50px;">${newCompany!""}</td>
+			<td style="width: 60px; height: 50px;">时间</td>
+			<td colspan="2" style="height: 50px">${newDate!""}</td>
+		</tr>
+	
+		<tr>
+			<td style="width: 140px; height: 120px;">变更原因</td>
+			<td colspan="4" style="height: 120px">
+			<p> ${reason!""}</p>
+			<br/>
+			<br/>
+		
+			</td>
+		</tr>
+		<tr>
+			<td style="width: 140px; height: 200px;">原实习单位意见</td>
+			<td colspan="4" style="height: 200px"><br />
+					<%
+						if(isEmpty(filePath)) {
+					%>
+					<div align="left" style="float: left;width:170px;text-align: center;color: red;">无附件</div>
+					<%
+						} else {
+					%>
+					<div align="left" style="float: left;width:170px;text-align: center;"><a href="#"><span  id="dd">查看附件</span></a></div>
+					<%
+						}
+					%>
+<!-- <div style="float:left;"><a  href='#' style='text-decoration:none;color:blue;'><span  id="dd">查看附件</span></div></a> -->			
+			
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+	        <br />
+			<span>负责人签字：         </span>                                                <br />
+	            单位公章：<br />
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                  年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 月&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 日     
+			</td>
+		</tr>
+		<tr>
+			<td colspan="5" style="height: 235px">
+			<div style="float:left">校内指导教师复核意见：</div>
+			<div style="height:100px;">
+			<p style="font-size:70px;font-family:华文行楷;" id="teacherViewShow">${teacherView!""}</p>
+			</div>
+			<span style="float:right; width: 320px; height: 30px;">
+			<span >签字:<span>${teacherName!""}</span>
+			<% if(hasPermission('010101002')) {%>
+			<span id="teachAll">
+			<button id="teachAgree" type="button" style="width: 53px" >同意</button><button id="teachRefuse" type="button" style="width: 53px" >拒绝</button>
+			</span>
+			<% }%>
+			<br />
+			</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${teacherViewDate!""}</span>
+	
+			</td>
+			
+			
+		</tr>
+		<tr>
+			<td colspan="5" style="height: 200px">
+			<div style="float:left">系(部)主任审判意见:&nbsp; </div >
+			<div style="height:70px;">
+			<p style="font-size:70px;font-family:华文行楷;" id="deptViewShow">${departView!""}</p>
+			</div>
+				<span style="float:right; width: 320px; height: 30px;"><span>签字:<span>${deptName!""}</span>
+			
+			<% if(hasPermission('010101004')) {%>	
+		    <span id="deptAll">
+			<button  id="deptAgree"  type="button" style="width: 53px" >同意</button><button id="deptRefuse" type="button" style="width: 53px" >拒绝</button>
+			</span>
+			<% }%>
+				</span>
+			<br />
+	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ${deptViewDate!""}
+			</td>
+		</tr>
+	</table>
+	</div>
+	</div>
+	
+	
+	<div title="请输入驳回理由" class="easyui-dialog" id="dialog_reason" style="width: 400px; height: 250px;text-align:" 
+		data-options="iconCls:'icon-save',resizable:false,modal:true,closed:true,closable:true,buttons:'#div_button'">
+				<p style="color:red;text-align:center">请将驳回理由写在下面：</p>  
+				<center><input id='reason' class="easyui-textbox" data-options="multiline:true,required:true,missingMessage:'必填'" value="" style="width:300px;height:115px;"></center>
+	</div>
+	 <div id="div_button">
+  	  <a class="easyui-linkbutton" href="#" id="btn_yes" data-options="iconCls:'icon-ok'">确认</a>
+    </div>
+	<div hidden="hidden">
+	<span id="secApplyId" >${secApplyId!""}</span>
+	<span id="applyId" >${applyId!""}</span>
+	<span id="staff" >${staff!""}</span>
+	<span id="enroll" >${enroll!""}</span>
+	<span id="teacherNo" >${teacherNo!""}</span>
+	</div>
+
+	<div title="学生附件" class="easyui-dialog" id="dialog_student" style="width:1024px; height: 576px;text-align:" 
+		data-options="resizable:false,modal:true,closed:true,closable:false,buttons:'#div_buttons'">
+            <img id="image" src="${ctxPath}${filePath!''}" alt="附件"  />
+
+	</div>
+	<div id="div_buttons">
+		  <a id="btn_pass" href="#" class="easyui-linkbutton" style="width:80px;" data-options="iconCls:'icon-ok'" >确&nbsp;&nbsp;认</a>
+		 
+	 </div>
+
+</body>
+</html>
+

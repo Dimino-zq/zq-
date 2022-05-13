@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script> 
+    <script type="text/javascript" src="${ctxPath}/static/teacher/teastudentworkrec.js"></script>
+    <title>实习记录审批</title>
+</head>
+<body class="easyui-layout"  data-options="fit:true">
+        <% if(hasPermission('010102000')) {%>
+		<div data-options="region:'north',minHeight:37,border:false">
+	    	<form id="form_query">
+	        	<table>
+	            	<tr>
+	                	<td>姓名:<input class="easyui-textbox" name="studentName" style="width:150px"></td>
+	                	  
+		<td>老师指导情况:<input class="easyui-combobox"  id='teacher' name="tutorComate" style="width:150px;" data-options="
+		valueField: 'label',
+		textField: 'value',
+		data: [
+		{
+			label: '查询所有',
+			value: '查询所有'
+		},
+		{
+			label: '',
+			value: '未指导 '
+		},{
+			label: '有',
+			value: '已指导'
+		}]" /></td>   
+		
+		 
+	               		
+	       			</tr>
+	       			<span style='float:right;margin-top:3.5px;margin-right:25px'><a id="btn_query" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a></span>
+	    		</table>
+	    	</form>
+    	</div>
+    	<% }%>
+		
+		
+		<div  data-options="region:'center'" style="border-width: 0;">
+			<table id="tbl_tapp"></table>      	   
+		</div>
+		
+		<div data-options="region:'south',border:'false',minHeight:40"  >
+			<div style="width: 100%;text-align: right;height: 35px;margin-top:2px; position:absolute; bottom:0px; right:0px;padding: 2px;">
+				    <% if(hasPermission('010102001')) {%>
+				    <a class="easyui-linkbutton" id="btn_talkTeacher" href="#" data-options="iconCls:'icon-edit'">实习记录审批</a>
+				    <% }%>
+				    <% if(hasPermission('010102002')) {%>
+	            	<a id="btn_allInfo" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-more'">详情</a>
+	            	<% }%>
+		 	</div>
+ 		</div>
+ 		
+ 	<div id="dialog_talkTeacher" title="实习记录审批" class="easyui-dialog" style="width: 650px; height: 310px;" data-options="iconCls:'icon-man',resizable:false,modal:true,closed:true,closable:true,constrain:true,buttons:'#div_button1'">
+		<div style="width:100%;padding-top:10px; ">
+	        <form id="form_studentinfo">
+	            <table align="center">
+					<tr >
+					<input type="hidden" id="txt_recordId" name="recordId">
+					<input type="hidden" id="txt_workLogId" name="workLogId">
+					
+						<td hidden="hidden">是否和校内指导教师沟通？</td>
+						
+						<td  hidden="hidden" >
+							<input class="easyui-radiobutton" id="rdo_Yes" name="tutorComate" value="有" data-options="labelWidth:25,checked:true">&nbsp;有&nbsp;
+						    <input class="easyui-radiobutton" id="rdo_No" name="tutorComate" value="没有"  data-options="labelWidth:25,disabled:true" >&nbsp;没有&nbsp;
+						</td>
+					    
+					</tr>
+					
+					<tr style="height:40px">
+						<td>沟通的具体方式:</td>
+						<td >
+							<input class="easyui-radiobutton" id="rdo_chooce1" name="tutorComatemode" value="现场交流" data-options="labelWidth:65">&nbsp;现场交流&nbsp;
+							<input class="easyui-radiobutton" id="rdo_chooce2" name="tutorComatemode" value="电话" data-options="labelWidth:65"  >&nbsp;电话&nbsp;
+						    <input class="easyui-radiobutton" id="rdo_chooce3" name="tutorComatemode" value="钉钉" data-options="labelWidth:65,checked:true" >&nbsp;钉钉&nbsp;   
+						    <input class="easyui-radiobutton" id="rdo_chooce4" name="tutorComatemode" value="QQ" data-options="labelWidth:65" >&nbsp;QQ&nbsp;
+						    <input class="easyui-radiobutton" id="rdo_chooce5" name="tutorComatemode" value="微信" data-options="labelWidth:65" >&nbsp;微信&nbsp;
+						</td>					    
+					</tr>
+					<tr style="height:40px">
+						<td>教师指导的主要内容:</td>
+						<td><input class="easyui-textbox" id="input_write" name="tutorGuidcontent" style="width:428px;height:150px" data-options="multiline:true"></td>						
+					</tr>				
+	            </table>
+	        </form>
+        </div>
+    </div>
+ 	
+	
+	
+	
+    
+	
+  <div id="div_button1">
+  	  <a class="easyui-linkbutton" href="#" id="btn_talkYes" data-options="iconCls:'icon-ok'">确认</a>
+  </div>	
+
+  
+  <div id="div_button">
+  	  <a class="easyui-linkbutton" href="#" id="btn_yes" data-options="iconCls:'icon-ok'">确认</a>
+  </div>
+  
+  
+ 
+  
+  
+  
+    	
+
+</body>
+</html>

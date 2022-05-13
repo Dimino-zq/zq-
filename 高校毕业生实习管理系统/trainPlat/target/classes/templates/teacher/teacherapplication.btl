@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script> 
+    <script type="text/javascript" src="${ctxPath}/static/teacher/teacherapplication.js"></script>
+    <title>实习申请</title>
+</head>
+<body class="easyui-layout"  data-options="fit:true">
+        <% if(hasPermission('010100000')) {%>
+		<div data-options="region:'north',minHeight:37,border:false">
+	    	<form id="form_query">
+	        	<table>
+	            	<tr>
+	                	<td>姓名：<input class="easyui-textbox" name="studentName" style="width:150px"></td>
+	                	   	<td>实习申请状态：<input class="easyui-combobox"  name="status" style="width:150px;" data-options="
+		valueField: 'label',
+		textField: 'value',
+		data: [{
+			label: '查询所有',
+			value: '查询所有状态 '
+		},{
+			label: '',
+			value: '已提交'
+		},{
+			label: 'DApprove',
+			value: '审批通过'
+		},{
+			label: 'BApprove',
+			value: '未提交'
+		}
+		]" /></td>  
+	               		
+	       			</tr>
+	       			<span style='float:right;margin-top:3.5px;margin-right:25px'><a id="btn_query" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a></span>	       			
+	    		</table>
+	    	</form>
+    	</div>
+		<% }%>
+		
+		<div  data-options="region:'center'" style="border-width: 0;">
+			<table id="tbl_tapp"></table>      	   
+		</div>
+		
+		<div data-options="region:'south',border:'false',minHeight:40"  >
+			<div style="width: 100%;text-align: right;height: 35px;margin-top:2px; position:absolute; bottom:0px; right:0px;padding: 2px;">
+				    <% if(hasPermission('010100001')) {%>
+				    <a class="easyui-linkbutton" id="btn_seeDlg" href="#" data-options="iconCls:'icon-edit'">查看审核申请</a>
+	            	<% }%>
+	            	<% if(hasPermission('010100002')) {%>
+	            	<a id="btn_allInfo" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-more'">详情</a>
+	            	<% }%>
+		 	</div>
+ 		</div>
+ 		
+ 		
+	<div title="学生附件" class="easyui-dialog" id="dialog_student" style="width:1024px; height: 576px;text-align:" 
+		data-options="resizable:false,modal:true,closed:true,closable:true,buttons:'#div_buttons'">
+            <img id="image"  alt="附件"  />
+          
+          
+
+	</div>
+	
+	
+	
+    <div title="请输入驳回理由" class="easyui-dialog" id="dialog_reason" style="width: 400px; height: 250px;text-align:" 
+		data-options="iconCls:'icon-save',resizable:false,modal:true,closed:true,closable:true,buttons:'#div_button'">
+				<p style="color:red;text-align:center">请将驳回理由写在下面：</p>  
+				<center><input id='reason' class="easyui-textbox" data-options="multiline:true,required:true,missingMessage:'必填'" value="" style="width:300px;height:115px;"></center>
+	</div>
+	
+	
+
+  <div id="div_buttons">
+    <a id="btn_pass" href="#" class="easyui-linkbutton" style="width:80px;" data-options="iconCls:'icon-ok'" >通&nbsp;&nbsp;过</a>
+    <a id="btn_refuse" href="#" class="easyui-linkbutton" style="width:80px;" data-options="iconCls:'icon-undo'" >驳&nbsp;&nbsp;回</a>
+  </div>
+  <div id="div_button">
+  	  <a class="easyui-linkbutton" href="#" id="btn_yes" data-options="iconCls:'icon-ok'">确认</a>
+  </div>
+  
+  
+  <div  hidden="hidden">
+  <form id="messeage">
+				<div ">申请表ID:<input class="easyui-textbox" id="txt_applyId" name="applyId"  data-options="label:'' " style="width: 150px;margin-top:5px;"></div>
+				<div ">申请状态:<input class="easyui-textbox" id="txt_status" name="status"  data-options="label:'' " style="width: 150px;margin-top:5px;"></div>
+  </form>
+  </div>
+</body>
+</html>

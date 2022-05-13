@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>    
+    <script type="text/javascript" src="${ctxPath}/static/sysset/js/systraincycle.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/datagrid-detailview.js"></script>
+    <title>实训周期</title>
+</head>
+<body class="easyui-layout"  data-options="fit:true">
+	
+	<% if(hasPermission('010000000')) {%>
+	<div  data-options="region:'north',minHeight:40" style="border-bottom-width: 1; margin-bottom:1px;">
+		    <form id="form_query" >
+		    	<table style="margin-top:1px;">
+				    <tr>
+				      <td>状态：<select class="easyui-combobox" name="status" style="width: 150px;">
+				      <option value="">--请选择--</option>
+				      <option value="进行中">进行中</option>
+				      <option value="已结束">已结束</option>
+				      </select></td>
+				      </tr>
+				      <span style="float: right;margin-top:3.5px;margin-right:25px"><a class="easyui-linkbutton" id="btn_query" href="#" data-options="iconCls:'icon-search'">查询</a>
+				    
+		    	</table>
+		    </form>
+	</div>
+	<% }%>
+	<div  data-options="region:'center'" style="border-width: 0;">
+	
+	    	<table id="tbl_cycle"></table>    
+	    	   
+	</div>
+	<div data-options="region:'south',border:'false',minHeight:40"  >
+		      
+	<div style="width: 100%;text-align: right;height: 35px;margin-top:2px; position:absolute; bottom:0px; right:0px;padding: 2px;">
+				<a class="easyui-linkbutton" id="btn_addDlg_sub" href="#" data-options="iconCls:'icon-add'">添加系专业周期</a>
+				<a class="easyui-linkbutton" id="btn_updDlg_sub" href="#" data-options="iconCls:'icon-add'">修改系专业周期</a>
+		     	<% if(hasPermission('010000001')) {%>
+		     	<a class="easyui-linkbutton" id="btn_addDlg" href="#" data-options="iconCls:'icon-add'">增加</a>
+		     	<% }%>
+		     	<% if(hasPermission('010000002')) {%>
+			    <a class="easyui-linkbutton" id="btn_updDlg" href="#" data-options="iconCls:'icon-edit'">修改</a>
+			    <% }%>
+			    <% if(hasPermission('010000003')) {%>
+			    <a class="easyui-linkbutton" id="btn_delDlg" href="#" data-options="iconCls:'icon-remove'">删除</a>
+			    <% }%>
+	 	</div>
+ 	</div>
+ 	
+ 	<div title="新增实训周期" class="easyui-dialog" id="dlg_cycle" style="width: 600px; height:260px;text-align:" 
+		data-options="resizable:false,modal:true,closed:true,closable:false,buttons:'#div_buttons'">
+		<div style="width:100%;margin-left: auto;margin-right: auto">
+			<form id="form_add">
+				<table align="center">
+					<tr style="height:40px;">
+	          			<input type="hidden" id="txt_cycleId" name="cycleId">
+	          			<td>开始学年度:</td>
+	          			<td style="width:160px"><input class="easyui-numberbox" id="txt_startschoolyear" name="startschoolyear" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+						<td>结束学年度:</td>
+	          			<td style="width:160px"><input class="easyui-numberbox" id="txt_endschoolyear" readonly="true" disable="true" name="endschoolyear" style="width:150px;" data-options="required:false">
+	          			</td>
+					</tr>
+					<tr style="height:40px;">
+						<td>实习计划开始时间:</td>
+	          			<td style="width:160px"><input class="easyui-datebox" id="txt_planstartTime" name="planstartTime" style="width:150px;" data-options="required:false,editable:false"></td>
+						<td>实习计划结束时间:</td>
+	          			<td style="width:160px"><input class="easyui-datebox" id="txt_planendTime" name="planendTime" style="width:150px;" data-options="required:false,editable:false"></td>
+					</tr>
+					<tr style="height:40px;">
+					
+						<td>状态:</td>
+	          			<td><select id="txt_status" class="easyui-combobox" name="status"  style="width:150px">
+	          				<option value="进行中">进行中</option>
+				      		<option value="已结束">已结束</option>
+	                    		</td>
+	                 </tr>
+	                 
+				</table>
+			</form>
+		</div>
+	</div>
+	
+	<div title="新增实训周期" class="easyui-dialog" id="dlg_cycle1" style="width: 300px; height:200px;text-align:" 
+		data-options="iconCls:'icon-save',resizable:false,modal:true,closed:true,closable:false,buttons:'#div_buttons1'">
+		<div style="margin-top: 50px;font-size: 18px;padding-left: 5px; padding-right: 5px;margin-top:40px" >如果增加会让原有的周期自动结束，是否确认增加</div>
+	</div>
+	<div title="新增实训周期" class="easyui-dialog" id="dlg_cycle2" style="width: 550px; height:210px;text-align:" 
+		data-options="resizable:false,modal:true,closed:true,closable:false,buttons:'#div_buttons2'">
+		<div style="width:100%;margin-left: auto;margin-right: auto">
+			<form id="form_subadd">
+				<table align="center">
+					<tr style="height:40px;">
+	          			<input  name="sysDepartTrainCycleId" type="hidden" id="txt_sysDepartTrainCycleId">
+	          			<input  name="cycleId" type="hidden" id="txt_sysTrainCycle">
+	          			<input  type="hidden" id="txt_bigStartTime">
+	          			<input  type="hidden" id="txt_bigEndTime">
+	          			<td>系名称:</td>
+	          			<td><input name="departName" id="input_departName" class="easyui-combobox" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+						<td>专业名称:</td>
+	          			<td><input name="majorName" id="input_majorName" class="easyui-combobox" style="width: 150px;" data-options="required:true,missingMessage:'必填'"></td>
+	          			</td>
+					</tr>
+					<tr style="height:40px;">
+						<td>开始时间:</td>
+	          			<td style="width:160px"><input name="planStartTime"  class="easyui-datebox" id="txt_startTime" style="width:150px;" data-options="required:true,missingMessage:'必填',editable:false"></td>
+						<td>结束时间:</td>
+	          			<td style="width:160px"><input  name="planEndTime"  class="easyui-datebox" id="txt_endtTime"style="width:150px;" data-options="required:true,missingMessage:'必填',editable:false"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td>持续周数:</td>
+	          			<td style="width:160px"><input  name="weeks"  class="easyui-numberbox" id="txt_conWeeks1"style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+						
+	                 </tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<div id="div_buttons">
+	    <a class="easyui-linkbutton" href="#" id="btn_save" style="width: 80px;">保&nbsp;&nbsp;存</a>
+	    <a class="easyui-linkbutton" href="#" id="btn_close" style="width: 80px;">关&nbsp;&nbsp;闭</a>
+	</div>
+	<div id="div_buttons1">
+		<a class="easyui-linkbutton" href="#" id="btn_save_tip" style="width: 80px;">保&nbsp;&nbsp;存</a>
+	    <a class="easyui-linkbutton" href="#" id="btn_close_tip" style="width: 80px;">退&nbsp;&nbsp;出</a>
+	</div>
+	<div id="div_buttons2">
+		<a class="easyui-linkbutton" href="#" id="btn_save_sub" style="width: 80px;">保&nbsp;&nbsp;存</a>
+	    <a class="easyui-linkbutton" href="#" id="btn_close_sub" style="width: 80px;">退&nbsp;&nbsp;出</a>
+	</div>
+        
+
+</body>
+</html>

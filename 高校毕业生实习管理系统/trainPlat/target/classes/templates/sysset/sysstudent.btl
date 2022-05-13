@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+    <link rel="stylesheet" href="${ctxPath}/static/css/themes/default/easyui.css" />
+    <link rel="stylesheet" href="${ctxPath}/static/css/themes/icon.css" />
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/sysset/js/sysstudent.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+	<title>学生管理</title>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',minHeight:37,border:false">
+    	<form id="form_query">
+        	<table>
+            	<tr>
+                	<td>学号：<input class="easyui-textbox" name="studentNo" style="width:150px"></td>
+                	<td>姓名：<input class="easyui-textbox" name="studentName" style="width:150px"></td>
+                	<td>专业：<input class="easyui-textbox" name="major" style="width:150px"></td>
+                	<td>
+                		年级：<input class="easyui-numberbox" name="studentGrade" style="width:100px" >
+                		<a type="img" href="#" title="年级为空时默认查询所有年级的学员。" class="easyui-tooltip">
+							<img alt="?" src="${ctxPath}/static/images/help.ico" style="margin-bottom: -7px;margin-left: 10px;">
+						</a>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+                	</td>
+                	<td>班级：<input class="easyui-numberbox" name="classNumber" style="width:100px" prompt="请输入班级号">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+    			<span style="float: right;margin-top:3.5px;margin-right:25px">
+			        <a id="btn_query" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+			    </span>
+    		</table>
+    	</form>
+    </div>
+    
+    <div data-options="region:'center'">
+        <table id="tbl_student"></table>
+    </div>
+    
+	<div data-options="region:'south',border:true,minHeight:40">
+		<div style="width: 100%;text-align: right;height: 35px;margin-top: 2px;padding: 2px;">
+			<a id="btn_adddgl" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">增加</a>
+            <a id="btn_del" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+            <a id="btn_updatedgl" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+            <a id="btn_infodgl" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-more'">详细信息</a>
+            <a id="btn_resetpassword" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">重置密码</a>
+            <a id="btn_import" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-import'">导入</a>
+            
+		</div>
+	</div>
+
+	<div id="dialog_student" title="学生信息" class="easyui-dialog" style="width: 500px; height: 400px;" data-options="resizable:false,modal:true,closed:true,buttons:'#buttons_dialog_student',closable:false,constrain:true">
+		<div style="width:100%;padding-top:10px; ">
+	        <form id="form_studentinfo">
+	            <table align="center">
+					<tr style="height:40px;">
+						<td>学号:<input type="hidden" id="input_studentId" name="studentId"></td>
+						<td style="width:160px"><input class="easyui-textbox" id="input_studentNo" name="studentNo" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+					    <td>姓名:</td>
+						<td style="width:160px"><input class="easyui-textbox" id="input_studentName" name="studentName" style="width:150px;" data-options="required:true,missingMessage:'必填',validType:'length[1,10]'"></td>
+					</tr>
+					<tr style="height:40px">
+						<td>性别:</td>
+						<td>
+							<input class="easyui-radiobutton" id="rdo_studentSexboy" name="studentSex" value="男" label="男" data-options="labelWidth:25,checked:true">
+						    <input class="easyui-radiobutton" id="rdo_studentSexgirl" name="studentSex" value="女" label="女" data-options="labelWidth:25" >
+						</td>
+					    <td>生日:</td>
+						<td><input class="easyui-datebox" id="input_birthDay" name="birthDay" style="width:150px;"></td>
+					</tr>
+					<tr style="height:40px">
+						<td>系部:</td>
+						<td><input name="depart" id="input_depart" class="easyui-combobox" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+						<td>专业:</td>
+						<td><input name="major" id="input_major" class="easyui-combobox" style="width: 150px;" data-options="required:true,missingMessage:'必填'"></td>
+					</tr>
+					<tr style="height:40px">
+						<td>年级:</td>
+						<td><input class="easyui-numberbox" id="input_studentGrade" name="studentGrade" style="width:150px;" data-options="required:true,missingMessage:'必填，请输入一个阿拉伯数字',validType:['integer','length[1,5]']"></td>
+						<td>班级:</td>
+						<td><input class="easyui-numberbox" id="input_classNumber" name="classNumber" style="width:150px;" data-options="required:true,missingMessage:'必填，请输入一个阿拉伯数字',validType:['integer','length[0,5]']"></td>
+					</tr>
+					<tr style="height:40px">
+						<td>政治面貌:</td>
+						<td><input id="input_studentPolSta" class="easyui-combobox" name="politics" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+						<td>民族:</td>
+						<td><input class="easyui-combobox" id="input_nationality" name="nation" style="width:150px;" data-options=""></td>
+					</tr>
+					<tr style="height:40px;">
+						<td>籍贯:</td>
+						<td colspan="3"><input class="easyui-textbox" id="input_nativeplace" name="nativeplace" style="width:347px;" data-options="required:true,missingMessage:'必填',validType:'length[1,50]'"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td>身份证:</td>
+						<td colspan="3"><input class="easyui-textbox" id="input_identity" name="identity"   style="width:347px;" data-options="validType:'isIDCard',delay:400,required:true,missingMessage:'必填',validType:'length[1,30]'"></td>
+					</tr>
+	            </table>
+	        </form>
+        </div>
+    </div>
+
+	<div id="dialog_studentinfo" title="学生详细信息" class="easyui-dialog" style="width: 500px; height: 360px;" data-options="iconCls:'icon-man',resizable:false,modal:true,closed:true,closable:true,constrain:true">
+		<div style="width:100%;padding-top:10px; ">
+			<table align="center">
+				<tr style="height: 40px;">
+					<td>学号:</td>
+					<td style="width: 160px"><input class="easyui-textbox" id="input_studentNo1" style="width: 150px;" data-options="readonly:true"></td>
+					<td>姓名:</td>
+					<td style="width: 160px"><input class="easyui-textbox" id="input_studentName1" style="width: 150px;" data-options="readonly:true"></td>
+				</tr>
+				<tr style="height: 40px">
+					<td>性别:</td>
+					<td><input class="easyui-textbox" id="input_studentSex1" style="width: 150px;" data-options="readonly:true"></td>
+					<td>生日:</td>
+					<td><input class="easyui-textbox" id="input_birthDay1" style="width: 150px;" data-options="readonly:true"></td>
+				</tr>
+				<tr style="height: 40px">
+					<td>系部:</td>
+					<td><input class="easyui-textbox" id="input_depart1" style="width: 150px;" data-options="readonly:true"></td>
+					<td>专业:</td>
+					<td><input class="easyui-textbox" id="input_major1" style="width: 150px;" data-options="readonly:true"></td>
+				</tr>
+				<tr style="height: 40px">
+					<td>年级:</td>
+					<td><input class="easyui-textbox" id="input_studentGrade1" style="width: 150px;" data-options="readonly:true" ></td>
+					<td>班级:</td>
+					<td><input class="easyui-textbox" id="input_classNumber1" style="width: 150px;" data-options="readonly:true"></td>
+				</tr>
+				<tr style="height: 40px">
+					<td>政治面貌:</td>
+					<td><input class="easyui-textbox" id="input_studentPolSta1" style="width: 150px;" data-options="readonly:true"></td>
+					<td>民族:</td>
+					<td><input class="easyui-textbox" id="input_nationality1" style="width: 150px;" data-options="readonly:true"></td>
+				</tr>
+				<tr style="height:40px;">
+					<td>籍贯:</td>
+					<td  colspan="3"><input class="easyui-textbox" id="input_nativeplace1" style="width: 347px;" data-options="readonly:true"></td>
+				</tr>
+				<tr style="height: 40px;">
+					<td>身份证:</td>
+					<td colspan="3"><input class="easyui-textbox" id="input_identity1" style="width: 347px;" data-options="readonly:true"></td>
+				</tr>
+			</table>
+		</div>
+    </div>
+
+	<div id="dialog_importExcel" title="导入数据"  class="easyui-dialog" style="width:480px; height:240px;" data-options="iconCls:'icon-import',resizable:false,modal:true,closed:true,constrain:true,buttons:'#div_button'"> 
+		<div align="center">
+			<div style="padding-top: 15px;">
+				<form id="form_importExcel" method="post" enctype="multipart/form-data">
+ 					Excel文件：<input id="filebox_importExcel" class="easyui-filebox" name="file" data-options="buttonText:'选择文件',accept:'.xlsx'" style="width:320px;"/>
+				</form>
+			</div>
+			<div style="padding-top: 8px;">
+				<table style='margin-right:180px'>
+					<tr>
+						<td style="width: 67px;color:red;" class="style4"><strong>&nbsp&nbsp&nbsp提示：</strong></td>
+						<td style="color:red;" class="style1"><strong>1、请您先<a href='${ctxPath}/static/excel_templat/Studentexcleform.xlsx'>下载模板</a></strong></td>
+					</tr>
+					<tr>
+						<td style="width: 67px" class="style2"><strong></strong></td>
+						<td style="color:red;" class="style1"><strong>2、按照模板格式写入数据</strong></td>
+					</tr>
+					<tr>
+						<td style="width: 67px" class="style2"><strong></strong></td>
+						<td style="color:red;" class="style1"><strong>3、选择excel文件</strong></td>
+					</tr>
+					<tr>
+						<td style="width: 67px" class="style2"><strong></strong></td>
+						<td style="color:red;" class="style1"><strong>4、学号不能重复</strong></td>
+					</tr>
+				</table>
+
+			
+			</div>
+			
+			<div id="div_button">
+  	        <a id="btn_upload" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">上传</a>
+            </div>
+			
+			
+	   	</div>
+	</div>
+
+  	<div id="dialog_error" title="具体错误信息汇总" class="easyui-dialog" data-options="iconCls:'icon-error',resizable:false,modal:true,closed:true,closable:true,constrain:true" style="width: 970px; height: 500px;">
+	     <table id="tbl_error"></table>
+    </div>
+
+    <div id="buttons_dialog_student">
+        <a id="btn_save" href="#" class="easyui-linkbutton" style="width: 80px;">保&nbsp;&nbsp;存</a>
+        <a id="btn_close" href="#" class="easyui-linkbutton" style="width: 80px;">关&nbsp;&nbsp;闭</a>
+    </div>
+</body>
+</html>

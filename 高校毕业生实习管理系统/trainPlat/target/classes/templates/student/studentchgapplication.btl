@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script> 
+    <script type="text/javascript" src="${ctxPath}/static/student/studentchgapplication.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/student/studentaddcompany.js"></script>
+<title>学生变更申请表</title>
+</head>
+<body class="easyui-layout" data-options="fit:false">
+
+    <div data-options="region:'center',minWidth:340,minHeight:300">
+    	<!-- 变更申请表数据表格 -->
+        <table id="tbl_stuSecApplication"></table>
+    </div>
+
+    <div data-options="region:'south',border:true,minHeight:40,minWidth:340">
+        <div style="width: 100%;text-align: right;height: 35px;margin-top: 2px;padding: 2px;">
+    	<%
+			if(!isEmpty(stuTrainStatus) && stuTrainStatus == "0") {
+		%>
+            <a id="btn_addDlg" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-add'">增加</a>
+            <a id="btn_delDlg" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+            <a id="btn_updDlg" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+            <a id="btn_photo" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save'">上传附件</a>
+            <a id="btn_subDlg" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">提交</a>
+        <%
+			}
+		%>
+            <a id="btn_allInfo" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-perview'">预览打印</a>
+            <a id="btn_recordDlg" href="#" class="easyui-linkbutton">审批记录</a>
+        </div>
+    </div>
+
+    <!-- 变更申请表填写对话框 -->
+    <div id="dlg_stuSecApplication" class="easyui-dialog" title="" data-options="fit:true,resizable:false,border:false,modal:true,closed:true">
+        <div>
+			<a id="btn_close" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-back'" style="margin-left: 15px;margin-top: 10px;">返回</a>
+		</div>
+        <form id="form_stuSecApplication">
+            <input type="hidden" id="input_secApplyId" name="secApplyId">
+            <table id="tbl_newapp" align="center" style="text-align: center;width: 1000px;font-size: 16px;">
+                <tr style="height:80px;">
+                    <td style="width: 160px;text-align: right;">原实习单位：</td>
+                    <td style="width:300px;text-align: left;"><input class="easyui-textbox" id="input_oldComName" name="oldComName" style="width: 300px;"  data-options="readonly:true,required:true,missingMessage:'此项是必填项！'"></td>
+                    <td style="text-align: right;">原实习日期：</td>
+                    <td style="text-align: left;">
+                        <input class="easyui-datebox" id="input_oldComStartDate" name="oldComStartDate" style="width:140px;" prompt="开始日期" data-options="readonly:true,required:true,missingMessage:'此项是必填项！'">
+                        - <input class="easyui-datebox" id="input_oldComEndDate" name="oldComEndDate" style="width:140px;" prompt="结束日期"  data-options="required:true,missingMessage:'此处请填写原单位实习实际结束日期，结束时间不能超过原申请实习结束时间 ！'">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 160px;text-align: right; height: 80px;">新实习单位：</td>
+                    <td style="width:300px;text-align: left; height: 80px;"><input class="easyui-combobox" id="input_company" name="companyId" style="width: 300px;"><a id="addcompany" href="#"><br/>若没有该实习基地请点击</a></td>
+                    <td style="text-align: right;">新实习日期：</td>
+                    <td style="text-align: left;">
+                        <input class="easyui-datebox" id="input_newComStartDate" name="newComStartDate" style="width:140px;" prompt="开始日期" data-options="required:true,missingMessage:'此项是必填项！',editable:false">
+                        - <input class="easyui-datebox" id="input_newComEndDate" name="newComEndDate" style="width:140px;" prompt="结束日期" data-options="required:true,missingMessage:'此项是必填项！',editable:false">
+	                	<a id="help" type="img" href="#" title="" class="easyui-tooltip" style="display:inline">
+							<img alt="?" src="${ctxPath}/static/images/help.ico" style="margin-bottom: -7px;margin-left: 10px;">
+						</a>
+                    </td>
+                </tr>
+                <tr style="height:80px">
+                    <td style="text-align: right;">新实习内容：</td>
+                    <td style="text-align: left;"><input class="easyui-textbox" id="input_newContent" name="newContent" style="width:300px;" data-options="required:true,missingMessage:'此项是必填项！',validType:'length[1,50]'"></td>
+                    <td style="text-align: right; height: 80px;">新实习岗位：</td>
+                    <td style="text-align: left; width: 343px; height: 80px;"><input class="easyui-textbox" id="input_newStation" name="newStation" style="width:295px;" data-options="required:true,missingMessage:'此项是必填项！',validType:'length[1,30]'"></td>
+                </tr>
+                <tr style="height:80px">
+                    <td style="text-align: right;">变更的理由：</td>
+                    <td style="text-align: left; width: 343px;" colspan=3><input class="easyui-textbox" id="input_reason" name="reason" style="width:790px;" data-options="required:true,missingMessage:'此项是必填项！',validType:'length[1,100]'"></td>
+                </tr>
+                <tr style="height:80px">
+                	<td style="text-align: right;">新住宿地址：</td>
+                    <td style="text-align: left; width: 343px;" colspan=3><input class="easyui-textbox" id="input_newAdress" name="newAdress" style="width:790px;" data-options="required:true,missingMessage:'此项是必填项！',validType:'length[1,80]'"></td>
+                </tr>
+            </table>
+			<table align="center">
+				<tr>
+					<td style="text-align: center;">
+						<a id="btn_save" href="#" class="easyui-linkbutton" style="width:80px;">保&nbsp&nbsp存</a>
+					</td>
+				</tr>
+			</table>
+        </form>
+    </div>
+    
+    <div id="dialog_importphoto" title="上传附件"  class="easyui-dialog" style="width:480px; height:230px;" data-options="iconCls:'icon-import',resizable:false,modal:true,closed:true,constrain:true"> 
+		<div align="center">
+			<div style="padding-top: 15px;">
+				<form id="form_importphoto" method="post" enctype="multipart/form-data">
+ 					附件：<input id="filebox_importphoto" class="easyui-filebox" name="file" data-options="buttonText:'选择文件',accept:'.jpg'" style="width:320px;"/>
+ 					<div style="padding-top: 8px;">
+					   	<table style="color:red;">
+							<tr>
+								<td style="width: 67px;color:red;" class="style4"><strong>&nbsp;&nbsp;备注：</strong></td>
+								<td style="color:red;" class="style1"><strong>1、仅支持扩展名为.jpg格式</strong></td>
+							</tr>
+							<tr>
+								<td style="width: 67px" class="style2"><strong></strong></td>
+								<td style="color:red;" class="style1"><strong>2、请将预览中的文件进行打印并盖章后进行上传</strong></td>
+							</tr>
+							<tr>
+								<td style="width: 67px" class="style2"><strong></strong></td>
+								<td style="color:red;" class="style1"><strong>3、重复上传将会覆盖原有的图片</strong></td>
+							</tr>
+						</table>
+					</div>
+				</form>
+			</div>
+			<div style="padding-top: 10px;">
+				<a id="btn_mod" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">上传</a>
+			</div>
+	   	</div>
+	</div>
+    
+    <div id="dialog_photo" title="附件"  class="easyui-dialog" style="width:1024px; height: 576px;" data-options="iconCls:'',resizable:false,modal:true,closed:true,constrain:true">
+		<img id="perview"alt="" src="">
+	</div>
+    
+    <!-- 审批记录对话框 -->
+    <div id="dialog_checkRecord">
+		<table id="tbl_checkRecord"></table>
+	</div>
+	
+	<div title="新增企业" class="easyui-dialog" id="dlg_company" style="width: 735px; height: 550px;text-align:" 
+		data-options="resizable:false,modal:true,closed:true,closable:false,buttons:'#div_buttons'">
+		<div style="width:100%;margin-top: 10px;">
+		
+			<form id="form_add">
+			<input type="hidden" id="imgString" name="logoPath">
+				<table style="width: 700px; height: 400px;margin-right: auto;padding-top:10px">
+					
+        			<tr style="height: 40px">
+        				<!-- <td style="text-align: right;">是否签署协议:</td>
+          				<td> <select id="txt_sign" class="easyui-combobox" name="sign" style="width:150px" editable="false">
+                    		<option>是</option>
+                    		<option>否</option>
+                     		 </select></td> -->
+                     	<td style="text-align: right;">实习单位名称:<input type="hidden" id="txt_companyId" name="companyId"></td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_comName" name="comName" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+                     	<td style="text-align: right;">所任职务:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_position" name="position" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+        			</tr>
+        			
+        			
+        			<tr style="height: 40px">
+        				<td style="text-align: right;">校内联系人:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_schContact" name="schContact" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+        				<td style="text-align: right;">校内联系方式:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_schContactphone" name="schContactphone" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+        			</tr>
+        			<tr style="height: 40px">
+        				<td style="text-align: right;"> 企业联系人:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_comcontacts" name="comcontacts" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+        				<td style="text-align: right;">企业联系方式:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_phone" name="phone" style="width:150px;"data-options="required:true,missingMessage:'必填'"></td>
+        			</tr>
+        			<tr style="height: 40px">
+						<td style="text-align: right;">实习单位地址:</td>
+						<td colspan="3"><input class="easyui-textbox" id="txt_comAddress" name="comAddress"   style="width:589px;" data-options="validType:'identity',delay:400,required:true,missingMessage:'必填'"></td>
+					</tr>
+					<tr style="height: 40px">
+						<td style="text-align: right;">所属行业:</td>
+          				<td colspan="3"><input class="easyui-textbox" id="txt_industry" name="industry" style="width:589px;" data-options="required:true,missingMessage:'必填'"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td class='v' style="text-align: right;">logo预览:</td>
+						<td style="text-align: right;">
+							<div class="photo">
+								<center><img id="pictureimg"   style="width:240px;height:240px"></center>
+							</div>
+						</td>
+						
+          				<td class="v" style="text-align: right;style:100px" >上传logo:</td>
+          				<td class="v"  id="uploadlogo"><input id="logofile" class="easyui-filebox"  name="upfile" data-options="buttonText:'选择文件',accept:'.jpg',onChange: function(value){
+		                          var f = $(this).next().find('input[type=file]')[0];
+		                          if (f.files && f.files[0]){
+		                              var reader = new FileReader();
+		                              reader.onload = function(e){		                              				                             		 
+		                             		var imgStr=e.target.result.replace('data:image/jpeg;base64,','');
+		                             		console.log(e.target);
+		                                  	$('#pictureimg').attr('src', e.target.result);
+		                                  	
+		                                  	$('#imgString').val(imgStr);		                                  	                             
+		                             }
+		                             reader.readAsDataURL(f.files[0]);
+		                         }
+		                     }" style="width:150px;"/></td>
+          				<!--<td style="text-align: right;">审批状态:</td>
+          				
+          				 <td> <select id="txt_checkstate" class="easyui-combobox" name="checkstate" style="width:150px" editable="false">
+                    		<option>已审批</option>
+                    		<option>未审批</option>
+                     		 </select>
+                     	</td> -->
+        			</tr>
+			</table>
+		</form>
+		</div>
+	</div>
+	
+	
+	<div id="div_buttons">
+      <a class="easyui-linkbutton" href="#" id="btn_saveaddcompany" style="width: 80px;">保&nbsp;&nbsp;存</a>
+      <a class="easyui-linkbutton" href="#" id="btn_closeaddcompany" style="width: 80px;">关&nbsp;&nbsp;闭</a>
+ 	 </div>
+	
+	
+	
+	
+</body>
+</html>

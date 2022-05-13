@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>    
+    <script type="text/javascript" src="${ctxPath}/static/sysset/js/syslevel.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/datagrid-detailview.js"></script>
+    <title>企业等级</title>
+        <style type="text/css">
+	#pictureimg{
+		width:150px;
+		height:50px;
+		
+}
+</style>
+</head>
+<body class="easyui-layout"  data-options="fit:true">
+	
+	<!-- <div  data-options="region:'north',minHeight:40" style="border-bottom-width: 1; margin-bottom:1px;">
+		    <form id="form_query" >
+		    	<table style="margin-top:1px;">
+				    <tr>
+				      <td>等级名称：<input class="easyui-textbox" name="lvlName" style="width: 150px;"></td>
+				    </tr>
+				    <span style="float: right;margin-top:3.5px;margin-right:25px"><a class="easyui-linkbutton" id="btn_query" href="#" data-options="iconCls:'icon-search'">查询</a>
+		    	</table>
+		    </form>
+	</div> -->
+	
+	<div  data-options="region:'center'" style="border-width: 0;">
+	    	<table id="tbl_syslevel"></table>    
+	</div>
+	
+	<div data-options="region:'south',border:'false',minHeight:40"  >
+	<div style="width: 100%;text-align: right;height: 35px;margin-top:2px; position:absolute; bottom:0px; right:0px;padding: 2px;">
+				<a class="easyui-linkbutton" id="btn_addDlg" href="#" data-options="iconCls:'icon-add'">增加</a>
+				<a class="easyui-linkbutton" id="btn_updDlg" href="#" data-options="iconCls:'icon-edit'">修改</a>
+				<a class="easyui-linkbutton" id="btn_delDlg" href="#" data-options="iconCls:'icon-remove'">删除</a>
+	 	</div>
+ 	</div>
+ 	
+ 	<div title="新增等级" class="easyui-dialog" id="dlg_syslevel" style="width: 500px; height:360px;text-align:" 
+		data-options="resizable:false,modal:true,closed:true,closable:false,buttons:'#div_buttons'">
+		<div style="width:100%;margin-left: auto;margin-right: auto">
+			<form id="form_add">
+				<table align="center">
+					<tr style="height:50px;">
+	          			<input type="hidden" id="input_lvlId" name="lvlId">
+	          			<td>等级名称:</td>
+	          			<td style="width:150px"><input class="easyui-textbox" id="input_lvlName" name="lvlName" style="width:150px;" data-options="required:true,missingMessage:'必填',validType:'length[1,30]'"></td>
+					</tr>
+					<tr style="height:50px;">
+						<td>等级标志:</td>
+	          			<td style="width:160px">
+	          			<input id="uploadimg" class="easyui-filebox" data-options="buttonText:'选择文件',accept:'.gif',onChange: function(value){
+		                          var f = $(this).next().find('input[type=file]')[0];
+		                          if (f.files && f.files[0]){
+		                              var reader = new FileReader();
+		                              reader.onload = function(e){		                              				                             		 
+		                             		var imgStr=e.target.result.replace('data:image/gif;base64,','');
+		                                  	$('#pictureimg').attr('src', e.target.result);
+		                                  	$('#imgString').val(imgStr);		                                  	                             
+		                             }
+		                             reader.readAsDataURL(f.files[0]);
+		                         }
+		                     }" style="width:150px;"/></td>
+	          			
+	          			<!-- <input class="easyui-filebox" id="input_lvlPicPath" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+						 -->
+						<input type="hidden" id="imgString" name="lvlPicPath" >
+					</tr>
+					<tr style="height:50px;">
+						<td>图标预览</td> 
+						<td style="width:160px">
+							<div  class="photo"><input border="0"  type="image" id="pictureimg" alt=""  width="width:160px" height="100px;"></div>
+						</td>
+					</tr>
+					<tr style="height:50px;">
+						<td>最小分数:</td>
+	          			<td style="width:160px"><input class="easyui-numberbox" id="input_minScore" name="minScore" style="width:150px;" data-options="required:true,missingMessage:'必填',validType:['integer','length[1,30]']"></td>
+					</tr>
+					<tr style="height:50px;">
+						<td style="width: 67px;color:red;" class="style4"><strong>&nbsp;&nbsp;备注：</strong></td>
+						<td style="color:red;" class="style1"><strong>仅支持扩展名为.gif格式</strong></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+
+	<div id="div_buttons">
+	    <a class="easyui-linkbutton" href="#" id="btn_save" style="width: 80px;">保&nbsp;&nbsp;存</a>
+	    <a class="easyui-linkbutton" href="#" id="btn_close" style="width: 80px;">关&nbsp;&nbsp;闭</a>
+	</div>
+	
+
+</body>
+</html>

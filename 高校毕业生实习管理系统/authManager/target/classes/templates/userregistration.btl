@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<title>用户注册</title>
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/sysset/css/staffManager.css"> 
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/userregistration.js"></script>
+	<link href="${ctxPath}/static/config.ico" rel="shortcut icon">
+</head>
+<style>
+.myTable{
+	font-size: 14px;
+}
+.myTable td{
+	padding: 2px;
+}
+.formTable td{
+	padding: 6px 2px;
+}
+</style>
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" style="height:100px;padding:0px;overflow: hidden">
+	<div id="headerLogo01">
+		<img alt="" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F611%2F031213123016%2F130312123016-3-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1644131890&t=310eb5bebb39873676b5e8f5ec618536" style="height:100px;width:100%">
+	</div>
+</div>
+<div data-options="region:'center'">
+<div align="center" style="">
+<div align="center" style="margin-top: 30px; font-size:30px;"> 欢 迎 注 册</div><br />
+<form id="saveStaff" method="post">
+		<input type="hidden" name="admin"  value="用户" />
+		<table align="center" class="formTable">
+			<tr>
+				<td style="width:15%">工号：</td>
+				<td style="width: 35%"><input style="width:150px;" type="text" name="userCode" id="txt_userCode" class="easyui-textbox" required="required"/></td>
+				<td style="width:15%">密码：</td>
+				<td style="width: 35%"><input style="width:150px;" type="text" name="userPass" id="txt_userPass" class="easyui-passwordbox" required="required"/></td>
+			</tr>
+			<tr>
+				<td style="width:15%">姓名：</td>
+				<td style="width: 35%"><input style="width:150px;" type="text" name="staffName" id="txt_addStaffName" class="easyui-textbox" required="required"/></td>
+				<td style="width:15%">生日：</td>
+				<td style="width: 35%"><input style="width:150px;" type="text" name="staffBirthDay" id="txt_staffBirthDay" class="easyui-datebox" data-options="editable:false"/></td>
+			</tr>
+			<tr>
+				<td style="width:15%">民族：</td>
+				<td style="width: 35%">
+				<select id="txt_staffNational" class="easyui-combobox"	name="staffNational" style="width: 150px;" data-options="editable:false" required="required">
+							<option value="">--请选择--</option>
+							<option>汉族</option>
+							<option>满族</option>
+							<option>回族</option>
+							<option>蒙古族</option>
+							<option>朝鲜族</option>
+							<option>藏族</option>
+							<option>维吾尔族</option>
+							<option>苗族</option>
+							<option>彝族</option>
+							<option>壮族</option>
+							<option>布依族</option>
+							<option>侗族</option>
+							<option>白族</option>
+							<option>哈尼族</option>
+							<option>哈萨克族</option>
+							<option>土家族</option>
+							<option>瑶族</option>
+							<option>达斡尔族</option>
+							<option>东乡族</option>
+							<option>高山族</option>
+							<option>景颇族</option>
+							<option>柯尔克孜族族</option>
+							<option>拉祜族</option>
+							<option>纳西族</option>
+							<option>畲族</option>
+							<option>傣族</option>
+							<option>黎族</option>
+							<option>傈僳族</option>
+							<option>仫佬族</option>
+							<option>羌族</option>
+							<option>水族</option>
+							<option>土族</option>
+							<option>佤族</option>
+							<option>阿昌族</option>
+							<option>布朗族</option>
+							<option>毛南族</option>
+							<option>普米族</option>
+							<option>撒拉族</option>
+							<option>塔吉克族</option>
+							<option>锡伯族</option>
+							<option>仡佬族</option>
+							<option>保安族</option>
+							<option>德昂族</option>
+							<option>俄罗斯族</option>
+							<option>鄂温克族</option>
+							<option>京族</option>
+							<option>怒族</option>
+							<option>乌孜别克族</option>
+							<option>裕固族</option>
+							<option>独龙族</option>
+							<option>鄂伦春族</option>
+							<option>赫哲族</option>
+							<option>基诺族</option>
+							<option>珞巴族</option>
+							<option>门巴族</option>
+							<option>塔塔尔族</option>
+					</select>
+				</td>
+				<td style="width:15%">教育程度：</td>
+				<td style="width: 35%">
+					<select id="txt_staffEducation" class="easyui-combobox" name="staffEducation"  style="width:150px;" data-options="editable:false">
+					    <option value="">--请选择--</option>
+					    <<% for (dict in dicto) {%>
+							<option value="${dict.dictKey}"> ${dict.dictValue}</option>
+							<% } %>
+					</select>
+					</td>
+			</tr>
+			<tr>
+				<td style="width:15%">性别：</td>
+				<td style="width: 35%">
+					<input class="easyui-radiobutton" data-options="checked:true"  name="staffSex" value="男" label="男:">
+						<input class="easyui-radiobutton"   name="staffSex" value="女" label="女:">
+	             </td>
+	             <td style="width:15%">联系方式：</td>
+	             <td style="width: 35%"><input style="width:150px;" type="text" name="staffPhone" id="txt_StaffPhone"  class="easyui-textbox" data-options="prompt:'请输入联系方式'"  required="required" />  </td>
+				
+			</tr>
+			<tr>
+				<td style="width:15%">入职日期：</td>
+				<td style="width: 35%"><input style="width:150px;" type="text" name="entryDate" id="txt_entryDate" class="easyui-datebox" data-options="editable:false"/></td>
+				<td style="width:15%">系部处：</td>
+				<td style="width: 35%"><input class="easyui-combobox"  name="parentDepartId"	id="txt_parentDepartId"  style="width:150px;"
+						data-options="editable:false,multiple:false,groupField:'group',prompt:'请选择'" required="required"/></td>
+			</tr>
+			<tr>
+				<td style="width:15%">科室：</td>
+				<td style="width: 35%"><input class="easyui-combobox"  name="departId"	 id="txt_departId"  style="width:150px;"
+						data-options="editable:false,multiple:false,groupField:'group',prompt:'请选择'" /></td>
+				<td style="width:15%">职务：</td>
+				<td style="width: 35%"><input class="easyui-combobox" 	name="postIds"	id="txt_postIds"  style="width:150px;"
+								data-options="editable:false,multiple:true,groupField:'group',prompt:'请选择职务'" required="required"/></td>
+			</tr>
+			<tr>
+				<td style="width:15%">职务类型：</td>
+				<td style="width: 35%"><select id="txt_postType" class="easyui-combobox" name="postType"  style="width:150px;" data-options="editable:false" required="required">
+				<option value="">--请选择--</option>
+				<<% for (dict in postType) {%>
+				<option value="${dict.dictKey}"> ${dict.dictValue}</option>
+				<% } %>
+			    </select></td>
+				<td style="width:15%">职称：</td>
+				<td >
+				<select id="txt_staffTitle" class="easyui-combobox"	name="staffTitle" style="width: 150px;" data-options="editable:false" required="required">
+								<option value="">--请选择--</option>
+								<% for (dict in dicts) {%>
+								<option value="${dict.dictKey}"> ${dict.dictValue}</option>
+								<% } %>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td style="width:15%">家庭住址：</td>
+				<td colspan="3"> <input style="width:410px;" type="text" name="staffAddr" id="txt_staffAddr" class="easyui-textbox" /></td>
+			</tr>
+		</table>				
+		</form>
+		<div id="dlg_btnsave" style="width: 100%; text-align: center;">
+		<a id="btn_save" style="margin: 10px 50px;" href="#"
+			class="easyui-linkbutton" data-options="iconCls:'icon-ok'">立 即 注 册</a> 
+       </div>
+   </div>
+</div>
+   <div id="dlg_tipStaff" class="easyui-dialog" title="友情提示！" style="width:400px;height:300px;"
+       data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#dlg_btnDelete',closable:false,closed:true">
+     <form id="deleteStaff" method="post">
+     <div style="width: 100%;text-align: center;">
+       <table style="width: 95%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable" cellspacing="0" cellpadding="0">
+         <tr style="vertical-align: middle;">
+           <td style="text-align: left;">
+                               注册成功,并已为您分配默认权！
+           </td>
+         </tr>
+         <tr style="vertical-align: middle;">
+           <td style="text-align: left;">
+                               请牢记您的工号 :<span style="color: red" id="sp_usercode"></span>,密码: <span style="color: red" id="sp_userpass"></span>
+           </td>
+         </tr>
+       </table>
+     </div>
+  </form>
+ </div>
+ <div id="dlg_btnDelete" style="width: 100%; text-align: center;">
+	<a id="btn_deletecancel" style="margin: 2px 16px;" href="#"
+			class="easyui-linkbutton" data-options="iconCls:'icon-no'">关闭本页</a>
+ </div>
+</body>
+</html>
