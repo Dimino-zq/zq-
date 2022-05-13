@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/index.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/authGrant.css">
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/grant/js/authGrant.js"></script>
+	<script type="text/javascript">
+	function setFixRate(tt,event){
+//		var value = $('._fixRate').numberbox('getValue');//不能使用numberbox的getValue,这个是隐藏框的值
+		//如果有小数点
+		var value = $('._fixRate').val();//这个才是输入框的值
+		if(value.indexOf(".") >= 0){//如果包含小数点
+			if((value.substring(value.indexOf(".")+1).length) >=0){//如果小数位数已经有两位
+//				window.event.returnValue = false;
+//				                                                                                     ('._fixRate').val(value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3'));
+//				$('._fixRate').numberbox('filter',false);
+				$('._fixRate').numberbox('options').filter = function(){
+				    //让filter返回false会禁止按键输入
+				    return false;
+				};
+			}else{
+			    //记得写else,否则该nunberbox将不允许再次输入了
+			    $('._fixRate').numberbox('options').filter = function(){
+				    return true;
+			}
+		}
+	}
+	}
+</script>
+<title>权限查询</title>
+</head>
+<body class="easyui-layout">
+<div class="easyui-layout" style="width:100%;height:100%;">
+		<div data-options="region:'north'" style="height:50px;vertical-align: middle;overflow:hidden">
+			<form id="queryForm" method="post">
+			<table style="width: 98%">
+				<tr style="height:50px;vertical-align: middle;">
+					<td style="width: 30%">
+						<label for="name">权限编号:</label>
+						<input type="text" name="grantCode"  id="txt_grantCode" class="easyui-textbox" />
+					</td>
+					<td style="width: 30%">
+						<label for="name">权限名称:</label>
+						<input type="text" name="grantName" id="txt_grantName" class="easyui-textbox" />
+					</td>
+					<td style="width: 30%">
+						<label for="name">所属系统:</label>
+						<select id="txt_belongSys" name="belongSys" data-options="prompt:'请选择所属系统',editable:false" class="easyui-combobox" style="width:152px;">
+						</select>
+					</td>
+					<td style="text-align: right">
+						<a id="btn_search" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+					</td>			
+				</tr>
+			</table>
+			</form>
+		</div>
+		<div data-options="region:'center',title:'权限查询列表',iconCls:'icon-ok'" >
+			<table id="tbl_grant_detail">
+			</table>
+		</div>
+		<div data-options="region:'south',split:false,border:false" style="height:40px;padding: 2px;text-align: right">
+				<a id="btn_add" href="#" style="margin: 2px 4px" class="easyui-linkbutton" data-options="iconCls:'icon-add'">增加</a>
+				
+				<a id="btn_del" href="#" style="margin: 2px 4px" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+		</div>
+	</div>
+	<div id="dlg_save" class="easyui-dialog" title="增加" style="width:600px;height:320px;"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#dlg_btnsave',closable:false,closed:true">
+    	<form id="saveForm" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 90%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable" cellspacing="0" cellpadding="0">
+			    <tr style="vertical-align: middle;">
+					
+					<td style="width: 25%;"><label for="name">所属系统:</label>  </td>
+						<td style="width: 30%;text-align: left ">
+						<select id="add_belongSys" name="belongSys" data-options="prompt:'请选择所属系统',editable:false" required="required" class="easyui-combobox" style="width:152px;">
+						</select>
+					</td>	
+					
+					<td style="width: 25%">
+						<label for="name">权限级别:</label>
+					</td>
+					<td style="text-align: left;">
+                    <select id="add_grantLvl" name="grantLvl" data-options="prompt:'请选择权限级别',editable:false" required="required" class="easyui-combobox" style="width:152px;">
+					</select>
+					</td>
+				</tr>
+				<tr style="vertical-align: middle;">
+				    <td style="width: 25%">
+						<label for="name">父级名称:</label>
+					</td>
+					<td style="text-align: left;width: 25%">
+                    <select id="add_parentGrantCode" name="parentGrantCode" data-options="prompt:'父级名称',
+                    	editable:false,valueField: 'grantCode',textField: 'grantName'" class="easyui-combobox" style="width:152px;">
+					</select>
+					</td>
+					<td style="width: 25%">
+						<label for="name">权限编号:</label>
+					</td>
+					<td style="text-align: left;">
+					<input type="text" name="grantCode1"  id="add_grantCode1"class="easyui-textbox" style="width:30px;" />
+                    <input type="text" name="grantCode2"  id="add_grantCode2"class="easyui-textbox" style="width:30px;"/>
+                    <input type="text" name="grantCode3"  id="add_grantCode3"class="easyui-textbox" style="width:30px;"/>
+                    <input type="text" name="grantCode4"  id="add_grantCode4"class="easyui-textbox" style="width:45px;"/>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 30%;">
+						<label for="name">权限名称:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="grantName"  id="add_grantName" class="easyui-textbox" required="required"/>
+					    <br/>
+ 					    <font color='red' size='1'>*权限名称不能超过50个字</font>
+					</td>
+					<td style="width: 30%;"><label for="isDefault">默认权限:</label>  </td>
+					<td style="width: 30%;text-align: left ">
+						<div align="center">
+		                                <input class="easyui-radiobutton" data-options="checked:true"   name="isDefault" value="true" label="是:">
+		                                <input class="easyui-radiobutton"   name="isDefault" value="false" label="否:">
+		                                </div>
+		                 </td>    
+				</tr>
+				
+			</table>
+			
+ 					<font color='red' size='1'>*注：权限编号</font>
+				<br/>
+ 					<font color='red' size='1'>前两位为一级权限，例如：科研管理系统；</font>
+ 					<br/>
+ 					<font color='red' size='1'>前四位为二级权限，例如：系统设置；</font>
+ 					<br/>
+ 					<font color='red' size='1'>前六位为三级权限，例如：数据字典；</font> 
+ 					<br/>
+ 					<font color='red' size='1'>前九位为四级权限，例如：增加。</font> 
+			</div>
+			
+		</form>
+	</div>
+	<div id="dlg_btnsave" style="width: 100%;text-align: center;">
+		<a id="btn_save" style="margin: 2px 16px;" 	href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+		<a id="btn_cancel" style="margin: 2px 16px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+	</div>
+	
+	
+	
+	<div id="grant_delect" class="easyui-dialog" title="删除" style="width:400px;height:150px;"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#grant_btnDel',closable:false,closed:true">
+    	<form id="grant_delectForm" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 90%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable" cellspacing="0" cellpadding="0">
+				<tr style="vertical-align: middle;">
+					<td style="text-align: left;">
+						是否删除该条信息？
+						<input type="hidden" name="grantId" id="del_grantId"  value=""/>
+					</td>
+				</tr>
+	
+			</table>
+			</div>
+			
+		</form>
+	</div>
+	<div id="grant_btnDel" style="width: 100%;text-align: center;">
+		<a id="grant_btn_delect" style="margin: 2px 16px;" 	href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+		<a id="grant_btn_cancelDel" style="margin: 2px 16px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,103 @@
+2022/04/23-10:41 [restartedMain] INFO  edu.hfu.auth.AuthManagerApplication- Starting AuthManagerApplication on PC-20201128MSMG with PID 9456 (D:\JAVA\authManager\target\classes started by Administrator in D:\JAVA\authManager)
+2022/04/23-10:41 [restartedMain] INFO  edu.hfu.auth.AuthManagerApplication- The following profiles are active: dev
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor- Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor- For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data repositories in DEFAULT mode.
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 44ms. Found 0 repository interfaces.
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$11a82a21] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
+2022/04/23-10:41 [restartedMain] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2022/04/23-10:41 [restartedMain] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.22]
+2022/04/23-10:41 [restartedMain] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/auth]- Initializing Spring embedded WebApplicationContext
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.web.context.ContextLoader- Root WebApplicationContext: initialization completed in 4237 ms
+2022/04/23-10:41 [restartedMain] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure- Init DruidDataSource
+2022/04/23-10:41 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} inited
+2022/04/23-10:41 [restartedMain] INFO  org.hibernate.jpa.internal.util.LogHelper- HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2022/04/23-10:41 [restartedMain] INFO  org.hibernate.Version- HHH000412: Hibernate Core {5.3.10.Final}
+2022/04/23-10:41 [restartedMain] INFO  org.hibernate.cfg.Environment- HHH000206: hibernate.properties not found
+2022/04/23-10:41 [restartedMain] INFO  org.hibernate.annotations.common.Version- HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2022/04/23-10:41 [restartedMain] INFO  org.hibernate.dialect.Dialect- HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022/04/23-10:41 [restartedMain] WARN  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer- Unable to start LiveReload server
+2022/04/23-10:41 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path '/auth'
+2022/04/23-10:41 [restartedMain] INFO  edu.hfu.auth.AuthManagerApplication- Started AuthManagerApplication in 10.334 seconds (JVM running for 12.199)
+2022/04/23-10:42 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/auth]- Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022/04/23-10:42 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
+2022/04/23-10:42 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 53 ms
+2022/04/23-10:42 [http-nio-8080-exec-1] INFO  org.hibernate.hql.internal.QueryTranslatorFactoryInitiator- HHH000397: Using ASTQueryTranslatorFactory
+2022/04/23-10:43 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.action.sysset.StaffManagerAction- postIds:[Ljava.lang.Integer;@20066bc
+2022/04/23-10:46 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.action.sysset.StaffManagerAction- postIds:[Ljava.lang.Integer;@25b8ff81
+2022/04/23-10:46 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.action.sysset.StaffManagerAction- postIds:[Ljava.lang.Integer;@3a65a30f
+2022/04/23-10:53 [http-nio-8080-exec-10] DEBUG edu.hfu.auth.action.sysset.StaffManagerAction- postIds:[Ljava.lang.Integer;@71ff65ec
+2022/04/23-10:54 [http-nio-8080-exec-4] WARN  org.apache.catalina.util.SessionIdGeneratorBase- Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [561] milliseconds.
+2022/04/23-10:55 [http-nio-8080-exec-2] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//grant/initAuthGrant
+2022/04/23-10:55 [http-nio-8080-exec-2] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-8] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//grant/queryAuthGrant
+2022/04/23-10:55 [http-nio-8080-exec-8] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/getBelongSys
+2022/04/23-10:55 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-2] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/getBelongSys
+2022/04/23-10:55 [http-nio-8080-exec-2] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//postgrant/initPostGrant
+2022/04/23-10:55 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-4] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth/postgrant/getAllGrant
+2022/04/23-10:55 [http-nio-8080-exec-4] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-3] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//postgrant/queryPostGrant
+2022/04/23-10:55 [http-nio-8080-exec-3] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-3] DEBUG edu.hfu.auth.action.sysset.PostGrantAction- postName:
+2022/04/23-10:55 [http-nio-8080-exec-10] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/initStaff
+2022/04/23-10:55 [http-nio-8080-exec-10] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth/sysset/getAllGrant
+2022/04/23-10:55 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-2] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-2] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-8] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/getDepartOne
+2022/04/23-10:55 [http-nio-8080-exec-8] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//postgrant/getAllPost
+2022/04/23-10:55 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-9] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-9] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-1] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-1] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-4] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-4] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-3] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-3] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-10] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-10] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-7] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-7] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-8] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-8] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-2] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-2] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-9] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-9] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-1] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-1] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-4] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-4] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-3] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-3] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-10] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-10] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//postgrant/getAllGrantCode
+2022/04/23-10:55 [http-nio-8080-exec-5] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/saveGrants
+2022/04/23-10:55 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:55 [http-nio-8080-exec-8] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth//sysset/queryStaff
+2022/04/23-10:55 [http-nio-8080-exec-8] DEBUG edu.hfu.auth.config.LoginInterceptor- 当前用户已登录，登录的用户名为： admin
+2022/04/23-10:56 [http-nio-8080-exec-9] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth/getEduDepartByLvl
+2022/04/23-10:59 [http-nio-8080-exec-7] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth/getMajorByDept
+2022/04/23-11:00 [http-nio-8080-exec-6] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth/getMajorByDept
+2022/04/23-11:03 [http-nio-8080-exec-4] DEBUG edu.hfu.auth.config.LoginInterceptor- 拦截路径:/auth/getMajorByDept
+2022/04/23-17:37 [RMI TCP Connection(380)-127.0.0.1] INFO  org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin- Application shutdown requested.
+2022/04/23-17:37 [RMI TCP Connection(380)-127.0.0.1] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Closing JPA EntityManagerFactory for persistence unit 'default'
+2022/04/23-17:37 [RMI TCP Connection(380)-127.0.0.1] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} closing ...
+2022/04/23-17:37 [RMI TCP Connection(380)-127.0.0.1] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} closed

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/index.css">
+	
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/sysset/js/schoolinformation.js"></script>
+	<style type="text/css">
+	.easyui-textbox{
+	border:none; 
+	background-color:inherit
+	}
+	</style>
+<title>学校信息</title>
+</head>
+<body class="easyui-layout">
+	<div id="dlg_update" class="easyui-layout" title="修改" style="width:95%;height:500px;margin-top: 20px"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,closable:false,closed:true">
+    	<form id="updateForm" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 90%;margin-left: auto;margin-right: auto;margin-top: 10px;" id="shcoolTab" style="border:0px" class="datagrid-btable" >
+				<tr style="vertical-align: middle;">
+					<td style="width: 10%">
+						<label for="schoolName"><h3>学校名称:</h3></label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="schoolName"  id="upd_schoolName" class="easyui-textbox" style="width:200px;"  />
+						<input type="hidden" name="schoolId" id="upd_schoolId"  value="1"/>
+					</td>
+					<td style="width: 10%;">
+						<label for="schoolLead"><h3>学校校长:</h3></label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="schoolLead"  id="upd_schoolLead"  style="width:200px;"  class="easyui-textbox"  />
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 10%;">
+						<label for="schoolEmail"><h3>学校邮箱:</h3></label>
+					</td>
+					<td style="text-align: left;">
+						<input type="email" name="schoolEmail"  id="upd_schoolEmail" style="width:200px;" class="easyui-textbox" />
+					</td>
+					<td style="width: 10%;">
+						<label for="schoolDate"><h3>建校日期:</h3></label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="schoolDate"  id="upd_schoolDate" style="width:200px;"  class="easyui-datebox" data-options="editable:false"  />
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 10%;">
+						<label for="schoolType"><h3>学校类型:</h3></label>
+					</td>
+					<td style="text-align: left;" colspan="3">
+						<input type="text" name="schoolType"  id="upd_schoolType"  style="width:698px;"  class="easyui-textbox"  />
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 10%;">
+						<label for="schoolExplain"><h3>学校简介:</h3></label>
+					</td>
+					<td style="text-align: left;padding-top: 20px;"colspan="3">
+						<input type="text" data-options="multiline:true" name="schoolExplain"  id="upd_schoolExplain" style="width:698px;height:100px;" class="easyui-textbox"  />
+					</td>
+				</tr>
+				<tr >
+					<td style="width: 10%;">
+						<label for="schoolAddr"><h3>学校地址 :</h3></label>
+					</td>
+					<td style="text-align: left;padding-top: 20px;"colspan="3">
+						<input type="text" data-options="multiline:true" name="schoolAddr"  id="upd_schoolAddr"  style="width:698px;height:100px;"  class="easyui-textbox"  />
+					</td>
+				</tr>
+			</table>
+			</div>
+		</form>
+	</div>
+	<div data-options="region:'south',split:false,border:false" style="height:40px;padding: 2px;text-align: right">
+		
+		<div id="div_btnUpd" style=" float: right; display: none;">
+    	<a id="btn_update" href="#" style="margin: 2px 4px;" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+		<a id="btn_cancelUpd" href="#" style="margin: 2px 4px;" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+		</div>
+		<div id="div_butEdit" style=" float: right; display: block;">
+		<a id="btn_edit" href="#" style="margin: 2px 4px ;" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+		</div>
+	</div>
+	
+</body>
+</html> 

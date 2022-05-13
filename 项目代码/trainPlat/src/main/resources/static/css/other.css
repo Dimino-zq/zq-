@@ -1,0 +1,6 @@
+/* 此处覆盖easyui.css中的部分样式 */
+
+/* datagrid单元格文字过多时仅显示部分文字，多出部分用点表示 */
+.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber{   
+    text-overflow: ellipsis;  
+}  

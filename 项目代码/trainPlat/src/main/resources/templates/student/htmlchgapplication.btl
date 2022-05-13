@@ -1,0 +1,104 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>变更申请表</title>
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.jqprint-0.3.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			tipMess();
+			
+			$("#webPrint").click(function(){
+				$("#printContent").jqprint({
+					operaSupport: false
+				}); 
+			});
+			
+			function tipMess(){
+				var tip = "${tip!"null"}";
+				if(tip!="null")
+					alert(tip);
+			}
+	
+		});
+	</script>
+</head>
+
+<body>
+	<div>
+		<a href="#" class="easyui-linkbutton" onclick="javascript:history.back();" data-options="iconCls:'icon-back'">返回</a>
+		<a href="#" class="easyui-linkbutton" id="webPrint" data-options="iconCls:'icon-print'">打印</a>
+	</div>
+	<div id="printContent">
+	<h1 align="center">黑龙江财经学院学生实习变更单位申请表 </h1>
+	<div align="center">
+	  <table border="1" style="width: 650px; border:2px black solid; border-collapse:collapse; ">
+	    <tr height="35">
+	   		<td width="120"><p align="center">学生姓名 </p></td>
+			<td width="210"><p align="center">${studentName!""}</p></td>
+			<td width="120" colspan="3"><p align="center">学    号 </p></td>
+			<td width="200"><p align="center">${studentNo!""}</p></td>
+	    </tr>
+	    <tr height="35">
+			<td width="120"><p align="center">专    业 </p></td>
+			<td width="210"><p align="center">${major!""}</p></td>
+	    	<td width="120" colspan="3"><p align="center">班    级 </p></td>
+	    	<td width="200"><p align="center">${classNumber!""}</p></td>
+	    </tr>
+	    <tr height="35">
+	    	<td width="120"><p align="center">原实习单位 </p></td>
+	    	<td width="210"><p align="center">${oldCompany!""}</p></td>
+	    	<td width="60" colspan="2"><p align="center">时间 </p></td>
+	    	<td width="260" colspan="2"><p align="center">${oldDate!""}</p></td>
+	    </tr>
+	    <tr height="35">
+			<td width="120"><p align="center">新实习单位 </p></td>
+			<td width="210"><p align="center">${newCompany!""}</p></td>
+			<td width="60" colspan="2"><p align="center">时间 </p></td>
+			<td width="260" colspan="2"><p align="center">${newDate!""}</p></td>
+	    </tr>
+	    <tr height="100">
+		    <td width="120"><p align="center">变更原因 </p></td>
+		    <td width="530" colspan="5" valign="top">
+				<p>        ${reason!""}</p>
+		    </td>
+	    </tr>
+	    <tr height="150">
+			<td width="120"><p align="center">原实习单位 <br />
+	        意      见 </p></td>
+			<td width="530" colspan="5" valign="bottom">
+				<p align="right">负责人签字：                                                         <br />
+	          单位公章：                                                                <br />
+	                年           月            日     
+	        	</p>
+			</td>
+	    </tr>
+	    <tr height="160">
+	 		<td width="320" colspan="3" valign="top">校内指导教师复核意见：
+	  			<p>${teacherView!""}</p>
+	   			<div style="position:absolute;right;bottom:0;">
+	   				<p>     签字 ：                  年           月           日 </p>
+	   			</div>
+	   		</td>
+	   		<td width="330" colspan="3" valign="top">辅导员复核意见：
+	    		<p>${adviserView!""}</p>
+	    		<p>     签字 ：                  年           月           日 </p>
+	    	</td>
+	 	</tr>
+	    <tr height="160">
+	      <td width="650" colspan="6" valign="top">系（部）主任审批意见： 
+	        <p>${departView!""}</p>
+	        <p align="right">签字（公章）                                                          <br />
+	        		年               月            日     </p></td>
+	    </tr>
+	  </table>
+	</div>
+	<div align="center">
+		<p style="width:650px;text-align:left;">注：本表一式二份，学生、系（部）各留存一份。 <br />变更实习单位后须与新的实习单位签订实习协议，并立即备案。 </p>
+	</div>
+</body>
+</html>

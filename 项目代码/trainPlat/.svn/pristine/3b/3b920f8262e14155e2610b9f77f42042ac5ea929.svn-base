@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+	    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script> 
+	    <script type="text/javascript" src="${ctxPath}/static/student/studentinformation.js"></script>
+		<title>个人信息</title>
+		<style>
+			body {
+			    font-family:verdana,helvetica,arial,sans-serif;
+			    font-size:12px;
+			    margin:0;
+			}
+			.myTable{
+				width:100%;
+				border-collapse: collapse;
+			}
+			.myTable td {
+				padding: 2px;
+				border-color: #ccc;
+				border-width: 1px;
+				border-style: dotted;
+			}
+	
+			.style1 {
+				text-align: center;
+				font-size: 18px;
+			}
+			#checktable{
+				border-collapse: collapse;
+				font-family:'宋体';
+				font-size:16px
+			}
+			
+			
+			
+			
+		
+		</style>
+	</head>
+	
+<body class="easyui-layout">
+
+	<div data-options="region:'north',border:false" style="height:130px;">
+	<div style="height:120px;">
+	<table style="text-align: center;width:100%;margin-top:2px;" class="myTable" id="tbl_staffdetail">
+				<tbody>
+					<tr>
+						<td style="width: 100px;height: 50px;">学生姓名</td>
+						
+						<td id="td_staffName">${studentName}</td>
+						
+						<td style="width: 180px;height: 20px;">学生性别</td>
+						
+						<td style="width: 180px;height: 20px;" id="td_staffSex">${studentSex}</td>
+						
+						<td style="width: 100px;height: 20px;">学生年级</td>
+						
+						<td style="width: 180px;height: 20px;" id="td_staffPhone">${studentGrade}</td>
+						
+						<td rowspan="4" style="padding: 0px;">
+							<img style="width: 120px;height: 120px" src="${ctxPath}/static/images/default.jpg">
+						</td>
+						
+						<td rowspan="2" style="border: none"></td>
+						
+						<td id="myscre_btn_information">
+							<a id="btn_chgpassword" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">修改个人密码</a>
+						</td>
+					</tr>
+					
+					<tr style="height: 50px">
+						<td>
+							学生系别
+							<input type="hidden" id="td_departId" value="43">
+							<input type="hidden" id="td_parentDepartId" value="38">
+						</td>
+					
+						<td id="td_staffParentDepart">${depart}</td>
+						
+						<td>学生专业 <input type="hidden" id="td_postId" value="59"></td>
+						
+						<td id="td_poststr">${major}</td>
+						
+						<td>学生学号</td>
+						
+						<td id="td_staffTitle">${studentNo}</td>
+					
+						<td id="myscre_btn_password">
+							<a id="btn_chginformation" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">修改个人信息</a>
+						</td>
+					
+					</tr>
+				</tbody>
+			</table>
+			</div>
+	</div>
+	<div  data-options="region:'center',title:'工作进度'" style="padding:5px;"">
+	<table style="width: 100%">
+	<tr>
+		<td style="width: 480px" class="style1">${studentName}的实习进度</td>
+		<td style="width: 500px" class="style1">${studentName}的实训情况</td>
+	</tr>
+	<tr>
+		<td style="width: 480px; height: 290px;">
+		<table id="nowwork" align="center">
+		</table>
+		</td>
+		<td style="width: 500px; height: 290px padding-bottom: 15px;">
+		<table id="checktable" style="border-radius:20px 20px 20px 20px/20px 20px 20px 20px;width: 100%;"  id="tbl_test">
+			<tr style="background:#EEF5FF;border-radius:20px 20px 20px 20px/20px 20px 20px 20px;">
+				<td style="border-radius:20px 0px 0px 0px/20px 0px 0px 0px;width: 171px; height: 52px;padding-left: 150px;"><b>自主实习申请</b></td>
+				<td style="width: 20px; height: 52px;">：</td>
+				<td style="border-radius:0px 20px 0px 0px/0px 20px 0px 0px;width: 91px; height: 52px;">${application} </td>
+			</tr>
+			<tr style="background:#d9ecf4;border-radius:20px 20px 20px 20px/20px 20px 20px 20px;">
+				<td style="width: 171px; height: 52px;padding-left: 150px;"><b>实习单位变更</b></td>
+				<td style="width: 20px; height: 52px;">：</td>
+				<td style="width: 91px; height: 52px;">${secApplication} </td>
+			</tr>
+			<tr style="background:#EEF5FF;border-radius:20px 20px 20px 20px/20px 20px 20px 20px;">
+				<td style="width: 171px; height: 52px;padding-left: 150px;"><b>实习工作记录次数</b></td>
+				<td style="width: 20px; height: 52px;">：</td>
+				<td style="width: 91px; height: 52px;">${cycleNum}次</td>
+			</tr>
+			<tr style="background:#d9ecf4;border-radius:20px 20px 20px 20px/20px 20px 20px 20px;">
+				<td style="border-radius:0px 0px 0px 20px/0px 0px 0px 20px;width: 171px; height: 52px;padding-left: 150px;"><b>实习报告书</b></td>
+				<td style="width: 20px; height: 52px;">：</td>
+				<td style="border-radius:0px 0px 20px 0px/0px 0px 20px 0px;width: 91px; height: 52px;">${reportApplication}</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	</table>
+</div>
+<div hidden="hidden">
+	        <span type="hidden" id="txt_cycleNum" >${cycleNum}</span>
+	        <span type="hidden" id="txt_totalCycleNum" >${totalCycleNum}</span>
+	        <span type="hidden" id="txt_studentNo" >${studentNo}</span>
+	        <span type="hidden" id="txt_studentSex" >${studentSex}</span>
+	        <span type="hidden" id="txt_birthDay" >${birthDay}</span>
+	        <span type="hidden" id="txt_studentName" >${studentName}</span>
+	        <span type="hidden" id="txt_depart" >${depart}</span>
+	        <span type="hidden" id="txt_major" >${major}</span>
+	        <span type="hidden" id="txt_studentGrade" >${studentGrade}</span>
+	        <span type="hidden" id="txt_classNumber" >${classNumber}</span>
+	        <span type="hidden" id="txt_politics" >${politics}</span>
+	        <span type="hidden" id="txt_nation" >${nation}</span>
+	        <span type="hidden" id="txt_nativeplace" >${nativeplace}</span>
+	        <span type="hidden" id="txt_identity" >${identity}</span>
+	        </div>
+	
+	<div id="dialog_student" title="学生信息" class="easyui-dialog" style="width: 500px; height: 400px;" data-options="resizable:false,modal:true,closed:true,buttons:'#buttons_dialog_student',closable:false,constrain:true">
+		<div style="width:100%;padding-top:10px; ">
+	        <form id="form_studentinfo">
+	            <table align="center">
+					<tr style="height:40px;">
+						<td>学号:<input type="hidden" id="input_studentId" name="studentId" value="${studentId}"></td>
+						<td style="width:160px"><input class="easyui-textbox" id="input_studentNo" name="studentNo" style="width:150px;" data-options="readonly:true,editable:false,required:true,missingMessage:'必填'"></td>
+					    <td>姓名:</td>
+						<td style="width:160px"><input class="easyui-textbox" id="input_studentName" name="studentName"  style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+					</tr>
+					<tr style="height:40px">
+						<td>性别:</td>
+						<td>
+							<input class="easyui-radiobutton" id="rdo_studentSexboy" name="studentSex" value="男" label="男" data-options="labelWidth:25,checked:true">
+						    <input class="easyui-radiobutton" id="rdo_studentSexgirl" name="studentSex" value="女" label="女" data-options="labelWidth:25" >
+						</td>
+					    <td>生日:</td>
+						<td><input class="easyui-datebox" id="input_birthDay" name="birthDay" style="width:150px;"></td>
+					</tr>
+					<tr style="height:40px">
+						<td>系部:</td>
+						<td><input name="depart" id="input_depart" class="easyui-combobox" style="width:150px;" data-options="readonly:true,editable:false,required:true,missingMessage:'必填'"></td>
+						<td>专业:</td>
+						<td><input name="major"  id="input_major" class="easyui-combobox" style="width: 150px;" data-options="readonly:true,editable:false,required:true,missingMessage:'必填'"></td>
+					</tr>
+					<tr style="height:40px">
+						<td>年级:</td>
+						<td><input class="easyui-numberbox" id="input_studentGrade" name="studentGrade"   style="width:150px;" data-options="readonly:true,editable:false,required:true,missingMessage:'必填，请输入一个阿拉伯数字'"></td>
+						<td>班级:</td>
+						<td><input class="easyui-numberbox" id="input_classNumber" name="classNumber"  style="width:150px;" data-options="required:true,editable:false,missingMessage:'必填，请输入一个阿拉伯数字'"></td>
+					</tr>
+					<tr style="height:40px">
+						<td>政治面貌:</td>
+						<td><input id="input_studentPolSta" class="easyui-combobox" name="politics"  style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+						<td>民族:</td>
+						<td><input class="easyui-combobox" id="input_nationality" name="nation"style="width:150px;" data-options=""></td>
+					</tr>
+					<tr style="height:40px;">
+						<td>籍贯:</td>
+						<td colspan="3"><input class="easyui-textbox" id="input_nativeplace" name="nativeplace"   style="width:347px;" data-options="required:true,missingMessage:'必填'"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td>身份证:</td>
+						<td colspan="3"><input class="easyui-textbox" id="input_identity" name="identity"  style="width:347px;" data-options="validType:'isIDCard',delay:400,required:true,missingMessage:'必填'"></td>
+					</tr>
+	            </table>
+	        </form>
+        </div>
+    </div>
+
+    <div id="buttons_dialog_student">
+        <a id="btn_save" href="#" class="easyui-linkbutton" style="width: 80px;">保&nbsp;&nbsp;存</a>
+        <a id="btn_close" href="#" class="easyui-linkbutton" style="width: 80px;">关&nbsp;&nbsp;闭</a>
+    </div>
+    
+    <div id="dialog_password" title="修改密码" class="easyui-dialog" style="width: 500px; height: 250px;" data-options="resizable:false,modal:true,closed:true,buttons:'#buttons_dialog_password',closable:false,constrain:true">
+		<div style="width:100%;padding-top:10px; ">
+	        <form id="form_passwordinfo">
+	            <table align="center">							
+					<tr style="height:40px;">
+						<td>旧密码:</td>
+						<td colspan="3"><input id="input_oldpassword" name="oldpassword" class="easyui-passwordbox" iconWidth="28" style="width:347px;height:34px;padding:10px" data-options="required:true,missingMessage:'请输入您的旧密码'"></td>
+					</tr>								
+					<tr style="height:40px;">
+						<td>新密码:</td>
+						<td colspan="3"><input id="input_newpassword" name="newpassword" class="easyui-passwordbox" iconWidth="28" style="width:347px;height:34px;padding:10px" data-options="required:true,missingMessage:'请输入至少六位的新密码'"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td>再次输入新密码:</td>
+						<td colspan="3"><input id="input_secnewpassword" class="easyui-passwordbox" iconWidth="28" style="width:347px;height:34px;padding:10px" data-options="required:true,missingMessage:'请重复输入密码'"></td>
+						
+					</tr>
+	            </table>
+	        </form>
+        </div>
+    </div>
+
+    <div id="buttons_dialog_password">
+        <a id="btn_savepassword" href="#" class="easyui-linkbutton" style="width: 80px;">保&nbsp;&nbsp;存</a>
+        <a id="btn_closepassword" href="#" class="easyui-linkbutton" style="width: 80px;">关&nbsp;&nbsp;闭</a>
+    </div>
+    
+    
+	
+			
+			
+</body>
+</html>

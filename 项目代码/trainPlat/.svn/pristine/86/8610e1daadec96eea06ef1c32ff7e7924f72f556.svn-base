@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/teacher/teacherstudentinterreport.js"></script>
+    <script charset="utf-8" src="${ctxPath}/static/kindeditor/kindeditor-all.js"></script>
+	<script charset="utf-8" src="${ctxPath}/static/kindeditor/lang/zh-CN.js"></script>  
+<title>学生申请表</title>
+</head>
+<body class="easyui-layout" data-options="fit:true">
+    <div id="tabs_report" class="easyui-tabs" data-options="fit:true,plain:true">
+    	<input type="hidden"  id="input_reportId" name="reportId">
+    	<div title="实习报告书封面" style="padding:10px">
+    	  <div align="center">
+    	  <table>
+    	  <tr>
+            <td style="font-family:黑体;font-size:26.7px;height: 56px">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名:</td>
+            <td style="font-family:黑体;font-size:26.7px;">${studentName!""}</td>
+          </tr>
+          <tr>
+            <td style="font-family:黑体;font-size:26.7px;height: 56px">专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 业:</td>
+            <td style="font-family:黑体;font-size:26.7px;">${major!""}</td>
+          </tr>
+          <tr>
+            <td style="font-family:黑体;font-size:26.7px;height: 56px"> 班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 级:</td>
+            <td style="font-family:黑体;font-size:26.7px;">${classNumber!""}</td>
+          </tr>
+          <tr>
+            <td style="font-family:黑体;font-size:26.7px;height: 56px">指  导  教  师:</td>
+            <td style="font-family:黑体;font-size:26.7px;">${teacherName!""}</td> 
+          </tr> 
+          <tr>
+            <td style="font-family:黑体;font-size:26.7px;height: 56px">实  习  单  位:</td>
+            <td style="font-family:黑体;font-size:26.7px;">${comName!""}</td>
+          </tr>
+          <div id=abc style="width:794px;align: center;">
+          <h1  style="font-family:黑体;font-size:48px;text-align:center;padding-top:240px;">学&nbsp;生&nbsp;实&nbsp;习&nbsp;报&nbsp;告&nbsp;书</h1>
+          <br/>
+          <br/>
+          </table>
+             <div class="style2">
+                <br/><br/><br/>
+              </div>
+                                  <p style="font-family:黑体;font-size:26.7px;text-align:center;padding-bottom:90px">
+                                  <p id="ymd" style="font-size:30px;"></p>
+									    <script>
+									        var date = new Date()<!--获得日期数据-->
+									        var y = date.getFullYear();<!--年-->
+									        var m = date.getMonth()+1;<!--月，这里的月份必须要+1才是当前月份-->
+									        var d = date.getDate(); <!--日，getDay是获得当前星期几（0-6），getDate是获得当前日期-->
+									        document.getElementById("ymd").innerHTML = +y+"-"+m+"-"+d;
+									    </script>
+									    
+                                  </p>
+    	  </div>
+    	</div>
+    	 	
+        <div title="实习单位简介" style="padding:10px">
+        	
+        	<span style="font-size:20px;margin-left:40px;">${studentName!""}的实习单位简介</span>
+        		<div border-style: solid; style="border: 1px solid #000000;width:600px;margin-left:20px;">
+        		
+        		<p style="word-wrap: break-word;word-break: break-all;">${comProfile!""}</p>
+        	</div>
+        </div>
+        
+        <div title="实习工作情况简介" style="padding:10px">
+        
+        	<span style="font-size:20px;margin-left:40px;">${studentName!""}的实习工作情况简介</span>
+        		<div border-style: solid; style="border: 1px solid #000000;width:600px;margin-left:20px;">
+        		
+        		<p style="word-wrap: break-word;word-break: break-all;">${comworkfile!""}</p>
+        	</div>
+		</div>
+		
+        <div title="实习总结" style="padding:10px">
+        	
+        	<span style="font-size:20px;margin-left:40px;">${studentName!""}的实习总结</span>
+        		<div border-style: solid; style="border: 1px solid #000000;width:600px;margin-left:20px;">
+        		
+        		<p style="word-wrap: break-word;word-break: break-all;">${conclusion!""}</p>
+        	</div>
+        </div>
+        
+        <div id="model_reportCheck" title="实习评阅" style="padding:10px">
+         <div id="dialog_interreport"  
+		data-options="iconCls:'icon-save',resizable:false,modal:true,closed:true,closable:true,buttons:'#div_buttons'">
+        <span style="margin-left:235px;font-size:20px">您正在审阅${studentName!""}的报告</span>
+        <form id="form_add" style="padding-left:65px; margin-top:15px">
+          <table >
+	        <input type="hidden" id="txt_studentInterReportId" name="reportId" value=${reportId}>
+	        <input type="hidden" name="signature" value=${teacherName}>
+	        <input type="hidden" id="txt_status" name="status" value=${status}>
+	        <input type="hidden" id="txt_teachergrate" name="teachergrate" value=${teachergrate}>
+	        <input type="hidden" id="txt_companygrate" name="companygrate" value=${companygrate}>
+	        <input type="hidden" id="txt_fianlgrate" name="fianlgrate" value=${fianlgrate}>
+	        <input type="hidden" id="txt_reviewrComment" name="reviewrComment" value=${reviewrComment}>
+	        <input type="hidden" id="txt_signDate"  value=${signaturedate}>
+	        <span type="hidden" id="txt_statustest" >${status}</span>
+
+	        			
+	        			<tr style="height:40px">							
+							<td>评阅人评语：</td>
+	               			<td colspan="2"><input class="easyui-textbox" name="reviewercomments" id="text_write" style="width:371px;height:150px" data-options="required:true,multiline:true"></td>
+						</tr>
+						
+	        			<tr style="height:40px">
+	        				<td>评阅成绩：</td>
+	        				<td colspan="2"><input class="easyui-numberbox" name="teachergrate" id="text_teachergrate"  style="width:371px" data-options="required:true"></td>
+	               		</tr>
+	               		<tr style="height:40px">
+	        				<td>鉴定成绩：</td>
+	        				<td colspan="2"><input class="easyui-numberbox" name="companygrate" id="text_companygrate"  style="width:371px" data-options="required:true"></td>
+	               		</tr>
+	               		<tr style="height:40px">
+	        				<td>总成绩：</td>
+	        				<td colspan="2"><input class="easyui-numberbox" name="finalgrate" id="text_finalgrate"  style="width:371px" data-options="required:true"></td>
+	               		</tr>
+	               		
+	               		<tr style="height:40px">
+	               			<td>审批时间：</td>
+	        				<td colspan="2"><input class="easyui-datebox" name="signaturedate" id="text_time"  style="width:371px" data-options="required:true,editable:false"></td>
+	        			</tr>
+	        			<tr style="height:40px">
+	        				<td>教师签名：</td>
+	        				<td style="font-size:22.5px;font-family:方正舒体; width: 287px;" name="signature" value=${teacherName} ><u>&nbsp&nbsp&nbsp${teacherName!""}&nbsp&nbsp&nbsp</u></td>
+	        				<td style="font-size:22.5px;" class="style1">
+    					<a id="btn_yes"  href="#"  class="easyui-linkbutton" style="width:82px" data-options="iconCls:'icon-ok'">
+							确认</a></td>
+	        			</tr> 
+	        			<tr style="height:40px">
+	        				<td>查看鉴定表：</td>
+	        				<td style="width: 287px;"></td>
+	        				<td style="font-size:22.5px;" class="style1">
+    					<a id="btn_see"  href="#"  class="easyui-linkbutton" style="width:82px" data-options="iconCls:'icon-more'">
+							查看</a></td>
+	        			</tr>
+			</table>
+			</form>
+			<div id="dialog_photo"  class="easyui-dialog" style="width:1024px; height: 576px;" 
+					data-options="title:'查看鉴定表',iconCls:'',resizable:false,modal:true,closed:true,constrain:true">
+				<img id="perview"  src="${ctxPath}${appraisalpath}">
+			</div>  
+        
+	</div>
+         <div id="tab-tools">
+			<a href="#" id="back"  class="easyui-linkbutton" onclick="javascript:history.back(-1);" plain="true" iconCls="icon-back">返回</a>	
+		</div>
+		<div title="提示" class="easyui-dialog" id="dlg_t" style="width: 300px; height: 164px;text-align:" 
+		data-options="iconCls:'icon-save',resizable:false,modal:true,closed:true,closable:false,buttons:'#btn_yesback'">
+		<a id="btn_yesback"  href="#"  class="easyui-linkbutton" style="width:82px" data-options="iconCls:'icon-ok'">
+							确认</a></td>
+		</div>
+    </div>
+	
+	
+	
+			
+		
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+    
+</body>
+</html>

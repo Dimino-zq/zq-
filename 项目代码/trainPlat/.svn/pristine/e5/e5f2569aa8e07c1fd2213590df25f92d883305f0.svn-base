@@ -1,0 +1,150 @@
+@charset "UTF-8";
+*{
+		  margin: 0;
+		  padding: 0;
+		}
+		.ul{
+		  list-style: none;
+		}
+		
+		.whole{
+		  width: 100%;
+		  
+		}
+		.b{
+			vertical-align:top;
+			width:100%;
+			height: 100%;
+		}
+		.a{
+			vertical-align:top;
+			width: 200px;
+			height: 100%;
+			
+			margin: 0;
+			padding: 0;
+			}
+		.fl{
+		  float: left;
+		  
+		  width: 51%;
+		  height: 800px;
+		  /* border-right: 1.5px solid #666666; */
+		}
+		.ad{
+		  width: 95%;
+		  height:350px;
+		  background:#fafafa;
+		  margin: 10px auto;
+		  color:#666;
+		  font-size:13.5px;
+		  border-radius:10px 10px 0;
+		  
+		}
+		.photo{
+		  float: left;
+		 
+		  height: 160px;
+		  margin: 10px 10px 0 10px;
+		}
+		.photo img{
+		  margin-left: 30px;
+		  width: 160px;
+		  height: 160px;
+		}
+		.infor{
+		  
+		  float: left;
+		
+		  height: 218px;
+		  overflow:auto;
+		}
+		.infor ul{
+		  width:100% ;
+		  height: auto;
+		  list-style: none;
+		  margin-top:10px;
+		}
+		.infor ul>li{
+		  margin-bottom:30px;
+		  height:20px;
+		  line-height:20px;
+		  
+		}
+		.fr{
+		  float: left;
+		  
+		  width: 49%;
+		  height: 800px;
+		}
+		.photo li{
+			margin-bottom:20px;
+			height:20px;
+		    line-height:20px;
+		}
+		#work li>span{
+			word-wrap: break-word;
+			word-break: break-all;
+			display:inline-block;
+		}
+		#pp{
+		 	width:100%;
+			background-color:#fafafa;
+			height:90px
+		}
+		.title{
+			  width:100%;
+			  height: 31px;
+			  font-size: 14px;
+			  font-weight: bold;
+			  color: #0E2D5F;
+			  line-height: 31px;
+			  background-color: #E0ECFF;
+			  overflow: auto;
+    		  background: -webkit-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
+		}
+			.title p{
+			  overflow: auto;
+			  word-wrap: break-word;
+			  word-break: break-all;
+			
+		}
+			.detail{
+			  
+			  height: 59px;
+			  
+			  overflow: auto;
+		}
+			.detail p{
+			  word-wrap: break-word;
+			  word-break: break-all;
+			
+		}
+			.mention{
+			  width: 380px;
+			  height: 249px;
+			  background-color: aqua;
+			  overflow: auto;
+		}
+		.headr{
+			width:380px;
+			height:340px;
+			margin-top:10px;
+			float:right
+		
+		}
+		.hi{
+			width:78px;
+			height:23px;
+			border:none;
+			background: -webkit-linear-gradient(top,#EFF5FF 0,#E0ECFF 100%);
+			border-radius:20px;
+			cursor:pointer;
+		}
+		.ge{
+			margin-top:5px;
+			width:90%;
+			border-top:1px solid #ccc;
+			
+		}
+		

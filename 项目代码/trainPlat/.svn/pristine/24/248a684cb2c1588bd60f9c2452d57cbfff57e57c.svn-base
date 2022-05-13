@@ -1,0 +1,6 @@
+ALTER TABLE sysrecruitplan add FULLTEXT INDEX planDesc_fulltext(planDesc)  WITH PARSER ngram;
+ALTER TABLE sysplandetail add FULLTEXT INDEX major_fulltext(majorName)  WITH PARSER ngram;
+ALTER TABLE sysplandetail add FULLTEXT INDEX station_fulltext(stationName)  WITH PARSER ngram;
+
+例子
+SELECT * FROM sysrecruitplan WHERE MATCH(planDesc) AGAINST ('B2b');

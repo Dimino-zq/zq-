@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<screManager>
+	<SysDictionary listClass="edu.hfu.auth.entity.xmlBean.SysDictionaryList">
+		<!-- 职称 -->
+		<item dictKey="教授(正高)级"  	dictValue="教授(正高)级" 	dictValue1="" dictType="职称分类" />
+		<item dictKey="副教授(副高)级"  	dictValue="副教授(副高)级" 	dictValue1="" dictType="职称分类" />
+		<item dictKey="讲师(中)级"  	dictValue="讲师(中)级"  	dictValue1="" dictType="职称分类" />
+		<item dictKey="助教及以下"  	dictValue="助教及以下" 		dictValue1="" dictType="职称分类" />
+		
+		<!-- 教育程度 -->
+		<item dictKey="小学"  	dictValue="小学" 	dictValue1="" dictType="教育程度" />
+		<item dictKey="初中"  	dictValue="初中" 	dictValue1="" dictType="教育程度" />
+		<item dictKey="高中"  	dictValue="高中"  	dictValue1="" dictType="教育程度" />
+		<item dictKey="本科"  	dictValue="本科" 		dictValue1="" dictType="教育程度" />
+		<item dictKey="研究生"  	dictValue="研究生" 		dictValue1="" dictType="教育程度" />
+		<item dictKey="其他"  	dictValue="其它" 		dictValue1="" dictType="教育程度" />
+		
+		<!-- 职务类型 -->
+		<item dictKey="教学岗"  	dictValue="教学岗" 		dictValue1="" dictType="职务类型" />
+		<item dictKey="管理岗"  	dictValue="管理岗" 		dictValue1="" dictType="职务类型" />
+		
+		<item dictKey="科研管理系统"  	dictValue="http://172.16.13.6:8080/scre" 	dictValue1="00" dictType="managerSys" />
+		<item dictKey="实习实训平台"  	dictValue="http://172.16.13.6:8080/train" 	dictValue1="01" dictType="managerSys" />
+	</SysDictionary>
+</screManager>

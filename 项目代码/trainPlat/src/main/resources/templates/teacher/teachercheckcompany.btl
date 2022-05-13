@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script> 
+    <script type="text/javascript" src="${ctxPath}/static/teacher/teachercheckcompany.js"></script>
+    <title>实习申请</title>
+</head>
+<body class="easyui-layout"  data-options="fit:true">
+        <% if(hasPermission('010100000')) {%>
+		<div data-options="region:'north',minHeight:37,border:false">
+	    	 <form id="form_query" >
+		    	<table style="margin-top:1px;">
+				    <tr>
+				      	<td>企业名称：<input class="easyui-textbox" name="comName" style="width: 150px;"></td>			      	
+                     	<td>是否审批企业:</td>
+                     	<td> <select id="txt_sign1" class="easyui-combobox" name="checkstate" style="width:150px" editable="false">
+	          					<option value="">--请选择--</option>
+	                    		<option value="已审批">已审批</option>
+	                    		<option value="未审批">未审批</option>
+                     		 </select>
+                     	</td>
+                     		 <span style="float: right;margin-top:3.5px;margin-right:25px"><a class="easyui-linkbutton" id="btn_query" href="#" data-options="iconCls:'icon-search'">查询</a></span>
+                     	
+                     </tr>
+		    	</table>
+		    </form>
+    	</div>
+		<% }%>
+		
+		<div  data-options="region:'center'" style="border-width: 0;">
+			<table id="tbl_tapp"></table>      	   
+		</div>
+		
+		<div data-options="region:'south',border:'false',minHeight:40"  >
+			<div style="width: 100%;text-align: right;height: 35px;margin-top:2px; position:absolute; bottom:0px; right:0px;padding: 2px;">
+				  <a class="easyui-linkbutton" id="btn_checkcompany" href="#" data-options="iconCls:'icon-add'">审批临时企业</a>
+				   
+	            	
+		 	</div>
+ 		</div>
+ 		
+ 		
+	
+	
+	
+	
+   
+  
+  
+   <div id="checkcompany" title="审核企业"  class="easyui-dialog" style="width:500px; height:300px;" data-options="iconCls:'icon-import',resizable:false,modal:true,closed:true,constrain:true,buttons:'#div_checkcompany'"> 
+		<div align="center">
+		<form id="form_checkcompany" style="padding-top: 10px;"  method="post" enctype="multipart/form-data">
+			<input type="hidden" id="txt_checkcompanyId" name="companyId">
+			<table >
+			
+			<tr>
+				<td style="text-align: right;">审批状态:</td>
+          		<td> <select id="txt_checkstate1_sub" class="easyui-combobox" name="checkstate" style="width:220px;" >
+                    <option>已审批</option>
+                    <option>未审批</option>
+                     	</select></td>
+                
+			</tr>
+			
+			
+			</table>
+		</form>
+	   	</div>
+	   	
+	</div>
+  
+   <div id="div_checkcompany">
+  	  <a id="checkcom_yes" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">保存</a>
+  </div>
+    	
+
+</body>
+</html>

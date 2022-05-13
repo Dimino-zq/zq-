@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trainPlat>
+	<SysDictionary listClass="edu.hfu.train.bean.xmlBean.SysDictionaryList">
+		<!-- 审批状态-->
+		<item dictKey="AApprove"  dictValue="新建"  dictValue1="" dictType="审批状态" />
+		<item dictKey="BApprove"  dictValue="未提交"  dictValue1="" dictType="审批状态" />
+		<item dictKey="CApprove"  dictValue="已提交"  dictValue1="" dictType="审批状态" />
+		<item dictKey="DApprove"  dictValue="审批通过"  dictValue1="" dictType="审批状态" />
+		<item dictKey="EApprove"  dictValue="作废"  dictValue1="" dictType="审批状态" />
+		<item dictKey="FApprove"  dictValue="未通过"  dictValue1="" dictType="审批状态" />
+		
+		<!-- 保险列表-->
+		<item dictKey="三险一金"  dictValue="三险一金"  	 dictValue1="" dictType="保险列表" />
+		<item dictKey="五险一金"  dictValue="五险一金"  	 dictValue1="" dictType="保险列表" />
+		<item dictKey="无保险"  dictValue="无保险"  	 dictValue1="" dictType="保险列表" />
+		<!-- 评分指标-->
+		<item dictKey="招聘次数"  dictValue="4"  	 dictValue1="" dictType="评分指标" />
+		<item dictKey="每次计划招聘岗位数"  dictValue="2"  	 dictValue1="" dictType="评分指标" />
+		<item dictKey="每次计划招聘人数"  dictValue="1"  	 dictValue1="" dictType="评分指标" />
+		<item dictKey="每次实际招聘人数"  dictValue="3"  	 dictValue1="" dictType="评分指标" />
+		<!-- 学生实习状态-->
+		<item dictKey="未完成实习"  dictValue="0"  	 dictValue1="" dictType="实习状态" />
+		<item dictKey="已完成实习"  dictValue="1"  	 dictValue1="" dictType="实习状态" />
+
+	</SysDictionary>
+</trainPlat>

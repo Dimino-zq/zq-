@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/index.css">
+    <link href="${ctxPath}/static/css/themes/icons/man.ico" rel="shortcut icon">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/websocket/sockjs.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/websocket/stomp.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/index.js"></script>
+	<title>龙财实训平台</title>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" style="height:55px;padding:0px;overflow: hidden">
+    <div id="headerLogo01">
+        <img alt="" src="${ctxPath}/static/images/schoollogo.png" style="height:83px;width:100%">
+    </div>
+</div>
+<div data-options="region:'west',split:false,title:''" style="width:200px;padding:0px;overflow: hidden;">
+    <div class="easyui-accordion" data-options="multiple:false,selected:false" style="width:200px;" id ="accordion_div">
+        <% if(hasPermission('STUDENT')) {%>
+        <div title="我的实训" style="overflow:auto;padding:0px;" data-options="iconCls:'icon-save'" data-link="">
+            <ul class="container">
+                <li class="dropdown">
+                    <ul class="dropdown-menu show">
+                    	<li><a href="#" data-parent="我的实训"
+                               data-link="/traininformation/gotostudenttraininformation">实训信息</a>
+                        </li>
+                    	<li><a href="#" data-parent="我的实训"
+                               data-link="/studentapp/gotostudentinformation">个人信息</a>
+                        </li>
+                        <li><a href="#" data-parent="我的实训"
+                               data-link="/studentapp/gotostudentapplication">自主实习申请</a>
+                        </li>
+                        <li><a href="#" data-parent="我的实训"
+                               data-link="/studentapp/gotostudentchgapplication">实习单位变更</a>
+                        </li>
+                        <li><a href="#" data-parent="我的实训"
+                               data-link="/studentrec/gotostudentrecord">实习记录管理</a>
+                        </li>
+                        <li><a href="#" data-parent="我的实训"
+                               data-link="/studentapp/gototrainreport">实习报告书</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <%}%>
+        
+        
+        <% if(hasPermission('0101')) {%>
+        <div title="我的学生" style="overflow:auto;padding:0px;" data-options="iconCls:'icon-approve'" data-link="/teacher/gototeacherinformation">
+            <ul class="container">
+                <li class="dropdown">
+                    <ul class="dropdown-menu show">
+                    	<% if(hasPermission('010100')) {%>
+                        <li><a href="#" data-parent="我的学生"
+                               data-link="/teacher/gototeacher">实习申请审批</a>
+                        </li>
+                        <% } if(hasPermission('010101')) {%>
+                        <li><a href="#" data-parent="我的学生"
+                               data-link="/teacher/gototeachersec">实习变更</a>
+                        </li>
+                        <% } if(hasPermission('010102')) {%>
+                        <li><a href="#" data-parent="我的学生"
+                               data-link="/teacher/gotoTeacherWorkRec">实习记录管理</a>
+                        </li>
+                        <% } if(hasPermission('010103')) {%>
+                        <li><a href="#" data-parent="我的学生 "
+                               data-link="/teacher/gototeacherstudentreport">实习报告评阅</a>
+                        </li>
+                        <%}%>
+                        <li><a href="#" data-parent="我的学生 "
+                               data-link="/teacher/gototeachercheckcompany">公司审批</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <%}%>
+        
+        <% if(hasPermission('0102')) {%>
+        <div title="综合查询分析" style="overflow:auto;padding:0px;" data-options="iconCls:'icon-search'" data-link="">
+            <ul class="container">
+                <li class="dropdown">
+                    <ul class="dropdown-menu show">
+                        <% if(hasPermission('010200')) {%>
+                        <li><a href="#" data-parent="综合查询分析"
+                               data-link="/statistics/initScientificstatistics">实训查询</a>
+                        </li>
+                        <%}%>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <%}%>
+        
+        <% if(hasPermission('0100')) {%>
+        <div title="系统设置" data-options="iconCls:'icon-config'" style="overflow:auto;padding:0px;">
+            <ul class="container">
+                <li class="dropdown">
+                    <ul class="dropdown-menu show">
+                    	<% if(hasPermission('010000')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/systraincycle/gotoSysTrainCycle">实训周期维护</a></li>
+                        <%} if(hasPermission('010001')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/student/gotostudent">实训学员维护</a></li>
+                        <%} if(hasPermission('010002')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/syscompany/gotoSysCompany">实训基地维护</a></li>
+                        <%} if(hasPermission('010004')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/syslevel/gotolevel">实训基地等级</a></li>
+                        <%} if(hasPermission('010003')) {%>
+                        <li><a href="#" data-parent="系统设置" data-link="/sysset/initDict">数据字典</a></li>
+                    	<%}%>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <%}%>
+        <div title="退出" style="padding:0px;" data-options="collapsible:false">
+        </div>
+
+    </div>
+</div>
+<div data-options="region:'south',border:false" style="height:25px;background:#FFFFFF;padding:1px;">
+    开发单位：黑龙江财经学院财经信息工程系
+</div>
+<div data-options="region:'center',title:'首页',border:false" id="main_display" style="overflow:hidden; ">
+    <iframe id="main_frame" style="width:100%;height:100%;border:none;overflow:hidden;" > </iframe>
+</div>
+
+<div id="myapproveMess">
+	<table id="tblMyMess"></table>   
+</div>
+</body>
+</html>

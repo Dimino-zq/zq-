@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/index.css">
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/sysset/js/post.js"></script>
+	<script type="text/javascript">
+	 $(function () {
+	        $('#txt_postLvl').numberbox('textbox').attr('maxlength', 1);
+	        $('#add_postLevel').numberbox('textbox').attr('maxlength', 1);
+	        $('#add_postDepart').numberbox('textbox').attr('maxlength', 10);
+	        $('#upd_postDepart').numberbox('textbox').attr('maxlength', 10);
+	        $('#add_postName').numberbox('textbox').attr('maxlength', 12);
+	        $('#upd_postName').numberbox('textbox').attr('maxlength', 12);
+	        $('#upd_postLvl').numberbox('textbox').attr('maxlength', 1);
+	        $('#txt_postName').numberbox('textbox').attr('maxlength', 10);
+	        $('#add_postName').numberbox('textbox').attr('maxlength', 10);
+	        $('#upd_postName').numberbox('textbox').attr('maxlength', 10);
+	        $('#add_postExplain').numberbox('textbox').attr('maxlength', 20);
+	        $('#upd_postExplain').numberbox('textbox').attr('maxlength', 20);
+	    });
+	</script>
+<title></title>
+</head>
+<body class="easyui-layout">
+		<div data-options="region:'north'" style="height:50px;vertical-align: middle;overflow:hidden">
+			<form id="queryForm" method="post">
+			<table style="width: 98%">
+				<tr style="height:50px;vertical-align: middle;">
+					<td style="width: 30%">
+						<label for="name">职务名称:</label>
+						<input type="text" name="postName"  id="txt_postName" class="easyui-textbox" data-options="validType:'length[0,9]'"/>
+					</td>
+					
+					<td style="width: 20%;text-align: right"><label for="postLvl">职务等级:</label> </td>
+					<td style="width: 30%;text-align: left ">
+						<select id="txt_postLvl" class="easyui-combobox" name="postLvl" style="width: 150px;" data-options="editable:false">
+								<option value="">--请选择--</option>
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+					    </select>
+			        </td>
+					<td style="text-align: right">
+						<a id="btn_search" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+					</td>
+				</tr>
+			</table>
+			</form>
+		</div>
+		<div data-options="region:'center',title:'职务查询列表',iconCls:'icon-ok'" >
+			<table id="tbl_post_detail">
+			</table>
+		</div>
+		<div data-options="region:'south',split:false,border:false" style="height:40px;padding: 2px;text-align: right">
+				<a id="btn_addPost" href="#" style="margin: 2px 4px" class="easyui-linkbutton" data-options="iconCls:'icon-add'">增加</a>
+				<a id="btn_editPost" href="#" style="margin: 2px 4px" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+				<a id="btn_delPost" href="#" style="margin: 2px 4px" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+		</div>
+	
+	<div id="dlg_postSave" class="easyui-dialog" title="增加" style="width:400px;height:290px;"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#dlg_btnsave',closable:false,closed:true">
+    	<form id="saveFormPost" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 90%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable" cellspacing="0" cellpadding="0">
+				<tr style="vertical-align: middle;">
+					<td style="width: 30%;">
+						<label for="post.postName">职务名称:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="postName"  id="add_postName" class="easyui-textbox" data-options="validType:'length[0,9]'"/>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 30%;">
+						<label for="dpost.postExplain">职务简介:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="postExplain"  id="add_postExplain" class="easyui-textbox"  data-options="validType:'length[0,19]'"/> 
+					</td>
+				</tr>
+				<tr>
+				    <td style="width: 30%;">
+						<label for="post.postLvl">职务级别:</label>
+					</td>
+					<td style="text-align: left;">
+					 <select  name="postLvl" data-options="editable:false" id="add_postLevel" style="width:153px;">
+					</select>
+					</td>
+				</tr>
+				<tr>
+				    <td style="width: 30%;">
+						<label for="post.parentPost">上级职务:</label>
+					</td>
+					<td style="text-align: left;">
+					<input class="easyui-combobox" 	name="parentPost.postId"  id="txt_postNames"  style="width:153px;"
+					data-options="multiple:false,prompt:'请选择职务',editable:false" />	
+					</td>
+				</tr>
+			</table>
+			</div>
+		</form>
+	</div>
+	<div id="dlg_btnsave" style="width: 100%;text-align: center;">
+		<a id="btn_savePost" style="margin: 2px 16px;" 	href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+		<a id="btn_cancelPost" style="margin: 2px 16px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+	</div>
+	
+	<div id="dlg_updatePost" class="easyui-dialog" title="修改" style="width:400px;height:280px;"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#dlg_btnUpd',closable:false,closed:true">
+    	<form id="updateFormPost" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 90%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable" cellspacing="0" cellpadding="0">
+				<tr style="vertical-align: middle;">
+					<td style="width: 30%;">
+						<label for="post.postName">职务名称:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="postName" id="upd_postName"  class="easyui-textbox" data-options="validType:'length[0,9]'"/>
+						<input type="hidden" name="postId" id="upd_postId"  value=""/>
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 30%;">
+						<label for="post.postExplain">职务简介:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="postExplain"  id="upd_postExplain" class="easyui-textbox" data-options="validType:'length[0,19]'"/>
+					</td>
+				</tr>
+				<tr>
+				    <td style="width: 30%;">
+						<label for="post.postLvl">职务级别:</label>
+					</td>
+					<td style="text-align: left;">
+					<select  name="postLvl" id="upd_postLvl" style="width:153px;" data-options="editable:false">
+					</select>
+					</td> 
+				</tr>
+				<tr>
+					<td style="width: 30%;">
+						<label for="post.parentPost">上级职务:</label>
+					</td>
+					<td style="text-align: left;">
+						<input class="easyui-combobox" 	name="parentPost.postId"	id="upd_parentPost"  style="width:153px;"
+					data-options="multiple:false,prompt:'请选择职务',editable:false" />
+					</td>
+				</tr>
+			</table>
+			</div>
+			
+		</form>
+		<div id="dlg_btnUpdPost" style="width: 100%;text-align: center;">
+			<a id="btn_updatePost" style="margin: 2px 16px;" 	href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+			<a id="btn_cancelUpdPost" style="margin: 2px 16px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+		</div>
+	</div>
+		<div id="dlg_deletePost" class="easyui-dialog" title="删除" style="width:400px;height:180px;"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#dlg_btnDelPost',closable:false,closed:true">
+    	<form id="deleteForm" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 90%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable" cellspacing="0" cellpadding="0">
+				<tr style="vertical-align: middle;">
+					<td style="text-align: center;">
+					           是否确定删除该条记录？
+						<input type="hidden" name="postId" id="del_postId"  value=""/>
+					</td>
+				</tr>
+			</table>
+			</div>
+		</form>
+	</div>
+	
+	<div id="dlg_btnDelPost" style="width: 100%;text-align: center;">
+		<a id="btn_deletePost" style="margin: 2px 16px;" 	href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+		<a id="btn_cancelDelPost" style="margin: 2px 16px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+	</div>
+</body>
+</html>

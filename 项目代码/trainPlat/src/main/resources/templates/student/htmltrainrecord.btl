@@ -1,0 +1,214 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.jqprint-0.3.js"></script>
+	<title>总实习记录表</title>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		tipMess();
+		
+		$("#webPrint").click(function(){
+			$("#printContent").jqprint({
+				operaSupport: false
+			}); 
+		});
+		
+		function tipMess(){
+			var tip = "${tip!"null"}";
+			if(tip!="null")
+				alert(tip);
+		}
+
+	});
+	</script>
+</head>
+
+<body>
+	<div>
+		<a href="#" class="easyui-linkbutton" onclick="javascript:history.back();" data-options="iconCls:'icon-back'">返回</a>
+		<a href="#" class="easyui-linkbutton" id="webPrint" data-options="iconCls:'icon-print'">打印</a>
+	</div>
+	<div id="printContent">
+		<div align="center">
+			<h1>黑龙江财经学院学生实习记录表</h1>
+		</div>
+		<div align="center">
+		  <table border="1" style=" border:2px black solid; border-collapse:collapse; text-align:center; ">
+		    <tr style="height:35px">
+		      <td Style="width:85px;">姓名</td>
+		      <td Style="width:150px;">${studentName!""}</td>
+		      <td Style="width:100px;">学   号</td>
+		      <td Style="width:210px;" colspan="2">${studentNo!""}</td>
+		      <td Style="width:80px;">性别</td>
+		      <td Style="width:95px;">${studentSex!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td>&nbsp;&nbsp;系（部）</td>
+		      <td >${depart!""}</td>
+		      <td >专   业 </td>
+		      <td colspan="2">${major!""}</td>
+		      <td >班级 </td>
+		      <td >${studentClass!""}</td>
+		    </tr>
+		    <tr style="height:50px">
+		      <td>实习项<br />目名称</td>
+		      <td colspan="6">${surcomContent!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td rowspan="3">实习单<br />位全称 </td>
+		      <td style="text-align:left; font-size:12px" colspan="2">&nbsp;&nbsp;单位一： ${comName1!""}</td>
+		      <td Style="width:85px;" rowspan="3">起止日期 </td>
+		      <td Style="width:125px; font-size:12px;">${applyDate1!""}</td>
+		      <td rowspan="3">单位 <br />
+		        指导 <br />
+		        教师 </td>
+		      <td >${comcontacts1!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td style="text-align:left; font-size:12px" colspan="2">&nbsp;&nbsp;单位二： ${comName2!""}</td>
+		      <td Style="font-size:12px;">${applyDate2!""}</td>
+		      <td >${comcontacts2!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td style="text-align:left; font-size:12px" colspan="2">&nbsp;&nbsp;单位三： ${comName3!""}</td>
+		      <td Style="font-size:12px;">${applyDate3!""}</td>
+		      <td >${comcontacts3!""}</td>
+		    </tr>
+		    <tr style="height:50px">
+		      <td>实习 <br />
+		        时间 </td>
+		      <td colspan="6">${realApplyDate!""} 共计 ${weeks!""} 周 </td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;">起止日期 </td>
+		      <td >实习岗位 </td>
+		      <td colspan="2">内容要求 </td>
+		      <td >完成情况 </td>
+		      <td colspan="2">指导情况 </td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px; font-size:12px;">${workDate1!""}</td>
+		      <td >${comPost1!""}</td>
+		      <td colspan="2">${content1!""}</td>
+		      <td >${compleStatus1!""}</td>
+		      <td colspan="2">${guidStatus1!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate2!""}</td>
+		      <td >${comPost2!""}</td>
+		      <td colspan="2">${content2!""}</td>
+		      <td >${compleStatus2!""}</td>
+		      <td colspan="2">${guidStatus2!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate3!""}</td>
+		      <td >${comPost3!""}</td>
+		      <td colspan="2">${content3!""}</td>
+		      <td >${compleStatus3!""}</td>
+		      <td colspan="2">${guidStatus3!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate4!""}</td>
+		      <td >${comPost4!""}</td>
+		      <td colspan="2">${content4!""}</td>
+		      <td >${compleStatus4!""}</td>
+		      <td colspan="2">${guidStatus4!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate5!""}</td>
+		      <td >${comPost5!""}</td>
+		      <td colspan="2">${content5!""}</td>
+		      <td >${compleStatus5!""}</td>
+		      <td colspan="2">${guidStatus5!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate6!""}</td>
+		      <td >${comPost6!""}</td>
+		      <td colspan="2">${content6!""}</td>
+		      <td >${compleStatus6!""}</td>
+		      <td colspan="2">${guidStatus6!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate7!""}</td>
+		      <td >${comPost7!""}</td>
+		      <td colspan="2">${content7!""}</td>
+		      <td >${compleStatus7!""}</td>
+		      <td colspan="2">${guidStatus7!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate8!""}</td>
+		      <td >${comPost8!""}</td>
+		      <td colspan="2">${content8!""}</td>
+		      <td >${compleStatus8!""}</td>
+		      <td colspan="2">${guidStatus8!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate9!""}</td>
+		      <td >${comPost9!""}</td>
+		      <td colspan="2">${content9!""}</td>
+		      <td >${compleStatus9!""}</td>
+		      <td colspan="2">${guidStatus9!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate10!""}</td>
+		      <td >${comPost10!""}</td>
+		      <td colspan="2">${content10!""}</td>
+		      <td >${compleStatus10!""}</td>
+		      <td colspan="2">${guidStatus10!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate11!""}</td>
+		      <td >${comPost11!""}</td>
+		      <td colspan="2">${content11!""}</td>
+		      <td >${compleStatus11!""}</td>
+		      <td colspan="2">${guidStatus11!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate12!""}</td>
+		      <td >${comPost12!""}</td>
+		      <td colspan="2">${content12!""}</td>
+		      <td >${compleStatus12!""}</td>
+		      <td colspan="2">${guidStatus12!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate13!""}</td>
+		      <td >${comPost13!""}</td>
+		      <td colspan="2">${content13!""}</td>
+		      <td >${compleStatus13!""}</td>
+		      <td colspan="2">${guidStatus13!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate14!""}</td>
+		      <td >${comPost14!""}</td>
+		      <td colspan="2">${content14!""}</td>
+		      <td >${compleStatus14!""}</td>
+		      <td colspan="2">${guidStatus14!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate15!""}</td>
+		      <td >${comPost15!""}</td>
+		      <td colspan="2">${content15!""}</td>
+		      <td >${compleStatus15!""}</td>
+		      <td colspan="2">${guidStatus15!""}</td>
+		    </tr>
+		    <tr style="height:35px">
+		      <td Style="width:110px;font-size:12px;">${workDate16!""}</td>
+		      <td >${comPost16!""}</td>
+		      <td colspan="2">${content16!""}</td>
+		      <td >${compleStatus16!""}</td>
+		      <td colspan="2">${guidStatus16!""}</td>
+		    </tr>
+		    <tr style="height:65px">
+		      <td>实习成果形式 </td>
+		      <td colspan="6"><p>1. 实习总结报告书； 2.周工作记录  3. 毕业论文（设计） </td>
+		    </tr>
+		  </table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.jqprint-0.3.js"></script>
+	<title>申请表</title>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		tipMess();
+		
+		$("#webPrint").click(function(){
+			$("#printContent").jqprint({
+				operaSupport: false
+			}); 
+		});
+		
+		function tipMess(){
+			var tip = "${tip!"null"}";
+			if(tip!="null")
+				alert(tip);
+		}
+
+	});
+	</script>
+</head>
+
+<body>
+	<div>
+		<a href="#" class="easyui-linkbutton" onclick="javascript:history.back();" data-options="iconCls:'icon-back'">返回</a>
+		<a href="#" class="easyui-linkbutton" id="webPrint" data-options="iconCls:'icon-print'">打印</a>
+	</div>
+	<div id="printContent">
+	<div align="center">
+		<h1>黑龙江财经学院自主联系实习申请表</h1>
+	</div>
+	
+	<div align="center">
+		&nbsp;${trainCycle!"null"}&nbsp;学年第&nbsp;${semester!"null"}&nbsp;学期&nbsp;${depart!"null"}&nbsp;系
+	</div>
+	
+	<div align="center">
+		<table border="1" style="width: 720px; border:2px black solid; border-collapse:collapse; text-align:center; ">
+			<tr height="35">
+				<td style="width:60px;">姓名</td>
+				<td colspan="2" style="width:100px;">${studentName!"null"}</td>
+				<td colspan="2" style="width:60px;">性别</td>
+				<td style="width:60px;">${studentSex!"null"}</td>
+				<td colspan="2" style="width:120px;">专业及班级</td>
+				<td style="width:120px;">${studentClass!"null"}</td>
+			</tr>
+			<tr>
+				<td>
+					保险<br>情况
+				</td>
+				<td colspan="5">${insurance!"null"}</td>
+				<td colspan="2">手机及QQ号</td>
+				<td>${phoneOrQQ!"null"}</td>
+			</tr>
+			<tr height="35">
+				<td colspan="2">实习起止时间</td>
+				<td colspan="4">${applyDate!"null"}</td>
+				<td colspan="2">校内指导教师</td>
+				<td>${teacherName!"null"}</td>
+			</tr>
+			<tr height="80">
+				<td rowspan="2">个人<br>申请</td>
+				<td style="width:80px;">申请<br>理由</td>
+				<td colspan="7" align="left"><p style="text-indent:2em">我已按学校规定完成了在校学习任务，办理了缴纳学费注册手续和实习保险。现申请到自主联系的企业进行实习。我对该企业及所从事工作已清楚了解，请学院审核、批准。</p></td>
+			</tr>
+			<tr>
+				<td>承诺</td>
+				<td colspan="7" align="left">
+					<p style="text-indent:2em; margin:0 auto">1．实习期间，我将严格按照实习计划的要求，认真完成实习任务，绝不弄虚作假；实习期间，严格执行黑龙江财经学院学生行为规范，遵守学校的校纪校规和实习单位的各项规章制度，保证做到努力学习、踏实工作。如遇学业需要或其他紧急情况及时返校。</p>
+					<p style="text-indent:2em; margin:0 auto">2．在此期间，若发生任何违法乱纪行为或因个人的原因造成的事故，一切后果自负。</p>
+					<p align="right">签名：                      年    月    日 </p>
+				</td>
+			</tr>
+			<tr height="55">
+				<td rowspan="4">实习<br>单位<br>情况</td>
+				<td>单位<br>名称</td>
+				<td colspan="5">${comName!"null"}</td>
+				<td style="width:90px;">单位地址</td>
+				<td>${comAddress!"null"}</td>
+			</tr>
+			<tr height="55">
+				<td>所属<br>行业</td>
+				<td colspan="5">${industry!"null"}</td>
+				<td>拟提供<br>实习岗位</td>
+				<td>${surcomJob!"null"}</td>
+			</tr>
+			<tr height="35">
+				<td>联系人</td>
+				<td colspan="2">${comContacts!"null"}</td>
+				<td style="width:50px;">电话</td>
+				<td colspan="2">${phone!"null"}</td>
+				<td>传  真</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td>指导<br>教师</td>
+				<td colspan="5">&nbsp;</td>
+				<td>联系电话</td>
+				<td>&nbsp;</td>
+			</tr>
+			<tr height="35">
+				<td colspan="2">实习项目内容</td>
+				<td colspan="7">${surcomContent!"null"}</td>
+			</tr>
+			<tr height="55">
+				<td colspan="2">家长意见<br>（是否同意）</td>
+				<td colspan="7" align="right">家长签字：                 年        月        日    </td>
+			</tr>
+			<tr height="55">
+				<td colspan="2">实习单位意见<br>（是否同意接收）</td>
+				<td colspan="7" align="right">单位盖章                    年        月        日    </td>
+			</tr>
+			<tr height="35">
+				<td colspan="2">所属系（部）意见</td>
+				<td colspan="7" align="right">盖章                       年        月        日    </td>
+			</tr>
+		</table>
+	</div>
+	<div align="center">
+		<p style="width:650px;text-align:left;">注：1.本表一式两份，学生所属系（部）、学生本人各执一份；2.家长因故不能亲自签字的，可由学生代签，但需辅导员与家长联系确认签字，并明确注明“家长已同意在此单位实习，由此产生的后果由个人承担。”</p>
+	</div>
+	</div>
+</body>
+</html>

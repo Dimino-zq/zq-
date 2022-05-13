@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+ <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+ <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/index.css">
+ <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+ <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+ <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+ <script type="text/javascript" src="${ctxPath}/static/js/locale/easyui-lang-zh_CN.js"></script>
+ <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+<script type="text/javascript" src="${ctxPath}/static/sysset/js/depart.js"></script>
+<title>部门管理</title>
+</head>
+<body class="easyui-layout">
+		<div data-options="region:'north'" style="height:50px;vertical-align: middle;overflow:hidden">
+			<form id="depart_queryForm" method="post">
+			<table style="width: 98%">
+				<tr style="height:50px;vertical-align: middle;">
+					<td style="width: 30%">
+						<label for="name">部门名称</label>
+						<input type="text" name="departName"  id="txt_departName" class="easyui-textbox" />
+					</td>
+					<td style="width: 30%">
+						<label for="name">部门地址:</label>
+						<input type="text" name="departAddr"  id="txt_departAddr" class="easyui-textbox" />
+					</td>
+					<td style="text-align: right">
+						<a id="btn_search" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+					</td>			
+				</tr>
+			</table>
+			</form>
+		</div>
+		<div data-options="region:'center',title:'部门信息查询列表',iconCls:'icon-ok'" >
+			<table id="tbl_depart_detail">
+			</table>
+		</div>
+	<div data-options="region:'south',split:false,border:false" style="height:40px;padding: 2px;text-align: right">
+				<a id="depart_btn_add" href="#" style="margin: 2px 4px" class="easyui-linkbutton" data-options="iconCls:'icon-add'">增加</a>
+				<a id="depart_btn_edit" href="#" style="margin: 2px 4px" class="easyui-linkbutton" data-options="iconCls:'icon-edit'">修改</a>
+				<a id="depart_btn_del" href="#" style="margin: 2px 4px" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">删除</a>
+	</div>
+	<div id="depart_save" class="easyui-dialog" title="增加" style="width:620px;height:400px;"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#depart_btnsave',closable:false,closed:true">
+    	<form id="depart_saveForm" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 98%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable">
+			<tr style="vertical-align: middle;">
+					<td style="width: 20%">
+						<label for="departName">部门名称:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="departName"  id="add_departName" class="easyui-textbox" required="required" />
+					</td>			
+				    <td style="width:20%;"><label for="departLevel">部门等级:</label></td>
+					<td style="text-align: left ">
+						<select id="add_departLevel" name="departLevel" data-options="prompt:'请选择部门级别',groupField:'group',editable:false"  style="width:150px;">
+						</select>
+					</td>
+			</tr>
+				<tr>
+					<td style="width: 20%;">
+						<label for="departPhone">部门电话:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="departPhone" class="easyui-textbox" id="add_departPhone" required="required" />
+					</td>
+					<td style="width:20%;"><label for="departLevel">部门类型:</label></td>
+				    <td style="text-align: left;">
+						<select id="add_departType" name="departType" data-options="prompt:'请选择部门类型',editable:false"  style="width:150px;">
+						</select>
+					</td>
+				</tr>
+				<tr>				
+				<td style="width: 20%;">
+					<label for="departAddr">部门地址:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="departAddr"  id="add_departAddr" class="easyui-textbox" required="required"/>
+					</td>
+					<td style="width: 20%;"><label for="departLevel">上级部门:</label>  </td>
+						<td style="text-align: left " colspan="3">
+						<input class="easyui-combobox" 	name="parentDepart.departId"	id="add_parentDepart"  style="width:150px;"
+							data-options="multiple:false,groupField:'group',prompt:'请选择上级部门',editable:false" />							
+						</td>
+				</tr>
+				
+				<tr style="vertical-align: middle;">
+					<td style="width: 20%">
+						<label for="departCharge">负责人:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="departCharge"  id="add_departCharge" class="easyui-textbox" required="required"/>
+					</td>	
+					<td >
+						
+					</td>
+					<td >
+					</td>		
+				</tr>
+				
+				<tr>
+					<td style="width: 30%;">
+						<label for="departExplain">部门说明:</label>
+					</td>
+					<td style="text-align: left;" colspan="3">
+					<input type="text" data-options="multiline:true" name="departExplain"  id="add_departExplain" class="easyui-textbox"style="width:96%;height:100px"/>
+					</td>
+
+				</tr>
+	
+
+			</table>
+			</div>
+		</form>
+	</div>
+	<div id="depart_btnsave" style="width: 100%;text-align: center;">
+		<a id="depart_btn_save" style="margin: 2px 16px;" 	href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+		<a id="depart_btn_cancel" style="margin: 2px 16px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+	</div>
+	<div id="depart_update" class="easyui-dialog" title="修改" style="width:600px;height:400px;"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#depart_btnUpd',closable:false,closed:true">
+    	<form id="depart_updateForm" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 98%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable" >
+				<tr style="vertical-align: middle;">
+		    		
+					<td style="width: 30%">
+						<label for="departName">部门名称:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="departName"  id="upd_departName" class="easyui-textbox" required="required" />
+					                <input type="hidden" name="departId" id="upd_departId"  value=""/>
+                                                                                </td>			
+				    <td style="width:30%;"><label for="departLevel">部门等级:</label></td>
+						<td style="width: 30%;text-align: left ">
+						<select id="upd_departLevel" name="departLevel" data-options="prompt:'请选择部门级别',groupField:'group',editable:false"  style="width:150px;">
+						</select>
+						</td>
+					</tr>
+				<tr>
+					<td style="width: 30%;">
+						<label for="departPhone">部门电话:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="departPhone" class="easyui-textbox" id="upd_departPhone" required="required" />
+					</td>
+					<td style="width:30%;"><label for="departLevel">部门类型:</label></td>
+				    <td style="width:30%;text-align: left;">
+						<select id="upd_departType" name="departType" data-options="prompt:'请选择部门类型',editable:false"  style="width:150px;">
+						</select>
+						</td>	
+					</select>
+				</td>
+				</tr>
+				<tr>				
+
+				<td style="width: 30%;">
+					<label for="departAddr">部门地址:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="departAddr"  id="upd_departAddr" class="easyui-textbox" required="required"/>
+					</td>
+					<td style="width: 30%;"><label for="departLevel">上级部门:</label>  </td>
+						<td style="text-align: left " colspan="3">
+						<input class="easyui-combobox" 	name="parentDepart.departId"	id="upd_parentDepart"  style="width:150px;"
+							data-options="multiple:false,groupField:'group',prompt:'请选择上级部门',editable:false" />							
+						</td>
+				</tr>
+				
+				<tr style="vertical-align: middle;">
+					<td style="width: 30%">
+						<label for="departCharge">负责人:</label>
+					</td>
+					<td style="text-align: left;">
+						<input type="text" name="departCharge"  id="upd_departCharge" class="easyui-textbox" required="required"/>
+					</td>			
+				</tr>
+				
+				<tr>
+					<td style="width: 30%;">
+						<label for="departExplain">部门说明:</label>
+					</td>
+					<td style="text-align: left;" colspan="3">
+					<input type="text" data-options="multiline:true" name="departExplain"  id="upd_departExplain" class="easyui-textbox"style="width:96%;height:100px"/>
+					</td>
+
+				</tr>
+	
+
+			</table>
+			</div>
+		</form>
+		
+
+	</div>
+	<div id="depart_btnUpd" style="width: 100%;text-align: center;">
+		<a id="depart_btn_update" style="margin: 2px 16px;" 	href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+		<a id="depart_btn_cancelUpd" style="margin: 2px 16px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+	</div>
+	
+	<div id="depart_delect" class="easyui-dialog" title="删除" style="width:400px;height:150px;"
+    	data-options="iconCls:'icon-save',resizable:false,modal:true,buttons:'#depart_btnDel',closable:false,closed:true">
+    	<form id="depart_delectForm" method="post">
+    	<div style="width: 100%;text-align: center;">
+			<table style="width: 90%;margin-left: auto;margin-right: auto;margin-top: 20px;" class="datagrid-btable myTable">
+				<tr style="vertical-align: middle;">
+					<td style="text-align: left;">
+						是否删除该条信息？
+						<input type="hidden" name="departId" id="del_departId"  value=""/>
+					</td>
+				</tr>
+	
+			</table>
+			</div>
+			
+		</form>
+	</div>
+	<div id="depart_btnDel" style="width: 100%;text-align: center;">
+		<a id="depart_btn_delect" style="margin: 2px 16px;" 	href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+		<a id="depart_btn_cancelDel" style="margin: 2px 16px;" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-no'">取消</a>
+	</div>
+</body>
+</html>

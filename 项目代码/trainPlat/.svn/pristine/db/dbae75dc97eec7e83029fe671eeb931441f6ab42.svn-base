@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+	    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script> 
+	    <script type="text/javascript" src="${ctxPath}/static/teacher/teacherinform.js"></script>
+		<title>学生实习情况</title>
+		<style>
+			body {
+			    font-family:verdana,helvetica,arial,sans-serif;
+			    font-size:12px;
+			    margin:0;
+			}
+			.myTable{
+				width:100%;
+				border-collapse: collapse;
+			}
+			.myTable td {
+				padding: 2px;
+				border-color: #ccc;
+				border-width: 1px;
+				border-style: dotted;
+			}
+
+		</style>
+	</head>
+	
+<body class="easyui-layout">
+
+	<div data-options="region:'north',border:false" style="height:105px;">
+		<div style="height:100px;">
+			<table style="text-align: center;min-width:910px;_width:910px;margin-top:2px;" class="myTable" id="tbl_staffdetail">
+				<tbody>
+					<tr>
+						<td style="width: 150px;height: 50px;">实训周期</td>
+						<td style="width: 160px;" id="td_semester">${semester!"未开启"}</td>
+
+						<td style="width: 150px;">指导学生数</td>
+						<td style="width: 110px;" id="td_application">${studentNum!"无"}</td>
+						
+						<td style="width: 150px;height: 50px;">已通过申请数</td>
+						<td style="width: 110px;" id="td_application">${applicationNum!"无"}</td>
+						
+						<td style="width: 150px;">完成实习学生数</td>
+						<td style="width: 110px;" id="td_secapplication">${trainCompleteNum!"无"}</td>
+					</tr>
+					<tr>
+						<td style="width: 150px;height: 50px;">消息</td>
+						<td colspan="9" id="td_semester">${message!"暂无消息"}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div data-options="region:'center',title:'学生工作进度'">
+	    <div data-options="region:'north',minHeight:37,border:false">
+	    	<form id="form_query">
+	        	<table>
+	            	<tr>
+	                	<td>学生姓名：<input class="easyui-textbox" name="studentName" style="width:150px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	                	<td>专业：<input class="easyui-textbox" name="major" style="width:150px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	                	<td>班级：<input class="easyui-numberbox" name="classNumber" style="width:100px" ></td>
+	                	<td style="width: 280px;text-align: right;">
+	                	注：
+	                		<a href="#" title="已提交的工作记录" class="easyui-tooltip" style='border-radius:20px;background:greenyellow;height:15px;width:30px;display: inline-block;'></a>
+	                		<a href="#" title="正在完成的工作记录" class="easyui-tooltip" style='border-radius:20px;background:red;height:15px;width:30px;display: inline-block;'></a>
+	                		<a href="#" title="未完成的工作记录" class="easyui-tooltip" style='border-radius:20px;background:gainsboro;height:15px;width:30px;display: inline-block;'></a>
+	                	</td>
+	                </tr>
+	    			<span style="float: right;margin-top:3.5px;margin-right:25px">
+				        <a id="btn_query" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查询</a>
+				    </span>
+	    		</table>
+	    	</form>
+	    </div>
+	    <div data-options="region:'center'">
+	    	<table id="tbl_teacherinform"></table>
+	    </div>
+	</div>
+		 
+		 
+</body>
+</html>

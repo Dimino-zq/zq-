@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<META HTTP-EQUIV="pragma" CONTENT="no-cache"> 
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/index.css">
+	<link href="${ctxPath}/static/config.ico" rel="shortcut icon">
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+	<script type="text/javascript" src="${ctxPath}/static/js/index.js"></script>
+	
+<title>授权管理系统</title>
+</head>
+<body class="easyui-layout">
+	<div data-options="region:'north',border:false" style="height:80px;padding:0px;overflow: hidden">
+	<div id="headerLogo01">
+		<img alt="" src="${ctxPath}/static/images/schoollogo.png" style="height:83px;width:100%">
+	</div>
+	</div>
+	<div data-options="region:'west',split:false,title:''" style="width:200px;padding:0px;overflow: hidden;">
+		<div class="easyui-accordion" data-options="multiple:true" style="width:200px;" id ="accordion_div">
+			<div title="系统设置" data-options="iconCls:'icon-ok'" style="overflow:auto;padding:0px;">
+				<ul class="container">
+					<li class="dropdown">
+						<ul class="dropdown-menu show">
+								<li><a href="#" data-parent="系统设置"
+										data-link="/sysset/initDictionary"
+										data-grant="">数据字典</a>
+								</li>
+								<li><a href="#" data-parent="系统设置"
+										data-link="/sysset/initSchool"
+										data-grant="">学校信息</a>
+								</li>
+
+								<li><a href="#" data-parent="系统设置"
+									data-link="/sysset/initDepart"
+									data-grant=""> 部门信息</a>
+								</li>
+								
+								<li><a href="#" data-parent="系统设置"
+									data-link="/sysset/initMajor"
+									data-grant=""> 专业信息</a>
+								</li>
+								
+								<li><a href="#" data-parent="系统设置"
+										data-link="/sysset/initPost"
+										data-grant="">职务管理</a>
+								</li>
+
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div title="权限管理" style="overflow:auto;padding:0px;">
+				<ul class="container">
+					<li class="dropdown">
+						<ul class="dropdown-menu show">
+								<li><a href="#" data-parent="权限管理" 
+								        data-link="/grant/initAuthGrant"
+								        data-grant="">权限管理</a>
+								</li>
+								<li><a href="#" data-parent="权限管理"
+										data-link="/postgrant/initPostGrant"
+										data-grant="">职务权限分配</a>
+								</li>
+								<li><a href="#" data-parent="权限管理"
+										data-link="/sysset/initStaff"
+										data-grant="">人员管理</a>
+								</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div title="退出" style="padding:0px;" data-options="collapsible:false">	
+			
+			</div>
+			
+		</div>
+	</div>
+	<div data-options="region:'south',border:false" style="height:25px;background:#FFFFFF;padding:1px;">
+	开发单位：黑龙江财经学院财经信息工程系
+	</div>
+	<div data-options="region:'center',title:'首页'" id="main_display" style="overflow:hidden; ">	
+		<iframe id="main_frame" style="width:100%;height:100%;border:none;overflow:hidden;" > </iframe>
+	</div>
+</body>
+</html>

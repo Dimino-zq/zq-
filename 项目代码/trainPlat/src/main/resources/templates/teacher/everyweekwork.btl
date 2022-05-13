@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.jqprint-0.3.js"></script>
+		<title>每周工作记录表</title>
+		<style type="text/css">
+		.style1 {
+			border: 1px solid #000000;
+		}
+		.style2 {
+			border: 1px solid #000000;
+			font-family: 仿宋;
+			font-size: medium;
+		}
+		.style3 {
+			border: 1px solid #000000;
+			text-align: center;
+		}
+		
+		p.MsoNormal{
+		margin-bottom:.0001pt;
+		text-align:justify;
+		text-justify:inter-ideograph;
+		font-family:'Times New Roman';
+		font-size:10.5000pt;
+			margin-left: 0pt;
+			margin-right: 0pt;
+			margin-top: 0pt;
+		}
+		
+		.style4 {
+	border: 1px solid #000000;
+	text-align: left;
+}
+		
+		</style>
+
+			<script type="text/javascript">
+			$(document).ready(function(){
+				tipMess();
+				teaTalk();
+				talk1();
+				$("#webPrint").click(function(){
+					$("#printContent").jqprint({
+						operaSupport: false
+					}); 
+				});
+				
+				function tipMess(){
+					var tip = "${tip!"null"}";
+					if(tip!="null")
+						alert(tip);
+				}
+				
+				function teaTalk(){
+					var gg=$("#dd");
+					console.log(gg.text())
+					if ( gg.text()=="" ){
+						$("#cc").hide()
+					}
+				}
+				function talk1(){
+					var ff=$("#bb");
+					console.log(ff.text())
+					if ( ff.text()=="" ){
+						$("#aa").hide()
+					}
+				}
+			});
+			</script>
+	</head>
+
+	<body>
+			<div>
+			<a href="#" class="easyui-linkbutton" onclick="javascript:history.back();" data-options="iconCls:'icon-back'">返回</a>
+			<a href="#" class="easyui-linkbutton" id="webPrint" data-options="iconCls:'icon-print'">打印</a>
+		</div>
+		<div id="printContent">
+			<h1 align="center">黑龙江财经学院学生实习周（日）工作记录</h1>
+				<table align="center" border="1" style="width: 720px; border:2px black solid; border-collapse:collapse;  ">
+					<tr>
+						<td class="style2" style="text-align:center; width: 101px;">时&nbsp&nbsp间</td>
+						<td class="style3" style="width: 268px">&nbsp${startendDate!""}</td>
+						<td class="style1" style= "text-align:center;width: 147px">周&nbsp&nbsp数</td>
+						<td class="style3" style="text-align:center;width: 122px">第&nbsp&nbsp&nbsp&nbsp${weeks!""}&nbsp&nbsp&nbsp周</td>
+					</tr>
+					<tr>
+						<td class="style3" style="width: 101px; height: 85px;">本周（日）工作主要内容</td>
+						<td class="style1" style="height: 85px;" colspan="3">${workContents!""}</td>
+					</tr>
+					<tr>
+						<td class="style3" style="width: 101px; height: 132px;">工作、学习和生活的主要收获与体会
+				（200字）</td>
+						<td class="style4" style="height: 132px;" colspan="3">${maingains!""}</td>
+					</tr>
+					<tr>
+						<td class="style3" style="width: 101px; height: 48px;">出席情况</td>
+						<td class="style4" style="height: 48px;" colspan="3">满勤<u>&nbsp${fullHours!""}&nbsp&nbsp</u>&nbsp天&nbsp&nbsp迟到<u>&nbsp&nbsp0&nbsp&nbsp</u>&nbsp次&nbsp&nbsp早退<u>&nbsp&nbsp0&nbsp&nbsp</u>&nbsp次
+						&nbsp&nbsp旷工<u>&nbsp&nbsp0&nbsp&nbsp</u>&nbsp次&nbsp&nbsp病假<u>&nbsp&nbsp0&nbsp&nbsp</u>&nbsp次&nbsp&nbsp事假<u>&nbsp&nbsp0&nbsp&nbsp</u>&nbsp次</td>
+					</tr>
+					<tr>
+						<td class="style1" style="width: 101px; height: 161px;">与指导教师沟通情况</td>
+						<td class="style1" colspan="3" style="height: 161px">本周是否和校内指导教师沟通？&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+						&nbsp;<span id=aa><input  name="type" type="radio" checked/>有
+						 
+						<input  name="type" type="radio" />没有</span><br><br>
+						<p class="MsoNormal">
+						<span style="mso-spacerun:'yes';font-family:仿宋_GB2312;mso-hansi-font-family:'Times New Roman';
+				mso-bidi-font-family:'Times New Roman';font-size:12.0000pt;mso-font-kerning:1.0000pt;">
+						<font face="仿宋_GB2312">沟通的具体方式：</font></span><span id=bb>${tutorComatemode!""}</span><p class="MsoNormal">
+						<br><br>
+						教师指导的主要内容：
+						${tutorGuidcontent!""}
+						<br />
+						<br />
+						<br />
+						<br />
+						</td>
+					</tr>
+					
+					<tr>
+						<td class="style3" style="width: 101px; height: 171px;">其他</td>
+						<td class="style1" style="height: 171px;" colspan="3">${notes!""}</td>
+					</tr>
+					</table>
+			</div>
+
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <title>tip</title>
+    <style type="text/css">
+		body { 
+			/* background: url("${ctxPath}${tipURL!"/static/images/404.JPG"}") no-repeat; */ 
+/* 			background-image: url("${ctxPath}${tipURL!"/static/images/404.JPG"}") 40 round;
+			background-repeat:no-repeat; */
+			background: url(${ctxPath}${tipURL!"/static/images/404.JPG"}) top left;
+    		background-size: 100%;
+		}
+	</style>
+</head>
+<body>
+	<%
+		if(!isEmpty(reocrdCount) || !isEmpty(weeks)) {
+	%> 
+		<h3 style="font-size: 25px;font-family: 楷体,'Microsoft YaHei',微软雅黑,'MicrosoftJhengHei',STHeiti,MingLiu;padding-left: 15%;padding-top: 10%;">预计实习${weeks!""}周，应提交${weeks!""}份实习工作记录，已提交${recordCount!""}份实习工作记录！</h3>
+	<%
+		}
+	%>
+    <!-- ${tip!"null"} -->
+</body>
+</html>

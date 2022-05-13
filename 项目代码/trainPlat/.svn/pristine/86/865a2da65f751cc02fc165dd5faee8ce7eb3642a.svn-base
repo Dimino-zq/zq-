@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.jqprint-0.3.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		tipMess();
+		
+		$("#webPrint").click(function(){
+			$("#printContent").jqprint({
+				operaSupport: false
+			}); 
+		});
+		
+		function tipMess(){
+			var tip = "${tip!"null"}";
+			if(tip!="null")
+				alert(tip);
+		}
+
+	});
+	</script>
+<title>学生实习报告书</title>
+<style type="text/css">
+.style1 {
+	text-align: left;
+}
+</style>
+
+</head>
+
+<body>
+	<div>
+		<a href="#" class="easyui-linkbutton" onclick="javascript:history.back();" data-options="iconCls:'icon-back'">返回</a>
+		<a href="#" class="easyui-linkbutton" id="webPrint" data-options="iconCls:'icon-print'">打印</a>
+	</div>
+	<div id="printContent">
+	<div align="center">
+	<div id=abc style="width:794px;align: center;">
+		<h1  style="font-family:黑体;font-size:48px;text-align:center;padding-top:240px;">学&nbsp;生&nbsp;实&nbsp;习&nbsp;报&nbsp;告&nbsp;书</h1>
+		<br/>
+		<br/>
+		<form method="post" action="">
+        	<div class="style2">
+        	<table>
+	          <tr>
+	            <td style="font-family:黑体;font-size:26.7px;height: 56px">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 名：</td>
+	            <td style="font-family:黑体;font-size:26.7px;">${studentName!""}</td>
+	          </tr>
+	          <tr>
+	            <td style="font-family:黑体;font-size:26.7px;height: 56px">专&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 业：</td>
+	            <td style="font-family:黑体;font-size:26.7px;">${major!""}</td>
+	          </tr>
+	          <tr>
+	            <td style="font-family:黑体;font-size:26.7px;height: 56px"> 班&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 级：</td>
+	            <td style="font-family:黑体;font-size:26.7px;">${classNumber!""}</td>
+	          </tr>
+	          <tr>
+	            <td style="font-family:黑体;font-size:26.7px;height: 56px">指  导  教  师：</td>
+	            <td style="font-family:黑体;font-size:26.7px;">${teacherName!""}</td> 
+	          </tr> 
+	          <tr>
+	            <td style="font-family:黑体;font-size:26.7px;height: 56px">实  习  单  位：</td>
+	            <td style="font-family:黑体;font-size:26.7px;">${comName!""}</td>
+	          </tr>
+        	</table>	
+			<div class="style2">
+				<br/>
+	
+				<br/>
+				<br/>
+			</div>
+			<p style="font-family:黑体;font-size:26.7px;text-align:center;padding-bottom:190px">${date!""}</p>
+			<br/>
+			<br/>
+		<div style="width:794px;">
+			<h1 style="font-family:宋体;font-size:21.3px;text-align:center;padding-top:110px;padding-right:100px;padding-left:120px;">实习简介</h1>
+			<div style="padding-right:100px;padding-left:120px;text-align: left;">
+			
+				<div style="border: 1px solid black; min-height:900px;">
+				
+					<p style="font-family:黑体;font-size:16px;" class="style1">1.实习单位简介</p>
+					<div style="width: 100%;padding-left: 20px;padding-right: 20px;">
+						<p style="word-wrap: break-word;word-break: break-all;">${comProfile!""}</p>
+					</div>
+					<p style="font-family:黑体;font-size:16px;" class="style1">2.实习工作情况简介</p>
+					<div style="width: 100%;padding-left: 20px;padding-right: 20px;">
+						<p style="word-wrap: break-word;word-break: break-all;">${comworkfile!""}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div style="width:794px">
+			<h1 style="font-family:宋体;font-size:21.3px;text-align:center;padding-top:110px;padding-right:100px;padding-left:120px;">实习总结</h1>
+				<div style="padding-right:100px;padding-left:120px;text-align: left;">
+					<div style="border: 1px solid black;min-height:950px; ">
+						<div style="width: 100%;padding-left: 20px;padding-right: 20px;">
+							<p style="word-wrap: break-word;word-break: break-all;">${conclusion!""}</p>
+						</div>
+					</div>
+					<div>
+						<p style="font-family:宋体;font-size:16px;text-align:center;">总结内容要求: 1.实习具体内容、过程及完成情况；2.实习的效果及主要收获(含知识与技能的运用及熟练程度)；3.存在不足与建议。</p>
+					</div>
+				</div>
+		</div>
+		
+		<%
+			if(!isEmpty(reportAppraisal)) {
+		%>
+	       	<div style="width:794px">
+	       		<table style="width: 540px;">
+	       			<tr>
+	       				<td style="text-align: center;"><h1>实习总结报告评阅人意见</h1></td>
+	       			</tr>
+	       			<tr>
+	       				<td>
+							<div style="font-size: 18px;font-family: 宋体;">评阅人评语：<span style="border-bottom:1px solid;">${reviewercomments!""}</span></div>
+	       					<br>
+	       				</td>
+	       			</tr>
+	       			<tr>
+	       				<td>
+							<div style="font-size: 18px;font-family: 宋体;">成&nbsp;绩：<span style="font-size:22.5px;font-family:方正舒体;">${grade!"null"}</span></div>
+							<br>
+	       				</td>
+	       			</tr>
+	       			<tr>
+	       				<td>
+							<div style="font-size: 18px;font-family: 宋体;">评阅人：<span style="font-size:22.5px;font-family:方正舒体;">${signature!""}</span></div>
+							<br>
+	       				</td>
+	       			</tr>
+	       			<tr>
+	       				<td>
+							<div style="font-size: 18px;font-family: 宋体;">评阅日期：<span style="font-size:22.5px;font-family:方正舒体;">&nbsp;${signaturedate!""}</span></div>
+							<br>
+	       				</td>
+	       			</tr>
+	       		</table>
+	       	</div>
+		<%
+			}
+		%>
+
+
+		</div>
+			</form>
+
+	</div>
+	</div>
+</div>
+</body>
+
+</html>

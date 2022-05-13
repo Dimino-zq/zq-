@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+		<META HTTP-EQUIV="pragma" CONTENT="no-cache">
+	    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+	    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+	    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+	    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/studenttraininformation.css">
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+	    <script type="text/javascript" src="${ctxPath}/static/student/studenttraininformation.js"></script> 
+	    <script type="text/javascript" src="${ctxPath}/static/student/studentapplication.js"></script>
+	<title>实训信息</title>
+		<style>
+			#fu{
+				position:relative;
+				float:left;
+				margin-top:3px;
+			}
+			#btn_query{
+				float:left;
+				position:absolute;
+				right:50px;
+				top:2px;
+			
+			}
+		
+		</style>
+</head>
+<body class="easyui-layout">
+	 <div data-options="region:'north',minHeight:37,border:true">
+	 	<form id="form_query">
+	 		   <center><input class="easyui-textbox" name="searchText" id="txt_searchText" data-options="iconCls:'icon-search'" style="width:600px;"></center>
+			        	<a id="btn_query" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</a>
+	 	</form>
+	 </div>
+	<div  data-options="region:'center', border:false,collapsible:false" id="div_center">
+		<div class="whole" >
+			<div class="fl">
+			</div>
+			<div class="fr">
+	        </div>
+	    </div>
+	</div>
+    <div id="dlg_stuApplication" title="实习申请" class="easyui-dialog" data-options="resizable:false,modal:true,closed:true,closable:false,constrain:true,buttons:'#div_buttons'" style="width: 840px; height: 430px;">  <!-- ,buttons:'#buttons_stuApplication' -->
+		<div style="width:96%;padding-top:20px;" align="center">
+			<form id="form_stuApplication">
+				<table>
+					<tr style="height:40px;">
+						<td style="text-align: right;"><p>实习企业：</p></td>
+						<td style="width: 250px;"><input class="easyui-combobox" id="input_company" name="companyId" style="width: 250px;" data-options="readonly:true"></td>
+		 				<td style="text-align: right;">实习岗位：<input type="hidden" id="input_detailId" name="detailId"></td>
+						<td style="width: 250px;"><input class="easyui-textbox" id="input_surcomjob" name="surcomjob" style="width:250px;" data-options="required:true,missingMessage:'必填',validType:'length[1,30]'"></td>
+					</tr>
+					<tr style="height:40px">
+						<td style="text-align: right;">实习内容：</td>
+						<td colspan=3><input maxlength="6" class="easyui-textbox" id="input_surcomcontent" name="surcomcontent" style="width: 595px;" data-options="required:true,missingMessage:'必填',validType:'length[1,100]'"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td style="text-align: right;">实习时间：</td>
+						<td>
+							<input class="easyui-datebox" id="input_applydate" name="applydate" style="width:117px;" prompt="开始时间" data-options="editable:false">	
+							- <input class="easyui-datebox" id="input_endDate" name="endDate" style="width:117px;" prompt="结束时间" data-options="editable:false">
+						</td>
+						<td style="text-align: right;">
+							保险情况：
+						</td>
+						<td><input id="input_insurance" class="easyui-combobox" name="insurance" style="width:250px;"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td style="text-align: right; width: 101px;">学生电话：</td>
+						<td><input class="easyui-numberbox" id="input_phoneOrQQ" name="phoneOrQQ" style="width:250px;" data-options="required:true,missingMessage:'必填',validType:['integer','length[0,11]']"></td>
+						<td style="text-align: right;">指导老师：<input type="hidden" id="input_teacherNo" name="teacherNo"></td>
+						<td><input class="easyui-combobox" id="input_teacherName" name="teacherName" style="width: 250px;" ></td>
+					</tr>
+					<tr style="height:40px;">
+						<td style="text-align: right;">住宿地址：</td>
+						<td colspan=3><input class="easyui-textbox" id="input_adress" name="adress" style="width: 595px;" data-options="required:true,missingMessage:'必填',validType:'length[1,80]'"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td style="text-align: right;">申请理由：</td>
+						<td colspan=3><p style="width: 590px;">我已按学校规定完成了在校学习任务，办理了缴纳学费注册手续和实习保险。现申请到自主联系的企业进行实习。我对该企业及所从事工作已清楚了解，请学院审核、批准。</p></td>
+					</tr>
+					<tr style="height:40px;">
+						<td style="text-align: right;">
+							<input id="check_agreement" class="easyui-checkbox" name="agreement">
+						</td>
+						<td style="text-align: left;"  colspan=3>
+							<span style="vertical-align: bottom;text-align:left;">
+									本人已仔细阅读<a href="${ctxPath}/static/readme/teachingmanagement.pdf" target="_blank">黑龙江财经学院实习教学管理办法</a>和<a href="${ctxPath}/static/readme/safetybook.pdf" target="_blank">学生实习安全告知书</a>
+								<a id="help" type="img" href="#" deptCycle="" title="实训周期尚未开启！请重新登录后重试！" class="easyui-tooltip" style="">
+									<img alt="?" src="${ctxPath}/static/images/help.ico" style="margin-bottom: -7px;margin-left: 10px;">
+								</a>
+							</span>
+						</td>
+					</tr>
+				</table>
+			</form>
+        </div>
+    </div>
+    <div id="div_buttons">
+		<a id="btn_save" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-save',disabled:true">保&nbsp&nbsp存</a>
+		<a id="btn_cancel" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-back'">返&nbsp&nbsp回</a>
+    </div>
+    
+	<div  id="dlg_cominfo" class="easyui-dialog" data-options="resizable:false,closed:true">
+		<table border="1" style="width: 550px;height:250px; border:2px #E0ECFF solid; border-collapse:collapse; text-align:center; ">
+			<tr  height="40">
+				<td style="background-color: #f0f0f0;width:50px;border:1px solid #E0ECFF;">单位名称</td>
+				<td style="width:100px;background-color: #FAFAFA;border:1px solid #E0ECFF;" id = "info_comName"></td>
+				<td style="background-color: #f0f0f0;width:50px;border:1px solid #E0ECFF;">所属行业</td>
+				<td style="width:100px;background-color: #FAFAFA;border:1px solid #E0ECFF;" id = "info_industry"></td>
+			</tr>
+				<tr height="40">
+				<td style="background-color: #f0f0f0;width:50px;border:1px solid #E0ECFF;">联系人</td>
+				<td style="width:100px;background-color: #FAFAFA;border:1px solid #E0ECFF;" id = "info_comcontacts"></td>
+				<td style="background-color: #f0f0f0;width:50px;border:1px solid #E0ECFF;">联系方式</td>
+				<td style="width:100px;background-color: #FAFAFA;border:1px solid #E0ECFF;" id = "info_phone"></td>
+			</tr>
+				<tr height="40">
+				<td style="background-color: #f0f0f0;width:50px;border:1px solid #E0ECFF;">企业地址</td>
+				<td colspan="3" style="width:200px;background-color: #FAFAFA;border:1px solid #E0ECFF;" id = "info_comAddress"></td>
+			</tr>
+		</table>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/themes/icon.css">
+ 	<link rel="stylesheet" type="text/css" href="${ctxPath}/static/css/other.css">
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/common.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/jquery.serializejson.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/js/datagrid-detailview.js"></script> 
+    <script type="text/javascript" src="${ctxPath}/static/js/previewPdf.js"></script>
+    <script type="text/javascript" src="${ctxPath}/static/sysset/js/syscompany.js"></script>
+    
+    <title>实习基地</title>
+    <style type="text/css">
+    .style1 {
+    text-align: left;
+    color: #FF0000;
+  }
+  .style2 {
+    color: #FF0000;
+  }
+  .style4 {
+  color: #FF0000;
+  text-align: right;
+}
+.v{
+	vertical-align:top;
+}
+  
+</style>
+</head>
+
+<body class="easyui-layout"  data-options="fit:true">
+	<div  data-options="region:'north',minHeight:40" style="border-bottom-width: 1; margin-bottom:1px;">
+		    <% if(hasPermission('010002000')) {%>
+		    <form id="form_query" >
+		    	<table style="margin-top:1px;">
+				    <tr>
+				      	<td>企业名称：<input class="easyui-textbox" name="comName" style="width: 150px;"></td>
+				      	<td>所属行业：<input class="easyui-textbox" name="industry" style="width: 150px;"></td>
+ 					  	<td>是否签署协议:</td>				
+          				<td> <select id="txt_sign1" class="easyui-combobox" name="sign" style="width:150px" editable="false">
+	          					<option value="">--请选择--</option>
+	                    		<option value="是">是</option>
+	                    		<option value="否">否</option>
+                     		 </select>
+                     	</td>
+                     	
+                     		 <span style="float: right;margin-top:3.5px;margin-right:25px"><a class="easyui-linkbutton" id="btn_query" href="#" data-options="iconCls:'icon-search'">查询</a></span>
+                     	
+                     </tr>
+		    	</table>
+		    </form>
+		    <% }%>
+	</div>
+	<div  data-options="region:'center'" style="border-width: 0;">
+	 	<table id="tbl_company"></table>    
+	</div>
+	<div data-options="region:'south',border:'false',minHeight:40"  >
+		<div style="width: 100%;text-align: right;height: 35px;margin-top:2px; position:absolute; bottom:0px; right:0px;padding: 2px;">
+					<a class="easyui-linkbutton" id="btn_checkcompany" href="#" data-options="iconCls:'icon-add'">审批临时企业</a>
+					<a class="easyui-linkbutton" id="btn_addDlg_sub" href="#" data-options="iconCls:'icon-add'">增加协议</a>
+		     		<% if(hasPermission('010002001')) {%>
+		     		<a class="easyui-linkbutton" id="btn_addDlg" href="#" data-options="iconCls:'icon-add'">增加</a>
+		     		<% }%>
+		     		
+		     		<% if(hasPermission('010002002')) {%>
+			        <a class="easyui-linkbutton" id="btn_delDlg" href="#" data-options="iconCls:'icon-remove'">删除</a>
+			        <% }%>
+			        
+			        <% if(hasPermission('010002003')) {%>
+			        <a class="easyui-linkbutton" id="btn_updDlg" href="#" data-options="iconCls:'icon-edit'">修改</a>
+			        <% }%>
+			        
+			        <% if(hasPermission('010002004')) {%>
+			        <a class="easyui-linkbutton" id="btn_seeDlg" href="#" data-options="iconCls:'icon-more'">详细信息</a>
+			        <% }%>
+			        
+			        <% if(hasPermission('010002005')) {%>
+			        <a class="easyui-linkbutton" id="btn_inputDlg" href="#" data-options="iconCls:'icon-import'">导入</a>
+			        <% }%>
+			        <a class="easyui-linkbutton" id="btn_editplan" href="#" data-options="iconCls:'icon-add'">维护招聘计划</a>
+			        <!-- 打开招聘计划对话框按钮 by tomset -->
+					<a id="btn_allPlan" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查看招聘计划</a>
+			        <a id="btn_seesub" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-search'">查看协议</a>
+			        <!-- 更新（单个）企业等级按钮 by tomset -->
+					<a id="btn_updLvl" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">更新等级</a>
+	 	</div>
+ 	</div>
+
+	<div title="新增企业" class="easyui-dialog" id="dlg_company" style="width: 735px; height: 550px;text-align:" 
+		data-options="resizable:false,modal:true,closed:true,closable:false,buttons:'#div_buttons'">
+		<div style="width:100%;margin-top: 10px;">
+		
+			<form id="form_add">
+			<input type="hidden" id="imgString" name="logoPath">
+				<table style="width: 700px; height: 400px;margin-right: auto;padding-top:10px">
+					
+        			<tr style="height: 40px">
+        				<!-- <td style="text-align: right;">是否签署协议:</td>
+          				<td> <select id="txt_sign" class="easyui-combobox" name="sign" style="width:150px" editable="false">
+                    		<option>是</option>
+                    		<option>否</option>
+                     		 </select></td> -->
+                     	<td style="text-align: right;">实习单位名称:<input type="hidden" id="txt_companyId" name="companyId"></td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_comName" name="comName" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+                     	<td style="text-align: right;">所任职务:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_position" name="position" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+        			</tr>
+        			
+        			
+        			<tr style="height: 40px">
+        				<td style="text-align: right;">校内联系人:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_schContact" name="schContact" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+        				<td style="text-align: right;">校内联系方式:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_schContactphone" name="schContactphone" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+        			</tr>
+        			<tr style="height: 40px">
+        				<td style="text-align: right;"> 企业联系人:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_comcontacts" name="comcontacts" style="width:150px;" data-options="required:true,missingMessage:'必填'"></td>
+        				<td style="text-align: right;">企业联系方式:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_phone" name="phone" style="width:150px;"data-options="required:true,missingMessage:'必填'"></td>
+        			</tr>
+        			<tr style="height: 40px">
+						<td style="text-align: right;">实习单位地址:</td>
+						<td colspan="3"><input class="easyui-textbox" id="txt_comAddress" name="comAddress"   style="width:589px;" data-options="validType:'identity',delay:400,required:true,missingMessage:'必填'"></td>
+					</tr>
+					<tr style="height: 40px">
+						<td style="text-align: right;">所属行业:</td>
+          				<td colspan="3"><input class="easyui-textbox" id="txt_industry" name="industry" style="width:589px;" data-options="required:true,missingMessage:'必填'"></td>
+					</tr>
+					<tr style="height:40px;">
+						<td class='v' style="text-align: right;">logo预览:</td>
+						<td style="text-align: right;">
+							<div class="photo">
+								<center><img id="pictureimg"   style="width:240px;height:240px"></center>
+							</div>
+						</td>
+						
+          				<td class="v" style="text-align: right;style:100px" >上传logo:</td>
+          				<td class="v"  id="uploadlogo"><input id="file"  class="easyui-filebox"  name="upfile"  data-options="buttonText:'选择文件',accept:'.jpg'" style="width:150px;"/></td>
+          				<!--<td style="text-align: right;">审批状态:</td>
+          				
+          				 <td> <select id="txt_checkstate" class="easyui-combobox" name="checkstate" style="width:150px" editable="false">
+                    		<option>已审批</option>
+                    		<option>未审批</option>
+                     		 </select>
+                     	</td> -->
+        			</tr>
+			</table>
+		</form>
+		</div>
+	</div>
+<div id="dialog_compnytinfo" title="查看全部信息" class="easyui-dialog" style="width: 735px; height: 550px;text-align:" 
+		data-options="iconCls:'icon-man',resizable:false,modal:true,closed:true,closable:true,constrain:true">
+		<div style="width:100%;margin-top: 10px;">
+			<form id="form_add">
+				<table style="margin-left: auto;margin-right: auto;">
+					<tr style="height:40px;">
+          				<td style="text-align: right;">实习单位名称:<input type="hidden" id="txt_companyId" name="companyId"></td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_comName1" name="comName" style="width:150px;" data-options="required:true,missingMessage:'必填',readonly:true"></td>
+          				<td style="text-align: right;">审批状态:</td>
+          				<td> <select id="txt_checkstate1" class="easyui-textbox" name="checkstate" style="width:150px" data-options="readonly:true">
+                    		<option>已审批</option>
+                    		<option>未审批</option>
+                     		 </select></td>
+        			</tr>
+        			<tr style="height: 40px">
+        				<td style="text-align: right;">是否签署协议:</td>
+          				<td> <select id="txt_sign1" class="easyui-textbox" name="sign" style="width:150px" data-options="readonly:true">
+                    		<option>是</option>
+                    		<option>否</option>
+                     		 </select></td>
+                     	<td style="text-align: right;">签署协议时间:</td>
+          				<td ><input class="easyui-textbox" id="txt_signTime1" name="signTime" style="width:150px;" data-options="required:false,readonly:true"></td>
+        			<tr style="height: 40px">
+        				<td style="text-align: right;">有效期:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_effeDate1" name="effeDate" style="width:150px;" data-options="required:false,readonly:true"></td>
+        				<td style="text-align: right;">所任职务:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_position1" name="position" style="width:150px;" data-options="required:false,readonly:true"></td>
+        			</tr>
+        			
+        			<tr style="height: 40px">
+        			<td style="text-align: right;">校内联系人:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_schContact1" name="schContact" style="width:150px;" data-options="required:false,readonly:true"></td>
+        				<td style="text-align: right;">校内联系方式:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_schContactphone1" name="schContactphone" style="width:150px;" data-options="required:false,readonly:true"></td>
+        			</tr>
+        			<tr style="height: 40px">
+        				<td style="text-align: right;"> 企业联系人:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_comcontacts1" name="comcontacts" style="width:150px;" data-options="required:false,readonly:true"></td>
+        				<td style="text-align: right;"> 企业联系方式:</td>
+          				<td style="width:160px"><input class="easyui-textbox" id="txt_phone1" name="phone" style="width:150px;" data-options="required:false,readonly:true"></td>
+        			</tr>
+        			<tr style="height: 40px">
+						<td style="text-align: right;">实习单位地址:</td>
+						<td colspan="3"><input class="easyui-textbox" id="txt_comAddress1" name="comAddress"   style="width:485px;" data-options="validType:'identity',delay:400,required:true,missingMessage:'必填',readonly:true"></td>
+					</tr>
+					<tr style="height: 40px">
+						<td style="text-align: right;">所属行业:</td>
+          				<td colspan="3"><input class="easyui-textbox" id="txt_industry1" name="industry" style="width:485px;" data-options="required:false,readonly:true"></td>
+					</tr>
+					<tr>
+						<td style="text-align: right;">企业logo:</td>
+						<td style="width:240px;height:240px">
+							<div class="p" style="width:240px;height:240px">
+								<img id="pictureimg1" alt="" style="width:240px;height:240px">
+							</div>
+						</td>
+					</tr>
+			</table>
+		</form>
+		</div>
+	</div>
+	<!-- 协议查看 -->
+	<div id="dialog_sunb" >
+	</div>
+	<div id="dialog_plan" title="维护招聘计划" class="easyui-dialog" style="width: 790px; height: 455px;text-align:" 
+		data-options="iconCls:'icon-man',resizable:false,modal:true,closed:true,closable:false,
+			constrain:true,buttons:'#div_planbuttons'">
+		<form id="form_editPlan">
+		<div  class="easyui-layout" style="width:100%;height:370px;">
+			<div data-options="region:'north',title:'请输入招聘简章',split:false,border:false,collapsible:false" style="height:90px;">
+				<input type="hidden" id="txt_plan_companyId" name="companyId">
+				<input type="hidden" id="txt_planId" name="planId">
+				<input class="easyui-textbox" id="txt_planDesc" name="planDesc" 
+					data-options="validType:'identity',required:false,
+					multiline:true, missingMessage:'必填',fit:true">
+			</div>
+			<div data-options="region:'center',split:false,border:false,collapsible:false" style="border-width: 0;">
+				<table id="tbl_planDetail" style="width:100%;">
+				   
+				</table>
+				<div id="div_btnaddplan">
+					<a href="#" id="btn_addPlanRow" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增招聘岗位</a>
+					<a href="#" id="btn_delPlanRow" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除指定岗位</a>
+				</div>
+			</div>
+		</div>
+		</form>
+		<div id="div_planbuttons">
+	      <a class="easyui-linkbutton" href="#" id="btn_saveplan" style="width: 80px;">保&nbsp;&nbsp;存</a>
+	      <a class="easyui-linkbutton" href="#" id="btn_close1" style="width: 80px;">关&nbsp;&nbsp;闭</a>
+	  </div>
+	</div>
+	
+	
+	
+	<div id="exlimport" title="导入excel文件"  class="easyui-dialog" style="width:440px; height:240px;" data-options="iconCls:'icon-import',resizable:false,modal:true,closed:true,constrain:true,buttons:'#div_button'"> 
+		<div align="center">
+			<div style="padding-top: 15px;">
+				<form id="form_importExcel" method="post" enctype="multipart/form-data">
+ 					Excel文件：<input id="upload" class="easyui-filebox" name="upfile" data-options="buttonText:'选择文件',accept:'.xlsx'" style="width:200px;"/>
+				</form>
+			</div>
+			<div style="padding-top: 10px;">
+        <table style='margin-right:85px'>
+          <tr>
+            <td style="width: 67px" class="style4 "><strong>提示：</strong></td>
+            <td class="style1"><strong>1、请您先<a id="btn_download" href="${ctxPath}/static/excel_templat/Companyexcleform.xlsx">下载模板</a></strong></td>
+          </tr>
+          <tr>
+            <td style="width: 67px" class="style2"><strong></strong></td>
+            <td class="style1"><strong>2、按照模板格式写入数据</strong></td>
+          </tr>
+          <tr>
+            <td style="width: 67px" class="style2"><strong></strong></td>
+            <td class="style1"><strong>3、选择excel文件</strong></td>
+          </tr>
+          
+        </table>
+
+      
+      </div>
+			
+	   	</div>
+	</div>
+	
+	<div id="agreement" title="增加协议"  class="easyui-dialog" style="width:500px; height:300px;" data-options="iconCls:'icon-import',resizable:false,modal:true,closed:true,constrain:true,buttons:'#div_button_sub'"> 
+		<div align="center">
+		<form id="form_addpdf" style="padding-top: 10px;"  method="post" enctype="multipart/form-data">
+			<input type="hidden" id="txt_companyIdpdf" name="companyId">
+			<table >
+			<tr>
+				<td style="text-align: right;">PDF协议文件:</td>
+				<td>
+					<input id="upload_sub" class="easyui-filebox" name="upfile" data-options="buttonText:'选择文件',accept:'.pdf',validType:['fileSize[5,\'MB\']']" style="width:220px;"/>					
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align: right;">审批状态:</td>
+          		<td> <select id="txt_checkstate1_sub" class="easyui-combobox" name="checkstate" style="width:220px;" >
+                    <option>已审批</option>
+                    <option>未审批</option>
+                     	</select></td>
+                
+			</tr>
+			<tr>
+				 <td style="text-align: right;">是否签署协议:</td>
+          		<td> <select id="txt_sign1_sub" class="easyui-combobox" name="sign" style="width:220px" >
+                    <option>是</option>
+                    <option>否</option>
+                     </select>
+                </td>
+			</tr>
+			<tr>
+			<td style="text-align: right;">有效期:</td>
+			
+ 			<td style="width:160px"><input class="easyui-textbox" id="txt_effeDate" name="effeDate" style="width:220px;" data-options="required:true,missingMessage:'必填'"></td>
+ 			</tr>
+ 			<tr>
+ 			
+			<td style="text-align: right;">签署协议时间:</td>
+			<td ><input class="easyui-datebox" id="txt_signTime" name="signTime" style="width:220px;" data-options="required:true,missingMessage:'必填',editable:false"></td>
+			</tr>
+			
+			</table>
+		</form>
+	   	</div>
+	   	
+	</div>
+    
+    <div id="checkcompany" title="审核企业"  class="easyui-dialog" style="width:500px; height:300px;" data-options="iconCls:'icon-import',resizable:false,modal:true,closed:true,constrain:true,buttons:'#div_checkcompany'"> 
+		<div align="center">
+		<form id="form_checkcompany" style="padding-top: 10px;"  method="post" enctype="multipart/form-data">
+			<input type="hidden" id="txt_checkcompanyId" name="companyId">
+			<table >
+			<tr>
+				<td style="text-align: right;">审批状态:</td>
+          		<td> <select id="txt_checkstate1_sub" class="easyui-combobox" name="checkstate" style="width:220px;" >
+                    <option>已审批</option>
+                    <option>未审批</option>
+                     	</select></td>
+                
+			</tr>
+			</table>
+		</form>
+	   	</div>
+	   	
+	</div>
+    
+	
+	
+  <div id="div_buttons">
+      <a class="easyui-linkbutton" href="#" id="btn_save" style="width: 80px;">保&nbsp;&nbsp;存</a>
+      <a class="easyui-linkbutton" href="#" id="btn_close" style="width: 80px;">关&nbsp;&nbsp;闭</a>
+  </div>
+  <div id="div_button">
+  	  <a id="bbbbb" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">上传</a>
+  </div>
+  <div id="div_button_sub">
+  	  <a id="aaaa" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">上传</a>
+  </div>
+  <div id="div_checkcompany">
+  	  <a id="checkcom_yes" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">保存</a>
+  </div>
+  
+  <div id="importDialog" title="具体错误信息汇总" class="easyui-dialog" data-options="resizable:false,modal:true,closed:true," style="width: 970px; height: 500px;">
+	     <table id="dg"></table>
+    </div>
+   <!-- 招聘计划对话框 by tomset -->
+  <div id="dlg_allPlan" title="历届招聘计划" class="easyui-dialog" style="width: 830px; height: 480px;" data-options="resizable:false,modal:true,closed:true,closable:true,constrain:true,buttons:[{text:'关   闭',handler:function(){$('#dlg_allPlan').dialog('close');}}]">
+    <table id="tbl_allPlan" style="height: 100%;"></table>
+    </div>
+    
+</body>
+</html>

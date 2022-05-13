@@ -1,0 +1,207 @@
+2021/03/22-14:09 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- Starting TrainPlatApplication using Java 11.0.7 on LAPTOP-COLKN1OV with PID 7732 (C:\Users\良木\eclipse-workspace\trainPlat\target\classes started by 良木 in C:\Users\良木\eclipse-workspace\trainPlat)
+2021/03/22-14:09 [restartedMain] DEBUG edu.hfu.train.TrainPlatApplication- Running with Spring Boot v2.4.0, Spring v5.3.1
+2021/03/22-14:09 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- The following profiles are active: dev
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor- Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.boot.devtools.env.DevToolsPropertyDefaultsPostProcessor- For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 51 ms. Found 0 JPA repository interfaces.
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 34 ms. Found 0 Redis repository interfaces.
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.cloud.context.scope.GenericScope- BeanFactory id=d5875e78-4fe0-3736-9052-c568646192bb
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'edu.hfu.train.dao.remote.AuthGrantDao' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@670f88b3' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
+2021/03/22-14:09 [restartedMain] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2021/03/22-14:09 [restartedMain] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.39]
+2021/03/22-14:09 [restartedMain] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/train]- Initializing Spring embedded WebApplicationContext
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext- Root WebApplicationContext: initialization completed in 2840 ms
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.boot.web.servlet.RegistrationBean- Filter webStatFilter was not registered (possibly already registered?)
+2021/03/22-14:09 [restartedMain] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure- Init DruidDataSource
+2021/03/22-14:09 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} inited
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Initializing ExecutorService 'applicationTaskExecutor'
+2021/03/22-14:09 [task-1] INFO  org.hibernate.jpa.internal.util.LogHelper- HHH000204: Processing PersistenceUnitInfo [name: default]
+2021/03/22-14:09 [task-1] INFO  org.hibernate.Version- HHH000412: Hibernate ORM core version 5.4.23.Final
+2021/03/22-14:09 [task-1] INFO  org.hibernate.annotations.common.Version- HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer- LiveReload server is running on port 35729
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Triggering deferred initialization of Spring Data repositories…
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Spring Data repositories initialized!
+2021/03/22-14:09 [task-1] INFO  org.hibernate.dialect.Dialect- HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/druid/**'] with []
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/login'] with []
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/static/**'] with []
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/'] with []
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/goBlank'] with []
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/invalidSession'] with []
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32f68a90, org.springframework.security.web.context.SecurityContextPersistenceFilter@73b84e0, org.springframework.security.web.header.HeaderWriterFilter@4b5bd05f, org.springframework.security.web.authentication.logout.LogoutFilter@5bd6b4df, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@bb4154d, org.springframework.security.web.session.ConcurrentSessionFilter@5f50bb2c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4708bd79, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4e02f902, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1943effe, org.springframework.security.web.session.SessionManagementFilter@8772d5d, org.springframework.security.web.access.ExceptionTranslationFilter@197564c8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@296f751e]
+2021/03/22-14:09 [task-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021/03/22-14:09 [task-1] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path '/train'
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Triggering deferred initialization of Spring Data repositories…
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Spring Data repositories initialized!
+2021/03/22-14:09 [restartedMain] INFO  org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor- No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2021/03/22-14:09 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- Started TrainPlatApplication in 9.49 seconds (JVM running for 10.502)
+2021/03/22-14:09 [http-nio-8080-exec-2] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/train]- Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021/03/22-14:09 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
+2021/03/22-14:09 [http-nio-8080-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 1 ms
+2021/03/22-14:09 [http-nio-8080-exec-2] DEBUG edu.hfu.train.action.LoginIndexAction- 进入登录页...
+2021/03/22-14:09 [http-nio-8080-exec-10] DEBUG edu.hfu.train.service.security.CustomUserDetailsAuthenticationProvider- Authenticated user
+2021/03/22-14:12 [Thread-5] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Closing JPA EntityManagerFactory for persistence unit 'default'
+2021/03/22-14:12 [Thread-5] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Shutting down ExecutorService 'applicationTaskExecutor'
+2021/03/22-14:12 [Thread-5] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} closing ...
+2021/03/22-14:12 [Thread-5] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-1} closed
+2021/03/22-14:12 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- Starting TrainPlatApplication using Java 11.0.7 on LAPTOP-COLKN1OV with PID 7732 (C:\Users\良木\eclipse-workspace\trainPlat\target\classes started by 良木 in C:\Users\良木\eclipse-workspace\trainPlat)
+2021/03/22-14:12 [restartedMain] DEBUG edu.hfu.train.TrainPlatApplication- Running with Spring Boot v2.4.0, Spring v5.3.1
+2021/03/22-14:12 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- The following profiles are active: dev
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 46 ms. Found 0 JPA repository interfaces.
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 37 ms. Found 0 Redis repository interfaces.
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.cloud.context.scope.GenericScope- BeanFactory id=e2344560-538b-36c0-b7fb-f05218619acd
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'edu.hfu.train.dao.remote.AuthGrantDao' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@49b853dd' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
+2021/03/22-14:12 [restartedMain] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2021/03/22-14:12 [restartedMain] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.39]
+2021/03/22-14:12 [restartedMain] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/train]- Initializing Spring embedded WebApplicationContext
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext- Root WebApplicationContext: initialization completed in 743 ms
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.boot.web.servlet.RegistrationBean- Filter webStatFilter was not registered (possibly already registered?)
+2021/03/22-14:12 [restartedMain] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure- Init DruidDataSource
+2021/03/22-14:12 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-2} inited
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Initializing ExecutorService 'applicationTaskExecutor'
+2021/03/22-14:12 [task-1] INFO  org.hibernate.jpa.internal.util.LogHelper- HHH000204: Processing PersistenceUnitInfo [name: default]
+2021/03/22-14:12 [task-1] INFO  org.hibernate.dialect.Dialect- HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer- LiveReload server is running on port 35729
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Triggering deferred initialization of Spring Data repositories…
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Spring Data repositories initialized!
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/druid/**'] with []
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/login'] with []
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/static/**'] with []
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/'] with []
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/goBlank'] with []
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/invalidSession'] with []
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1022484, org.springframework.security.web.context.SecurityContextPersistenceFilter@29f46b6a, org.springframework.security.web.header.HeaderWriterFilter@55b6ac3a, org.springframework.security.web.authentication.logout.LogoutFilter@74d5943f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@180e3b3d, org.springframework.security.web.session.ConcurrentSessionFilter@648840dc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4943d512, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@58583ad7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72655050, org.springframework.security.web.session.SessionManagementFilter@42aa7411, org.springframework.security.web.access.ExceptionTranslationFilter@4d400e21, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3d4248ab]
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path '/train'
+2021/03/22-14:12 [task-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021/03/22-14:12 [task-1] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Triggering deferred initialization of Spring Data repositories…
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Spring Data repositories initialized!
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor- No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2021/03/22-14:12 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- Started TrainPlatApplication in 2.717 seconds (JVM running for 208.398)
+2021/03/22-14:12 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener- Condition evaluation unchanged
+2021/03/22-14:14 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/train]- Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021/03/22-14:14 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
+2021/03/22-14:14 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 1 ms
+2021/03/22-14:14 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 111072
+2021/03/22-14:14 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 112520
+2021/03/22-14:14 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 112557
+2021/03/22-14:14 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 112587
+2021/03/22-14:14 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 112618
+2021/03/22-14:16 [Thread-10] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Closing JPA EntityManagerFactory for persistence unit 'default'
+2021/03/22-14:16 [Thread-10] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Shutting down ExecutorService 'applicationTaskExecutor'
+2021/03/22-14:16 [Thread-10] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-2} closing ...
+2021/03/22-14:16 [Thread-10] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-2} closed
+2021/03/22-14:16 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- Starting TrainPlatApplication using Java 11.0.7 on LAPTOP-COLKN1OV with PID 7732 (C:\Users\良木\eclipse-workspace\trainPlat\target\classes started by 良木 in C:\Users\良木\eclipse-workspace\trainPlat)
+2021/03/22-14:16 [restartedMain] DEBUG edu.hfu.train.TrainPlatApplication- Running with Spring Boot v2.4.0, Spring v5.3.1
+2021/03/22-14:16 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- The following profiles are active: dev
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 49 ms. Found 0 JPA repository interfaces.
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 39 ms. Found 0 Redis repository interfaces.
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.cloud.context.scope.GenericScope- BeanFactory id=e2344560-538b-36c0-b7fb-f05218619acd
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'edu.hfu.train.dao.remote.AuthGrantDao' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@614a4e3f' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
+2021/03/22-14:16 [restartedMain] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2021/03/22-14:16 [restartedMain] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.39]
+2021/03/22-14:16 [restartedMain] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/train]- Initializing Spring embedded WebApplicationContext
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext- Root WebApplicationContext: initialization completed in 786 ms
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.boot.web.servlet.RegistrationBean- Filter webStatFilter was not registered (possibly already registered?)
+2021/03/22-14:16 [restartedMain] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure- Init DruidDataSource
+2021/03/22-14:16 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-3} inited
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Initializing ExecutorService 'applicationTaskExecutor'
+2021/03/22-14:16 [task-1] INFO  org.hibernate.jpa.internal.util.LogHelper- HHH000204: Processing PersistenceUnitInfo [name: default]
+2021/03/22-14:16 [task-1] INFO  org.hibernate.dialect.Dialect- HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer- LiveReload server is running on port 35729
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Triggering deferred initialization of Spring Data repositories…
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Spring Data repositories initialized!
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/druid/**'] with []
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/login'] with []
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/static/**'] with []
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/'] with []
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/goBlank'] with []
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/invalidSession'] with []
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@21dde8f2, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f660d11, org.springframework.security.web.header.HeaderWriterFilter@a1b1d1b, org.springframework.security.web.authentication.logout.LogoutFilter@4dd194e5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@41a913ca, org.springframework.security.web.session.ConcurrentSessionFilter@3e36dd8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d473023, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2fc00e5f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@220a8037, org.springframework.security.web.session.SessionManagementFilter@19777a5e, org.springframework.security.web.access.ExceptionTranslationFilter@7215c99c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4bc70c71]
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path '/train'
+2021/03/22-14:16 [task-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021/03/22-14:16 [task-1] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Triggering deferred initialization of Spring Data repositories…
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Spring Data repositories initialized!
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor- No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2021/03/22-14:16 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- Started TrainPlatApplication in 3.115 seconds (JVM running for 414.119)
+2021/03/22-14:16 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener- Condition evaluation unchanged
+2021/03/22-14:18 [http-nio-8080-exec-1] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/train]- Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021/03/22-14:18 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
+2021/03/22-14:18 [http-nio-8080-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 0 ms
+2021/03/22-14:18 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 139400
+2021/03/22-14:18 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 140542
+2021/03/22-14:18 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 140693
+2021/03/22-14:18 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 140847
+2021/03/22-14:18 [http-nio-8080-exec-2] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 140919
+2021/03/22-14:20 [http-nio-8080-exec-6] DEBUG edu.hfu.train.action.LoginIndexAction- 进入登录页...
+2021/03/22-14:20 [http-nio-8080-exec-7] WARN  com.alibaba.druid.pool.DruidAbstractDataSource- discard long time none received connection. , jdbcUrl : jdbc:mysql://172.16.13.3:3306/train?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8, version : 1.2.3, lastPacketReceivedIdleMillis : 135988
+2021/03/22-14:20 [http-nio-8080-exec-7] DEBUG edu.hfu.train.service.security.CustomUserDetailsAuthenticationProvider- Authenticated user
+2021/03/22-14:27 [Thread-17] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Closing JPA EntityManagerFactory for persistence unit 'default'
+2021/03/22-14:27 [Thread-17] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Shutting down ExecutorService 'applicationTaskExecutor'
+2021/03/22-14:27 [Thread-17] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-3} closing ...
+2021/03/22-14:27 [Thread-17] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-3} closed
+2021/03/22-14:27 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- Starting TrainPlatApplication using Java 11.0.7 on LAPTOP-COLKN1OV with PID 7732 (C:\Users\良木\eclipse-workspace\trainPlat\target\classes started by 良木 in C:\Users\良木\eclipse-workspace\trainPlat)
+2021/03/22-14:27 [restartedMain] DEBUG edu.hfu.train.TrainPlatApplication- Running with Spring Boot v2.4.0, Spring v5.3.1
+2021/03/22-14:27 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- The following profiles are active: dev
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 46 ms. Found 0 JPA repository interfaces.
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode!
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 36 ms. Found 0 Redis repository interfaces.
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.cloud.context.scope.GenericScope- BeanFactory id=e2344560-538b-36c0-b7fb-f05218619acd
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'edu.hfu.train.dao.remote.AuthGrantDao' of type [org.springframework.cloud.openfeign.FeignClientFactoryBean] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6587f9ff' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker- Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
+2021/03/22-14:27 [restartedMain] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2021/03/22-14:27 [restartedMain] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.39]
+2021/03/22-14:27 [restartedMain] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/train]- Initializing Spring embedded WebApplicationContext
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext- Root WebApplicationContext: initialization completed in 669 ms
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.boot.web.servlet.RegistrationBean- Filter webStatFilter was not registered (possibly already registered?)
+2021/03/22-14:27 [restartedMain] INFO  com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure- Init DruidDataSource
+2021/03/22-14:27 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource- {dataSource-4} inited
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor- Initializing ExecutorService 'applicationTaskExecutor'
+2021/03/22-14:27 [task-1] INFO  org.hibernate.jpa.internal.util.LogHelper- HHH000204: Processing PersistenceUnitInfo [name: default]
+2021/03/22-14:27 [task-1] INFO  org.hibernate.dialect.Dialect- HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer- LiveReload server is running on port 35729
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Triggering deferred initialization of Spring Data repositories…
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Spring Data repositories initialized!
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/druid/**'] with []
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/login'] with []
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/static/**'] with []
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/'] with []
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/goBlank'] with []
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure Ant [pattern='/invalidSession'] with []
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.security.web.DefaultSecurityFilterChain- Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@71e2dc7c, org.springframework.security.web.context.SecurityContextPersistenceFilter@26a6e22c, org.springframework.security.web.header.HeaderWriterFilter@1c8a7520, org.springframework.security.web.authentication.logout.LogoutFilter@2dea345, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@13e35854, org.springframework.security.web.session.ConcurrentSessionFilter@56563945, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@694ab0ad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74831740, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33f0eab4, org.springframework.security.web.session.SessionManagementFilter@14213eaa, org.springframework.security.web.access.ExceptionTranslationFilter@2e8bd162, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5bad16e]
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path '/train'
+2021/03/22-14:27 [task-1] INFO  org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator- HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021/03/22-14:27 [task-1] INFO  org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean- Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Triggering deferred initialization of Spring Data repositories…
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.data.repository.config.DeferredRepositoryInitializationListener- Spring Data repositories initialized!
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor- No TaskScheduler/ScheduledExecutorService bean found for scheduled processing
+2021/03/22-14:27 [restartedMain] INFO  edu.hfu.train.TrainPlatApplication- Started TrainPlatApplication in 2.626 seconds (JVM running for 1073.67)
+2021/03/22-14:27 [restartedMain] INFO  org.springframework.boot.devtools.autoconfigure.ConditionEvaluationDeltaLoggingListener- Condition evaluation unchanged
